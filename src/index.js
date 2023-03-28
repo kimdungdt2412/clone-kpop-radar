@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "jquery/dist/jquery.min.js";
+import "popper.js/dist/umd/popper.min.js";
 import './index.css';
 
 const container = document.getElementById('root');

@@ -1,0 +1,207 @@
+.spinner {
+    position: fixed;
+    width: 100% !important;
+    background: white;
+    height: 100% !important;
+    z-index: 10000000000;
+    overflow: auto;
+    width: 100px;
+    height: 102px;
+}
+
+@keyframes spinner-ellipsis3 {
+    0%, 25% {
+        left: 32px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    50% {
+        left: 32px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    75% {
+        left: 100px;
+    }
+
+    100% {
+        left: 168px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes spinner-ellipsis3 {
+    0%, 25% {
+        left: 32px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    50% {
+        left: 32px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    75% {
+        left: 100px;
+    }
+
+    100% {
+        left: 168px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes spinner-ellipsis2 {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    25%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@-webkit-keyframes spinner-ellipsis2 {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    25%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@keyframes spinner-ellipsis {
+    0% {
+        left: 32px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    25% {
+        left: 32px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        left: 100px;
+    }
+
+    75% {
+        left: 168px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    100% {
+        left: 168px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@-webkit-keyframes spinner-ellipsis {
+    0% {
+        left: 32px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    25% {
+        left: 32px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        left: 100px;
+    }
+
+    75% {
+        left: 168px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    100% {
+        left: 168px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+.spinner-ellipsis {
+    width: 100%;
+    height: 100%;
+    top: 45%;
+    position: absolute;
+    left: 45%;
+}
+
+.spinner-ellipsis > div {
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+}
+
+.spinner-ellipsis div > div {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f00;
+    position: absolute;
+    top: 100px;
+    left: 32px;
+    -webkit-animation: spinner-ellipsis 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    animation: spinner-ellipsis 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+}
+
+.spinner-ellipsis div:nth-child(1) div {
+    -webkit-animation: spinner-ellipsis2 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    animation: spinner-ellipsis2 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    background: #ff354e;
+}
+
+.spinner-ellipsis div:nth-child(2) div {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+    background: #ff354e;
+}
+
+.spinner-ellipsis div:nth-child(3) div {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+    background: #ff354e;
+}
+
+.spinner-ellipsis div:nth-child(4) div {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+    background: #ff354e;
+}
+
+.spinner-ellipsis div:nth-child(5) div {
+    -webkit-animation: spinner-ellipsis3 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    animation: spinner-ellipsis3 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    background: #ff354e;
+}
+
+.spinner-ellipsis {
+    width: 56px !important;
+    height: 56px !important;
+    -webkit-transform: translate(-28px, -28px) scale(0.28) translate(28px, 28px);
+    transform: translate(-28px, -28px) scale(0.28) translate(28px, 28px);
+}
