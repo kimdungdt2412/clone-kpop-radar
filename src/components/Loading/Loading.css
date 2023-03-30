@@ -7,6 +7,7 @@
     overflow: auto;
     width: 100px;
     height: 102px;
+    display: none;
 }
 
 @keyframes spinner-ellipsis3 {

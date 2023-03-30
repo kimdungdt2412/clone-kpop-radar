@@ -18,7 +18,7 @@ export default function Header() {
     }, [move])
 
     return (
-        <header id="header" className='block pl-[60px] pr-[25px] pt-[35px] pb-[10px] w-full max-w-[1920px] box-border z-[100] fixed top-0 left-0 right-0'>
+        <header id="header" className="block bg-white pl-[60px] pr-[25px] pt-[35px] pb-[10px] w-full max-w-[1920px] box-border z-[100] fixed top-0 left-0 right-0  after:block after:clear-both after:content-['']">
             <h1 className={`logo1 float-left w-[160px] h-[108px] mt-[-7px] ml-[-7px] box-border p-[6px] pointer-events-auto ${isFirst ? 'p-0' : ''}`}>
                 <a href='/' className={isFirst ? "block h-full w-full bg-logo_gif bg-no-repeat bg-100 text-transparent" : "block h-full w-full bg-logo_1 bg-no-repeat bg-auto text-transparent"}>kpop-radar</a>
             </h1>
