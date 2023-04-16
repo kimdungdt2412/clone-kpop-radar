@@ -7,6 +7,7 @@ import Homepage from './templates/Homepage/Homepage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Dots from './components/Dots/Dots';
+import About from './templates/AboutPage/AboutPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeTemplate />}>
           <Route path="" element={<Homepage />} />
+          <Route path="/about" element={<About />} />
         </Route>
       </Routes>
       <Dots/>

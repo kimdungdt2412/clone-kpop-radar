@@ -40,5 +40,6 @@
     font-size: 14px;
     max-width: 1920px;
     overflow-x: hidden;
+    vertical-align: baseline ;
   }
 }
