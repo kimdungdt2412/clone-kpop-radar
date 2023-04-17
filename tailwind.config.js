@@ -31,7 +31,9 @@ module.exports = {
         'instagram_icon': "url('/src/assets/images/icon_sns_instagram.svg')",
         'about_bg_kv_m': "url('/src/assets/images/bg_kv_img_m.jpg')",
         'about_bg_kv': "url('/src/assets/images/bg_kv_img.jpg')",
-        'icon_footer_logo': "url('/src/assets/images/icon_footer_logo.svg')"
+        'icon_footer_logo': "url('/src/assets/images/icon_footer_logo.svg')",
+        'img_kv_banner': "url('/src/assets/images/img_kv_banner.jpg')",
+        'img_kv_banner_m': "url('/src/assets/images/img_kv_banner_m.jpg')"
       },
       backgroundSize: {
         '100': "100%"
