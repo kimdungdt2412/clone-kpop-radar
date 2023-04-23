@@ -21,10 +21,12 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'logo_1': "url('/src/assets/images/logo_1.svg')",
+        'logo_1': "url('/src/assets/images/logo_1.png')",
+        'logo_mini': "url('/src/assets/images/logo_mini.svg')",
         'logo_gif': "url('/src/assets/images/logo_motion_1.gif')",
-        'logo_white':"url('/src/assets/images/logo_white.svg')",
+        'logo_white':"url('/src/assets/images/logo_white.png')",
         'logo_white_gif':"url('/src/assets/images/logo_white_motion.gif')",
+        'logo_white_mini': "url('/src/assets/images/logo_white_mini.svg')",
         'footer_blip': "url('/src/assets/images/kr-footer-blip-symbol.png')",
         'twitter_icon': "url('/src/assets/images/icon_sns_twitter.svg')",
         'youtube_icon': "url('/src/assets/images/icon_sns_youtube.svg')",

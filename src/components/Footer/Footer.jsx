@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import arrowIcon from '../../assets/images/kr-about-faq-arrow.png';
 import blipIcon from '../../assets/images/kr-footer-blip-sp-logo.png'
 import licenseIcon from '../../assets/images/kr-footer-blip-ccl.png'
+import './style.css'
 
 export default function Footer() {
 
@@ -55,20 +56,30 @@ export default function Footer() {
                     {
                         menuList.map(item => (
                             <li className='relative' key={item.title}>
-                                <NavLink
-                                    className="block w-full text-[46px] leading-[64px] lg:text-[120px] lg:leading-[140px] font-bold"
-                                    rel="noopener noreferrer"
-                                    to={item.url}
-                                >
-                                    {item.title}
-                                </NavLink>
+                                {item.title !== 'about' ? (
+                                    <NavLink
+                                        className="menu-item block w-full text-[46px] leading-[64px] lg:text-[120px] lg:leading-[140px] font-bold"
+                                        rel="noopener noreferrer"
+                                        to={item.url}
+                                    >
+                                        {item.title}
+                                    </NavLink>
+                                ) : (
+                                    <NavLink
+                                        className="menu-item block w-full text-[46px] leading-[64px] lg:text-[120px] lg:leading-[140px] font-bold"
+                                        rel="noopener noreferrer"
+                                        to={item.url}
+                                    >
+                                        {item.title}
+                                    </NavLink>
+                                )}
                             </li>
                         ))
                     }
                 </ul>
             </div>
             <div className="foot w-full mt-[55px] lg:mt-auto ml-[77px] lg:ml-auto max-w-[1440px] mx-0 my-auto">
-                <div className='mail-text text-[17px] leading-[28px] static w-auto ml-0 lg:relative lg:ml-auto mb-[60px] max-w-[800px] lg:w-full lg:text-[30px] lg:leading-[38px] text-white'>  
+                <div className='mail-text text-[17px] leading-[28px] static w-auto ml-0 lg:relative lg:ml-auto mb-[60px] max-w-[800px] lg:w-full lg:text-[30px] lg:leading-[38px] text-white'>
                     <NavLink
                         className="inline-block hover:underline"
                         rel="noopener noreferrer"

@@ -41,5 +41,11 @@
     max-width: 1920px;
     overflow-x: hidden;
     vertical-align: baseline ;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -1,0 +1,4 @@
+.menu-item:hover {
+    -webkit-text-stroke: 1px #fff;
+    -webkit-text-fill-color: transparent
+}

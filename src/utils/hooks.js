@@ -1,6 +1,6 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-function useIsFirstRender() {
+export const useIsFirstRender = () => {
   const isFirst = useRef(true)
 
   if (isFirst.current) {
@@ -11,5 +11,48 @@ function useIsFirstRender() {
 
   return isFirst.current
 }
+
+export const ScrollDirection = {
+  "up": "up",
+  "down": "down",
+}
+
+export const useScrollDirection = () => {
+  const threshold = 200;
+  const [scrollDir, setScrollDir] = useState(ScrollDirection.up);
+
+  useEffect(() => {
+    let previousScrollYPosition = window.scrollY;
+
+    const scrolledMoreThanThreshold = (currentScrollYPosition) =>
+      Math.abs(currentScrollYPosition - previousScrollYPosition) > threshold;
+
+    const isScrollingUp = (currentScrollYPosition) =>
+      currentScrollYPosition > previousScrollYPosition &&
+      !(previousScrollYPosition > 0 && currentScrollYPosition === 0) &&
+      !(currentScrollYPosition > 0 && previousScrollYPosition === 0);
+
+    const updateScrollDirection = () => {
+      const currentScrollYPosition = window.scrollY;
+
+      if (scrolledMoreThanThreshold(currentScrollYPosition)) {
+        const newScrollDirection = isScrollingUp(currentScrollYPosition)
+          ? ScrollDirection.down
+          : ScrollDirection.up;
+        setScrollDir(newScrollDirection)
+        previousScrollYPosition =
+          currentScrollYPosition > 0 ? currentScrollYPosition : 0;
+      }
+    };
+
+    const onScroll = () => window.requestAnimationFrame(updateScrollDirection);
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return scrollDir;
+};
 
 export default useIsFirstRender
