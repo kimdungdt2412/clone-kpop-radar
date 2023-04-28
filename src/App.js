@@ -10,6 +10,7 @@ import Dots from './components/Dots/Dots';
 import About from './templates/AboutPage/AboutPage';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import Brief from './templates/BriefPage/BriefPage';
+import { ScrollToTop } from './features/ScrollToTop';
 
 function App() {
   return (
@@ -17,13 +18,15 @@ function App() {
       <Header />
       <Loading />
       <ParallaxProvider>
-        <Routes>
-          <Route path="/" element={<HomeTemplate />}>
-            <Route path="" element={<Homepage />} />
-            <Route path="/brief" element={<Brief />} />
-            <Route path="/about" element={<About />} />
-          </Route>
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route path="/" element={<HomeTemplate />}>
+              <Route path="" element={<Homepage />} />
+              <Route path="/brief" element={<Brief />} />
+              <Route path="/about" element={<About />} />
+            </Route>
+          </Routes>
+        </ScrollToTop>
       </ParallaxProvider>
       <Dots />
       <Footer />
