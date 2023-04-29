@@ -35,7 +35,9 @@ module.exports = {
         'about_bg_kv': "url('/src/assets/images/bg_kv_img.jpg')",
         'icon_footer_logo': "url('/src/assets/images/icon_footer_logo.svg')",
         'img_kv_banner': "url('/src/assets/images/img_kv_banner.jpg')",
-        'img_kv_banner_m': "url('/src/assets/images/img_kv_banner_m.jpg')"
+        'img_kv_banner_m': "url('/src/assets/images/img_kv_banner_m.jpg')",
+        'icon_brief_close': "url('/src/assets/images/icon_brief_close.jpg')",
+        'icon_brief_url': "url('/src/assets/images/icon_brief_url.jpg')"
       },
       backgroundSize: {
         '100': "100%"

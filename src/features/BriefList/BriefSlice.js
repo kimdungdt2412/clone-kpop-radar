@@ -6,6 +6,7 @@ const initialState = {
   orderCountInPage: 5,
   lastOrderNo: 0,
   briefCount: 0,
+  currentBriefData: {}
   // isLoading: false,
   // currentRequestId: undefined
 };
@@ -22,6 +23,12 @@ export const briefSlice = createSlice({
   name: 'brief',
   initialState,
   reducers: {
+    setCurrentBriefData: (state, action) => {
+      state.currentBriefData = action.payload;
+    },
+    removeCurrentBriefData: (state, action) => {
+      state.currentBriefData = {};
+    },
   },
   extraReducers(builder) {
     builder
@@ -63,7 +70,7 @@ export const briefSlice = createSlice({
   }
 });
 
-export const { getBriefList } = briefSlice.actions;
+export const { getBriefList, setCurrentBriefData, removeCurrentBriefData } = briefSlice.actions;
 
 export const selectBrief = (state) => state.brief;
 

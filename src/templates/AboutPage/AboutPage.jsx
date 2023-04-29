@@ -82,7 +82,7 @@ export default function About() {
                                     speed: -10,
                                     translateY: ["-100px", "100px"]
                                 }]}
-                                className='block w-full bg-100 bg-no-repeat pt-[69.5%] [background-position-y:-1px] transition-all lg:pt-[45.6%]'
+                                className='parallax-banner block w-full bg-100 bg-no-repeat pt-[69.5%] [background-position-y:-1px] lg:pt-[45.6%]'
                             />
 
                         </div>
@@ -188,7 +188,7 @@ export default function About() {
                                         }} />,
                                         speed: -10,
                                     }]}
-                                    className='block w-full bg-100 bg-no-repeat pt-[69.5%] [background-position-y:-1px] transition-all lg:pt-[45.6%]'
+                                    className='parallax-banner block w-full bg-100 bg-no-repeat pt-[69.5%] [background-position-y:-1px] transition-all lg:pt-[45.6%]'
                                 />
                             </div>
                         ) : (

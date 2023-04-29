@@ -2,3 +2,7 @@
     -webkit-text-stroke: 1px #fff;
     -webkit-text-fill-color: transparent
 }
+
+.parallax-banner div {
+    transition: transform 500ms ease-out 0s;
+}
