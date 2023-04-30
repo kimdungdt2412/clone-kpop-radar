@@ -1,57 +1,31 @@
-import React, { useState } from 'react'
-import twIcon from "../../assets/images/icon_brief_tw.jpg"
-import fbIcon from "../../assets/images/icon_brief_fb.jpg"
-import lineIcon from "../../assets/images/icon_brief_line.jpg"
-import talkIcon from "../../assets/images/icon_brief_talk.jpg"
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { removeCurrentBriefData } from '../../features/BriefList/BriefSlice'
+import { snsList } from '../../utils/config'
 
-export default function ShareBriefModal({ brief }) {
-    const [open, setOpen] = useState(true)
-    const snsList = [
-        {
-            id: "twitter",
-            img: twIcon
-        },
-        {
-            id: "facebook",
-            img: fbIcon
-        },
-        {
-            id: "kakaotalk",
-            img: talkIcon
-        },
-        {
-            id: "line",
-            img: lineIcon
-        },
-    ]
+export const ShareBriefModal = React.memo(({ brief }) => {
+    const dispatch = useDispatch()
 
-    // "facebook" == t ? window.open("http://www.facebook.com/sharer/sharer.php?u=" + i) : "twitter" == t ? window.open("https://twitter.com/intent/tweet?text=" + e.title + "&url=" + i) : "kakao" == t ? Kakao.Link.sendDefault({
-    //         objectType: "feed",
-    //         content: {
-    //             title: e.title,
-    //             imageUrl: e.headerUrl,
-    //             link: {
-    //                 webUrl: i,
-    //                 mobileWebUrl: i
-    //             }
-    //         }
-    //     }) : "line" == t ? window.open("http://line.me/R/msg/text/?" + e.title + " " + i)
+    const handleCloseModal = () => {
+        dispatch(removeCurrentBriefData())
+    }
 
     const handleShareLink = (type) => {
+        if (!brief.briefId) return
         switch (type) {
             case "twitter":
-                window.open(`https://twitter.com/intent/tweet?text=2022%20K-POP%20RADAR%20%EC%97%B0%EB%A7%90%20%EA%B2%B0%EC%82%B0&url=https://www.kpop-radar.com/brief/245`)
+                window.open(`https://twitter.com/intent/tweet?text=${brief.title}&url=https://www.kpop-radar.com/brief/${brief.briefId}`)
                 break;
 
             case "facebook":
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=https://www.kpop-radar.com/brief/245`)
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=https://www.kpop-radar.com/brief/${brief.briefId}`)
                 break;
 
             case "kakaotalk":
                 window.open(`https://accounts.kakao.com/login/?continue=https%3A%2F%2Fsharer.kakao.com%2Fpicker%2Flink%3Fapp_key%3Dcc87d420783819b49977dfef35e6e33e%26short_key%3Df2ec98bd-da8b-4b2e-bd63-eae1949c9d12#login`)
                 break;
             case "line":
-                window.open(`http://line.me/R/msg/text/?2022%20K-POP%20RADAR%20%EC%97%B0%EB%A7%90%20%EA%B2%B0%EC%82%B0%20https://www.kpop-radar.com/brief/245`)
+                window.open(`http://line.me/R/msg/text/?${brief.title + ""}https://www.kpop-radar.com/brief/${brief.briefId}`)
                 break;
 
             default:
@@ -59,15 +33,17 @@ export default function ShareBriefModal({ brief }) {
         }
     }
 
-    if (open) return (
+    if (!brief.briefId) return <></>
+
+    return (
         <div className='modal' id="modal-sns" aria-hidden="false">
-            <div className='modal-overlay will-change-transform animate-mmfadeIn py-0 px-[14vw] z-[1000] fixed top-0 left-0 right-0 bottom-0 bg-black/[.6] flex justify-center items-center' onClick={() => setOpen(false)}>
+            <div className='modal-overlay will-change-transform animate-mmfadeIn py-0 px-[14vw] z-[1000] fixed top-0 left-0 right-0 bottom-0 bg-black/[.6] flex justify-center items-center' onClick={() => handleCloseModal()}>
                 <div className='modal-container will-change-transform animate-mmslideIn p-0 max-w-[980px] overflow-hidden bg-white max-h-[100vh] box-border' onClick={(e) => {
                     e && e.stopPropagation()
                 }}>
                     <header className='modal-header h-[10.6667vw] block text-right'>
                         <h2 className='text-[#00449e] box-border font-bold text-[1.25rem] my-0 leading-[1.25] absolute top-[-1px] left-[-1px] w-[1px] h-[1px] overflow-hidden clip'>SNS Share</h2>
-                        <button className='border-0 bg-transparent m-[7px] relative w-[10.6667vw] h-[10.6667vw] indent-[-999px] before:content-["\2715"] before:absolute before:w-[4vw] before:h-[4vw] before:bg-icon_brief_close before:bg-100 before:top-[50%] before:left-[50%] text-0 before:translate-x-[-50%] before:translate-y-[-50%]' onClick={() => setOpen(false)}>
+                        <button className='border-0 bg-transparent m-[7px] relative w-[10.6667vw] h-[10.6667vw] indent-[-999px] before:content-["\2715"] before:absolute before:w-[4vw] before:h-[4vw] before:bg-icon_brief_close before:bg-100 before:top-[50%] before:left-[50%] text-0 before:translate-x-[-50%] before:translate-y-[-50%]' onClick={() => handleCloseModal()}>
 
                         </button>
                     </header>
@@ -87,7 +63,7 @@ export default function ShareBriefModal({ brief }) {
 
                         <div className='url-area relative h-[10.66667vw] pl-[4.53333vw] mt-[2.66667vw]'>
                             <span className='relative overflow-hidden block pl-[8vw] bottom-[3px]'>
-                                <input className='w-[90%] whitespace-nowrap block overflow-hidden text-[3.2vw] font-thin leading-[10.6667vw] text-ellipsis border-0 bg-transparent focus-visible:outline-[#F0CA7D]' type="text" defaultValue={"https://www.kpop-radar.com/brief/245"} />
+                                <input className='w-[90%] whitespace-nowrap block overflow-hidden text-[3.2vw] font-thin leading-[10.6667vw] text-ellipsis border-0 bg-transparent focus-visible:outline-[#F0CA7D]' type="text" defaultValue={`https://www.kpop-radar.com/brief/${brief.briefId}`} />
                             </span>
                             <button className='absolute left-[8px] bottom-[5px] w-[10vw] h-[10vw] bg-icon_brief_url bg-[length:50%_auto] bg-no-repeat bg-center border-0'>
 
@@ -98,6 +74,4 @@ export default function ShareBriefModal({ brief }) {
             </div>
         </div>
     )
-
-    return <></>
-}
+})

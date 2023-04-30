@@ -7,23 +7,48 @@ import Homepage from './templates/Homepage/Homepage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Dots from './components/Dots/Dots';
-import About from './templates/AboutPage/AboutPage';
 import { ParallaxProvider } from 'react-scroll-parallax';
-import Brief from './templates/BriefPage/BriefPage';
 import { ScrollToTop } from './features/ScrollToTop';
 
+
+const About = React.lazy(() => import('./templates/AboutPage/AboutPage'))
+const Brief = React.lazy(() => import('./templates/BriefPage/BriefPage'))
+
 function App() {
+
   return (
     <BrowserRouter>
       <Header />
-      <Loading />
       <ParallaxProvider>
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<HomeTemplate />}>
-              <Route path="" element={<Homepage />} />
-              <Route path="/brief" element={<Brief />} />
-              <Route path="/about" element={<About />} />
+              <Route path="" element={<Homepage />}>
+
+              </Route>
+
+              <Route
+                path="/brief"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <Brief />
+                  </React.Suspense>}
+              />
+              <Route
+                path="/brief/:id"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <Brief />
+                  </React.Suspense>}
+              />
+              <Route
+                path="/about"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <About />
+                  </React.Suspense>
+                }
+              />
             </Route>
           </Routes>
         </ScrollToTop>

@@ -22,3 +22,18 @@ export const getDateByString = (str = "") => {
         day
     }
 }
+
+export const splitArtistData = (str = "") => {
+    let text = str.split("|")
+    let artistID = text[0]
+    let artistName = text[1]
+    let artistBr = text[2]
+    let imgUrl = text[3]
+
+    return {
+        artistID,
+        artistName,
+        artistBr,
+        imgUrl
+    }
+}

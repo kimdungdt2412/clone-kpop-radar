@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getBriefList, selectBrief } from './BriefSlice';
 import { briefApi, useGetBriefListQuery } from '../../app/services/Brief';
 import BriefItem from '../../components/BriefItem/BriefItem';
 import BriefIntro from '../../components/BriefItem/BriefIntro';
 import Loading from '../../components/Loading/Loading';
-import ShareBriefModal from '../../components/ShareBriefModal';
+import { ShareBriefModal } from '../../components/ShareBriefModal';
+import BriefView from '../../components/BriefViewDetail';
 
 export default function BriefList() {
   const briefData = useSelector(selectBrief);
-
+  const [open, setOpen] = useState(false)
   const { isFetching } = useGetBriefListQuery({
     orderCountInPage: briefData.orderCountInPage,
     lastOrderNo: 0
@@ -36,22 +37,25 @@ export default function BriefList() {
       </div>
 
       <div className='brief-more mt-[40px] mb-[100px] text-center'>
-        <button 
-        className='relative rounded-full bg-black border-0 w-[54px] h-[54px] before:content-[""] before:absolute before:top-[50%] before:left-[50%] before:h-[1px] before:w-[14px] before:bg-white before:translate-x-[-50%] before:translate-y-[-50%] after:absolute after:w-[14px] after:h-[1px] after:top-[50%] after:left-[50%] after:translate-x-[-50%] after:translate-y-[-50%] after:rotate-90 after:content-[""] after:bg-white'
-        onClick={() => {
-          trigger({
-            orderCountInPage: briefData.orderCountInPage,
-            lastOrderNo: briefData.lastOrderNo
-          })
-        }}
-        
+        <button
+          className='relative btn-more w-[54px] h-[54px] before:w-[14px] after:w-[14px]'
+          onClick={() => {
+            // trigger({
+            //   orderCountInPage: briefData.orderCountInPage,
+            //   lastOrderNo: briefData.lastOrderNo
+            // })
+            setOpen(true)
+          }}
+
         >
           <span className='absolute top-[-1px] left-[-1px] w-[1px] h-[1px] overflow-hidden '>+</span>
         </button>
       </div>
 
 
-      <ShareBriefModal/>
+      <ShareBriefModal brief={briefData.currentBriefData} />
+
+      <BriefView isOpen={open}/>
 
     </div>
   )

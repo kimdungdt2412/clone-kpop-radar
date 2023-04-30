@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import "jquery/dist/jquery.min.js";
 import "popper.js/dist/umd/popper.min.js";
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

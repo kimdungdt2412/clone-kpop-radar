@@ -1,0 +1,20 @@
+.brief-view {
+    transition: opacity .2s cubic-bezier(0.25, 0.1, 0.25, 1),visibility 0s .2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.brief-view.open {
+    transition: opacity 195ms ease;
+    opacity: 1;
+    visibility: visible;
+    background-color: rgba(0,0,0,.6);
+    pointer-events: all;
+}
+
+.brief-view_inner {
+    transition: transform .2s,-webkit-transform .2s;
+}
+
+.brief-view.open .brief-view_inner {
+    transform: translateX(0);
+    transition: transform .5s,-webkit-transform .5s;
+}

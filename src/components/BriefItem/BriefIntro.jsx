@@ -1,11 +1,14 @@
 import React from 'react'
 import shareIcon from "../../assets/images/kr-artist-ic-share.svg"
 import { getDateByString } from '../../utils/function'
+import { useDispatch } from 'react-redux'
+import { setCurrentBriefData } from '../../features/BriefList/BriefSlice'
 
 export default function BriefIntro({
     brief = {}
 }) {
     const { year, month, day } = getDateByString(brief.date.toString())
+    const dispatch = useDispatch()
     return (
         <React.Fragment>
             <li className='brief_date h-[70px] mb-0 text-right float-none w-auto max-w-[inherit] p-0 box-border'>
@@ -30,7 +33,7 @@ export default function BriefIntro({
                             <p className='overflow-hidden text-ellipsis mb-[12px] font-noto break-keep max-h-[84px] text-[14px] leading-[23px]'></p>
                         </div>
                         <p className='btn ml-[5.3333vw]'>
-                            <button className='relative rounded-full bg-black border-0 w-[51px] h-[51px] before:content-[""] before:absolute before:top-[50%] before:left-[50%] before:h-[1px] before:w-[11px] before:bg-white before:translate-x-[-50%] before:translate-y-[-50%] after:absolute after:w-[11px] after:h-[1px] after:top-[50%] after:left-[50%] after:translate-x-[-50%] after:translate-y-[-50%] after:rotate-90 after:content-[""] after:bg-white'>
+                            <button className='relative btn-more'>
                                 <span className='absolute top-[-1px] left-[-1px] w-[1px] h-[1px] overflow-hidden '>+</span>
                             </button>
                         </p>
@@ -48,7 +51,7 @@ export default function BriefIntro({
                                     &nbsp;shares
                                 </span>
                                 <span className='sns-list'></span>
-                                <img src={shareIcon} className='relative cursor-pointer block float-right border-0 overflow-hidden bg-transparent w-[16px] h-[15px] bottom-[-4px] before:absolute before:top-[50%] before:bg-black before:rounded-full before:content-[""] before:mt-[-2px] before:w-[4px] before:h-[4px] before:left-0 before:transition-[left] after:absolute after:top-[50%] after:bg-black after:rounded-full after:content-[""] after:mt-[-2px] after:w-[4px] after:h-[4px] after:right-0 after:transition-[right]'>
+                                <img src={shareIcon} className='share-icon' onClick={() => dispatch(setCurrentBriefData(brief))}>
                                 </img>
                             </div>
                             <figure className='block overflow-hidden max-h-[215px]'>
