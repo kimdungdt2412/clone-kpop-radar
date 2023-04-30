@@ -3,6 +3,7 @@ import shareIcon from "../../assets/images/kr-artist-ic-share.svg"
 import { getDateByString } from '../../utils/function'
 import { useDispatch } from 'react-redux'
 import { setCurrentBriefData } from '../../features/BriefList/BriefSlice'
+import { briefApi } from '../../app/services/Brief'
 
 export default function BriefItem({
   brief = {}
@@ -10,6 +11,8 @@ export default function BriefItem({
 
   const { year, month, day } = getDateByString(brief.date.toString())
   const dispatch = useDispatch()
+  const [trigger] = briefApi.endpoints.getBriefContent.useLazyQuery()
+
   return (
     <li className='brief_info float-none w-auto max-w-[inherit] h-auto p-0 mb-[10px]'>
       <div className='flip_card relative w-full h-full'>
@@ -36,7 +39,11 @@ export default function BriefItem({
               {brief.content}</p>
           </div>
           <p className='btn ml-[5.3333vw]'>
-            <button className='relative btn-more'>
+            <button className='relative btn-more' onClick={() => {
+              trigger({
+                briefId: brief.briefId
+              })
+            }}>
               <span className='absolute top-[-1px] left-[-1px] w-[1px] h-[1px] overflow-hidden '>+</span>
             </button>
           </p>

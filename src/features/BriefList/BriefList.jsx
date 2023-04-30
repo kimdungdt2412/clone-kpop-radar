@@ -10,7 +10,6 @@ import BriefView from '../../components/BriefViewDetail';
 
 export default function BriefList() {
   const briefData = useSelector(selectBrief);
-  const [open, setOpen] = useState(false)
   const { isFetching } = useGetBriefListQuery({
     orderCountInPage: briefData.orderCountInPage,
     lastOrderNo: 0
@@ -18,9 +17,6 @@ export default function BriefList() {
 
   const [trigger] = briefApi.endpoints.getBriefList.useLazyQuery()
 
-  useEffect(() => {
-
-  }, [])
   return (
     <div className='brief relative'>
 
@@ -40,11 +36,10 @@ export default function BriefList() {
         <button
           className='relative btn-more w-[54px] h-[54px] before:w-[14px] after:w-[14px]'
           onClick={() => {
-            // trigger({
-            //   orderCountInPage: briefData.orderCountInPage,
-            //   lastOrderNo: briefData.lastOrderNo
-            // })
-            setOpen(true)
+            trigger({
+              orderCountInPage: briefData.orderCountInPage,
+              lastOrderNo: briefData.lastOrderNo
+            })
           }}
 
         >
@@ -55,7 +50,7 @@ export default function BriefList() {
 
       <ShareBriefModal brief={briefData.currentBriefData} />
 
-      <BriefView isOpen={open}/>
+      <BriefView briefId={briefData.briefId} />
 
     </div>
   )

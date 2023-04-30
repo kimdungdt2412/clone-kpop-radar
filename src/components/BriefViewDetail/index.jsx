@@ -1,36 +1,43 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./style.css"
-import { useSelector } from 'react-redux';
-import { selectBrief } from '../../features/BriefList/BriefSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeBriefID, selectBrief } from '../../features/BriefList/BriefSlice';
 import { getDateByString, splitArtistData } from '../../utils/function';
 import { NavLink } from 'react-router-dom';
 import { snsList } from '../../utils/config';
 import shareIcon from "../../assets/images/kr-artist-ic-share.svg"
 
-export default function BriefView({ isOpen }) {
-    const briefData = useSelector(selectBrief)
-    let brief = briefData.briefs?.[3] ?? {
-        date: "20220212"
-    }
-    const { year, month, day } = getDateByString(brief.date.toString() ?? "")
-    const { artistID, artistName, artistBr, imgUrl } = splitArtistData("2463|NewJeans|NewJeans|https://image.bugsm.co.kr/artist/images/200/201643/20164333.jpg")
+export default function BriefView({ briefId }) {
 
+    const dispatch = useDispatch()
+    const { briefContent } = useSelector(selectBrief)
+    const [brief, setBrief] = useState({})
 
-    const snsImgMap = {
-        "twitter": "../../assets/images/icon_brief_tw.jpg",
-        "facebook": "../../assets/images/icon_brief_fb.jpg",
-        "kakaotalk": "../../assets/images/icon_brief_talk.jpg",
-        "line": "../../assets/images/icon_brief_line.jpg"
-    }
+    const { year, month, day } = getDateByString(brief.date?.toString() ?? "")
+    const { artistID, artistName, artistBr, imgUrl } = splitArtistData(brief.artists ?? "")
 
     // useEffect(() => {
     //     // This will run when the page first loads and whenever the title changes
     //     document.title = title;
     //   }, [title]);
 
+    useEffect(() => {
+        console.log(briefContent, briefId)
+        if (briefContent?.length > 0) {
+            let index = briefContent?.findIndex(item => item.briefId === briefId)
+            if (index !== -1) {
+                setBrief(briefContent[index])
+            }
+        } else {
+            setBrief({})
+        }
+    }, [briefContent])
+
     return (
-        <section className={`brief-view ${isOpen ? "open" : ""} flex flex-nowrap justify-end fixed top-0 bottom-0 right-0 z-[999] w-[101%] opacity-0 invisible`}>
-            <button type='button' className='close-btn z-[10] fixed rounded-[50%] w-[40px] h-[40px] p-0 border-0 bg-ico_brief_moreblack bg-no-repeat rotate-45 top-[15px] right-[15px]'>
+        <section className={`brief-view ${!!briefId ? "open" : ""} flex flex-nowrap justify-end fixed top-0 bottom-0 right-0 z-[999] w-[101%] opacity-0 invisible`}>
+            <button type='button' className='close-btn z-[10] fixed rounded-[50%] w-[40px] h-[40px] p-0 border-0 bg-ico_brief_moreblack bg-no-repeat rotate-45 top-[15px] right-[15px]' onClick={() => {
+                dispatch(removeBriefID(briefId))
+            }}>
             </button>
 
             <div id="detail" className='brief-view_inner max-w-[1200px] h-full overflow-hidden overflow-y-auto bg-[white] translate-x-[30px]'>
@@ -106,22 +113,31 @@ export default function BriefView({ isOpen }) {
 
 
                                 <div className='shares block mt-0 absolute right-0'>
-                                        <p  className='hidden w-full mb-[15px] text-[20px] font-bold leading-[36px]'>share this</p>
+                                    <p className='hidden w-full mb-[15px] text-[20px] font-bold leading-[36px]'>share this</p>
 
-                                        {snsList.map(item => {
-                                            return (
-                                                <a key={item.id} href="#" className={`no-underline block indent-[-999px] overflow-hidden mb-[15px] float-left w-[30px] h-[30px] opacity-0`}>
-                                                    <img src={item.img}/>
-                                                </a>
-                                            )
-                                        })}
+                                    {snsList.map(item => {
+                                        return (
+                                            <a key={item.id} href="#" className={`no-underline block indent-[-999px] overflow-hidden mb-[15px] float-left w-[30px] h-[30px] opacity-0`}>
+                                                <img src={item.img} />
+                                            </a>
+                                        )
+                                    })}
                                 </div>
 
-                                <img src={shareIcon} className='block cursor-pointer absolute right-0 top-[14px] border-0 w-[16px] h-[15px] overflow-hidden bg-transparent'/>
+                                <img src={shareIcon} className='block cursor-pointer absolute right-0 top-[14px] border-0 w-[16px] h-[15px] overflow-hidden bg-transparent' />
                             </div>
                         </aside>
+
+                        <div className='w-full mt-[55px] ml-0'>
+                            <div
+                                dangerouslySetInnerHTML={{ __html: brief.content }}
+                            />
+                        </div>
                     </div>
                 </article>
+                
+                {/* more content */}
+                <div></div>
             </div>
         </section>
     )

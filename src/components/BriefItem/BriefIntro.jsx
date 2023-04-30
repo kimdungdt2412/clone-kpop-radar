@@ -3,12 +3,14 @@ import shareIcon from "../../assets/images/kr-artist-ic-share.svg"
 import { getDateByString } from '../../utils/function'
 import { useDispatch } from 'react-redux'
 import { setCurrentBriefData } from '../../features/BriefList/BriefSlice'
+import { briefApi } from '../../app/services/Brief'
 
 export default function BriefIntro({
     brief = {}
 }) {
     const { year, month, day } = getDateByString(brief.date.toString())
     const dispatch = useDispatch()
+    const [trigger] = briefApi.endpoints.getBriefContent.useLazyQuery()
     return (
         <React.Fragment>
             <li className='brief_date h-[70px] mb-0 text-right float-none w-auto max-w-[inherit] p-0 box-border'>
@@ -33,7 +35,11 @@ export default function BriefIntro({
                             <p className='overflow-hidden text-ellipsis mb-[12px] font-noto break-keep max-h-[84px] text-[14px] leading-[23px]'></p>
                         </div>
                         <p className='btn ml-[5.3333vw]'>
-                            <button className='relative btn-more'>
+                            <button className='relative btn-more' onClick={() => {
+                                trigger({
+                                    briefId: brief.briefId
+                                })
+                            }}>
                                 <span className='absolute top-[-1px] left-[-1px] w-[1px] h-[1px] overflow-hidden '>+</span>
                             </button>
                         </p>

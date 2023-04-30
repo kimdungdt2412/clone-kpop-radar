@@ -6,7 +6,9 @@ const initialState = {
   orderCountInPage: 5,
   lastOrderNo: 0,
   briefCount: 0,
-  currentBriefData: {}
+  currentBriefData: {},
+  briefId: 0,
+  briefContent: []
   // isLoading: false,
   // currentRequestId: undefined
 };
@@ -26,8 +28,11 @@ export const briefSlice = createSlice({
     setCurrentBriefData: (state, action) => {
       state.currentBriefData = action.payload;
     },
-    removeCurrentBriefData: (state, action) => {
+    removeCurrentBriefData: (state, _) => {
       state.currentBriefData = {};
+    },
+    removeBriefID: (state, _) => {
+      state.briefId = 0
     },
   },
   extraReducers(builder) {
@@ -36,6 +41,10 @@ export const briefSlice = createSlice({
         state.briefs = state.briefs.concat(action.payload.briefs)
         state.briefCount = action.payload.briefCount
         state.lastOrderNo = state.briefs.length
+      })
+      .addMatcher(briefApi.endpoints.getBriefContent.matchFulfilled, (state, action) => {
+        state.briefContent = action.payload.briefs
+        state.briefId = action.meta.arg.originalArgs?.briefId || 0
       })
     // .addCase(getBriefList.fulfilled, (state, action) => {
     //   state.briefs = state.briefs.concat(action.payload.briefs)
@@ -70,7 +79,7 @@ export const briefSlice = createSlice({
   }
 });
 
-export const { getBriefList, setCurrentBriefData, removeCurrentBriefData } = briefSlice.actions;
+export const { getBriefList, setCurrentBriefData, removeCurrentBriefData, removeBriefID } = briefSlice.actions;
 
 export const selectBrief = (state) => state.brief;
 

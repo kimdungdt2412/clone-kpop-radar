@@ -14,5 +14,6 @@ export const api = createApi({
     reducerPath: "splitApi",
     baseQuery: baseQuery,
     tagTypes: ['Brief', 'Artist', 'Subscribed', 'View', 'IG_follower', 'Tiktok_follower'],
+    keepUnusedDataFor: 120,
     endpoints: () => ({})
 })
