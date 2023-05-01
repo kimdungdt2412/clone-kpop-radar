@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import shareIcon from "../../assets/images/kr-artist-ic-share.svg"
-import { getDateByString } from '../../utils/function'
+import { getDateByString, handleShareLink } from '../../utils/function'
 import { useDispatch } from 'react-redux'
 import { setCurrentBriefData } from '../../features/BriefList/BriefSlice'
 import { briefApi } from '../../app/services/Brief'
+import { snsList } from '../../utils/config'
 
 export default function BriefIntro({
     brief = {}
 }) {
+    const [open, setOpen] = useState(false)
     const { year, month, day } = getDateByString(brief.date.toString())
     const dispatch = useDispatch()
     const [trigger] = briefApi.endpoints.getBriefContent.useLazyQuery()
     return (
         <React.Fragment>
-            <li className='brief_date h-[70px] mb-0 text-right float-none w-auto max-w-[inherit] p-0 box-border'>
-                <div className='date pt-0 mr-[5.3333vw] inline-block text-center'>
-                    <span className='block text-[10px] mb-[4px] font-light'>
+            <li className='brief_date h-[70px] mb-0 text-right float-none w-auto max-w-[inherit] p-0 box-border  lg:h-[468px] lg:float-left lg:w-[50%] lg:px-[20px]'>
+                <div className='date pt-0 mr-[5.3333vw] inline-block text-center lg:float-left lg:mr-0 lg:pt-[25px]'>
+                    <span className='block text-[10px] mb-[4px] font-light lg:mb-[6px]'>
                         {year}. {month}
                     </span>
                     <strong className='block text-[36px] font-medium mb-[5px] leading-[36px]'>
@@ -24,29 +26,29 @@ export default function BriefIntro({
                 </div>
             </li>
 
-            <li className='brief_info float-none w-auto max-w-[inherit] h-auto p-0 mb-[10px]'>
-                <div className='flip_card relative w-full h-full'>
-                    <div className='relative h-full box-border overflow-hidden border-t-[0px] cursor-pointer pt-[40px] transition-transform duration-700 ease-in-out delay-0'>
-                        <div className='max-h-[224px] overflow-hidden mx-[5.3333vw] mb-[10px] pr-0 text-[38px] font-bold leading-[1.36px] tracking-normal text-left text-black'>
-                            <h3 className='overflow-hidden text-ellipsis font-bold max-h-[84px] mb-[12px] font-noto break-keep text-[24px] leading-[34px] pr-[40px]'>
+            <li className='brief_info float-none w-auto max-w-[inherit] h-auto p-0 mb-[10px] lg:float-left lg:w-[50%] lg:max-w-[432px] lg:h-[540px] lg:mb-[80px] lg:py-0 lg:px-[20px]'>
+                <div className='flip_card relative w-full h-full' onClick={() => {
+                    trigger({
+                        briefId: brief.briefId
+                    })
+                }}>
+                    <div className='front-panel border-t-0'>
+                        <div className='title'>
+                            <h3 className='overflow-hidden text-ellipsis font-bold max-h-[84px] mb-[12px] font-noto break-keep text-[24px] leading-[34px] pr-[40px] line-clamp-2 lg:mb-[10px]'>
                                 {brief.title}
                             </h3>
 
                             <p className='overflow-hidden text-ellipsis mb-[12px] font-noto break-keep max-h-[84px] text-[14px] leading-[23px]'></p>
                         </div>
-                        <p className='btn ml-[5.3333vw]'>
-                            <button className='relative btn-more' onClick={() => {
-                                trigger({
-                                    briefId: brief.briefId
-                                })
-                            }}>
+                        <p className='btn ml-[5.3333vw] lg:ml-0'>
+                            <button className='relative btn-more'>
                                 <span className='absolute top-[-1px] left-[-1px] w-[1px] h-[1px] overflow-hidden '>+</span>
                             </button>
                         </p>
 
-                        <div className='img-area static mt-[36px] w-full'>
-                            <div className='count-info relative font-light leading-[28px] mb-[8px] ml-[5.3333vw] mr-[5.3333vw] text-[12px]'>
-                                <span className='view inline-block w-[90px]'>
+                        <div className='img-area static mt-[36px] w-full lg:mt-0 lg:absolute lg:bottom-0 lg:left-0'>
+                            <div className='count-info relative font-light leading-[28px] mb-[8px] ml-[5.3333vw] mr-[5.3333vw] text-[12px] lg:mx-0'>
+                                <span className='view inline-block w-[90px] lg:w-[86px]'>
                                     <span>{brief.viewCount}</span>
                                     &nbsp;views
                                 </span>
@@ -56,11 +58,29 @@ export default function BriefIntro({
                                     </span>
                                     &nbsp;shares
                                 </span>
-                                <span className='sns-list'></span>
-                                <img src={shareIcon} className='share-icon' onClick={() => dispatch(setCurrentBriefData(brief))}>
+                                {window.screen.width >= 1200 && open && (
+                                    <span className='sns-list absolute top-0 h-[30px] w-[134px] right-[35px]'>
+                                        {snsList.map(item => {
+                                            return (
+                                                <a key={item.id} href="#" className={`no-underline inline-block ml-[4px] overflow-hidden float-left w-[30px] h-[30px] first:ml-0`} onClick={() => handleShareLink(item.id, brief)}>
+                                                    <img src={item.img} className='w-[22px] m-auto' />
+                                                </a>
+                                            )
+                                        })}
+
+                                    </span>
+                                )}
+                                <img src={shareIcon} className='share-icon' onClick={(e) => {
+                                    e && e.stopPropagation()
+                                    if (window.screen.width < 1200) {
+                                        dispatch(setCurrentBriefData(brief))
+                                    } else {
+                                        setOpen(!open)
+                                    }
+                                }}>
                                 </img>
                             </div>
-                            <figure className='block overflow-hidden max-h-[215px]'>
+                            <figure className='block overflow-hidden max-h-[215px] lg:max-h-[246px]'>
                                 <img className='w-full block' src={brief.thumbnailUrl} />
                             </figure>
 

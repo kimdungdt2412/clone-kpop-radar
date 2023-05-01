@@ -7,6 +7,7 @@ const baseQuery = fetchBaseQuery({
     prepareHeaders: (headers) => {
         headers.set('content-type', 'application/x-www-form-urlencoded')
         headers.set('sec-fetch-mode', 'cors')
+        // headers.set('same-site', 'none')
     }
 })
 

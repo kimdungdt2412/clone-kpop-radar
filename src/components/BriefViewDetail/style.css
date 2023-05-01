@@ -18,3 +18,44 @@
     transform: translateX(0);
     transition: transform .5s,-webkit-transform .5s;
 }
+
+
+.brief-view .brief_info figure {
+    max-height: 442px!important;
+}
+
+.brief-view .brief_info .front-panel {
+    border-top: 1px solid #000!important;
+    padding-top: 20px!important;
+}
+
+.brief-view .brief_info:nth-child(2n) {
+    margin-top: 60px;
+}
+
+.brief-view .brief_info .date {
+   top: 20px;
+   right: 5px;
+}
+
+.brief-view .brief_info .artist {
+    margin-left: 0px;
+ }
+
+
+ .brief-view .brief_info .title {
+   margin-right: 0px;
+   margin-left: 0px;
+ }
+
+ @media screen and (min-width: 1024px) {
+    .brief-view .brief_info {
+        height: 470px;
+        padding: 0 15px;
+        padding-left: 0;
+    }
+
+    .brief-view .brief_info:nth-child(2n) {
+        margin-top: 0px;
+    }
+  }

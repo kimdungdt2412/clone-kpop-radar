@@ -21,7 +21,7 @@ export default function BriefList() {
     <div className='brief relative'>
 
       <div className='brief-content'>
-        <ul className='block mb-0 list-none [transform:translateZ(0px)]'>
+        <ul className='block mb-0 list-none [transform:translateZ(0px)] lg:mb-[-40px] lg:flex lg:flex-wrap justify-between'>
           {isFetching ? (
             <Loading />
           ) : (

@@ -56,4 +56,12 @@
   .share-icon {
     @apply relative cursor-pointer block float-right border-0 overflow-hidden bg-transparent w-[16px] h-[15px] bottom-[-4px] before:absolute before:top-[50%] before:bg-black before:rounded-full before:content-[""] before:mt-[-2px] before:w-[4px] before:h-[4px] before:left-0 before:transition-[left] after:absolute after:top-[50%] after:bg-black after:rounded-full after:content-[""] after:mt-[-2px] after:w-[4px] after:h-[4px] after:right-0 after:transition-[right]
   }
+
+  .front-panel {
+    @apply relative h-full box-border overflow-hidden border-t-[0px] cursor-pointer pt-[40px] transition-transform duration-700 ease-in-out delay-0 lg:pt-[24px] lg:border-t-[1px] lg:border-t-black
+  }
+
+  .title {
+    @apply max-h-[224px] overflow-hidden mx-[5.3333vw] mb-[10px] pr-0 text-[38px] font-bold leading-[1.36px] tracking-normal text-left text-black lg:mt-[10px] lg:mx-0 lg:max-h-[224px] lg:mt-0
+  }
 }
