@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./style.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { removeBriefID, selectBrief } from '../../features/BriefList/BriefSlice';
 import { getDateByString, handleShareLink, splitArtistData } from '../../utils/function';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { snsList } from '../../utils/config';
 import shareIcon from "../../assets/images/kr-artist-ic-share.svg"
 import BriefItem from '../BriefItem/BriefItem';
+import { briefApi } from '../../app/services/Brief';
 
-export default function BriefView({ briefId }) {
-
+export default function BriefView() {
+    const sectionRef = useRef(null)
+    const navigate = useNavigate()
+    const params = useParams()
     const dispatch = useDispatch()
-    const { briefContent } = useSelector(selectBrief)
+    const { briefContent, briefId } = useSelector(selectBrief)
+    const [trigger] = briefApi.endpoints.getBriefContent.useLazyQuery()
     const [brief, setBrief] = useState({})
 
     const { year, month, day } = getDateByString(brief.date?.toString() ?? "")
     const { artistID, artistName, artistBr, imgUrl } = splitArtistData(brief.artists ?? "")
 
-    // useEffect(() => {
-    //     // This will run when the page first loads and whenever the title changes
-    //     document.title = title;
-    //   }, [title]);
-
     useEffect(() => {
-        console.log(briefContent, briefId)
         if (briefContent?.length > 0) {
             let index = briefContent?.findIndex(item => item.briefId === briefId)
             if (index !== -1) {
@@ -34,14 +32,33 @@ export default function BriefView({ briefId }) {
         }
     }, [briefContent])
 
+    useEffect(() => {
+        document.title = brief?.title || "K-POP RADAR";
+        if (brief.briefId) {
+            sectionRef.current.scroll({
+                top: 0,
+                behavior: "smooth"
+              });
+        }
+    }, [brief])
+
+    useEffect(() => {
+        if (!!Number(params.id) && !briefId) {
+            trigger({
+                briefId: Number(params.id)
+            })
+        }
+    }, [])
+
     return (
         <section className={`brief-view ${!!briefId ? "open" : ""} flex flex-nowrap justify-end fixed top-0 bottom-0 right-0 z-[999] w-[101%] opacity-0 invisible`}>
-            <button type='button' className='close-btn z-[10] fixed rounded-[50%] w-[40px] h-[40px] p-0 border-0 bg-ico_brief_moreblack bg-no-repeat rotate-45 top-[15px] right-[15px]' onClick={() => {
+            <button type='button' className='close-btn z-[10] fixed rounded-[50%] w-[40px] h-[40px] p-0 border-0 bg-ico_brief_moreblack bg-no-repeat rotate-45 top-[15px] right-[15px] xl:top-[20px] xl:right-[37px]' onClick={() => {
                 dispatch(removeBriefID(briefId))
+                navigate('/brief')
             }}>
             </button>
 
-            <div id="detail" className='brief-view_inner max-w-[1200px] h-full overflow-hidden overflow-y-auto bg-[white] translate-x-[30px]'>
+            <div id="detail" ref={sectionRef} className='brief-view_inner max-w-[1200px] h-full overflow-hidden overflow-y-auto bg-[white] translate-x-[30px]'>
                 <div className='key-visual relative'>
                     <figure>
                         <img className='block max-w-[1200px] max-h-[720px] w-full' src={brief.thumbnailUrl} alt="" />
@@ -119,7 +136,7 @@ export default function BriefView({ briefId }) {
                                     {snsList.map(item => {
                                         return (
                                             <a key={item.id} href="#" onClick={() => handleShareLink(item.id, brief)} className={`no-underline block indent-[-999px] overflow-hidden mb-[15px] float-left w-[30px] h-[30px] opacity-0 lg:opacity-100`}>
-                                                <img src={item.img} className='w-[22px] m-auto'/>
+                                                <img src={item.img} className='w-[22px] m-auto' />
                                             </a>
                                         )
                                     })}
@@ -143,7 +160,7 @@ export default function BriefView({ briefId }) {
                         {briefContent.filter(item => item.briefId !== briefId)?.map(item => {
                             let { artistName } = splitArtistData(item.artists ?? "")
                             return (
-                                <BriefItem key={item.briefId} isPreview={true} brief={item} artName={artistName}/>
+                                <BriefItem key={item.briefId} isPreview={true} brief={item} artName={artistName} />
                             )
                         })}
                     </ul>

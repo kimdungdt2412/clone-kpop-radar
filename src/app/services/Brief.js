@@ -30,4 +30,4 @@ export const briefApi = api.injectEndpoints({
     })
 })
 
-export const { useGetBriefListQuery, useGetBriefContentQuery } = briefApi
+export const { useGetBriefListQuery, useGetBriefContentQuery, useLazyGetBriefContentQuery, useLazyGetBriefListQuery } = briefApi

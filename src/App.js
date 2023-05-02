@@ -13,6 +13,7 @@ import { ScrollToTop } from './features/ScrollToTop';
 
 const About = React.lazy(() => import('./templates/AboutPage/AboutPage'))
 const Brief = React.lazy(() => import('./templates/BriefPage/BriefPage'))
+const BriefViewDetail = React.lazy(() => import('./components/BriefViewDetail'))
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
                     <Brief />
                   </React.Suspense>}
               />
+
               <Route
                 path="/brief/:id"
                 element={
@@ -41,6 +43,13 @@ function App() {
                     <Brief />
                   </React.Suspense>}
               />
+
+              {/* <Route
+                path="/brief/:id"
+                element={<BriefViewDetail />}
+              /> */}
+
+
               <Route
                 path="/about"
                 element={

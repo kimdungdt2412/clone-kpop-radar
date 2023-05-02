@@ -156,7 +156,7 @@ export default function About() {
                         <div className='blip-list overflow-hidden h-[360px] lg:h-auto'>
                             <ul className='mt-[42px] mx-0 mb-0 whitespace-nowrap overflow-x-scroll overflow-y-hidden w-full text-0 lg:mt-[135px] lg:mx-[-4%]'>
                                 {blipList.map(item => (
-                                    <li index={item.no} className='inline-block text-white align-top border-t-[1px] border-t-white w-[255px] pt-[22px] whitespace-normal mt-0 mr-0 mb-0 ml-[40px] first:m-0 last:mx-[40px] last:my-0 lg:w-[25%] lg:my-0 lg:mx-[4%] lg:pt-[36px] lg:first:mx-[4%] lg:last:mx-[4%]'>
+                                    <li key={item.no} className='inline-block text-white align-top border-t-[1px] border-t-white w-[255px] pt-[22px] whitespace-normal mt-0 mr-0 mb-0 ml-[40px] first:m-0 last:mx-[40px] last:my-0 lg:w-[25%] lg:my-0 lg:mx-[4%] lg:pt-[36px] lg:first:mx-[4%] lg:last:mx-[4%]'>
                                         <dl className='mb-[18px] lg:mb-[31px]'>
                                             <dt className='inline-block pr-[10px] text-[140px] font-bold align-top relative left-[-12px] leading-[140px]lg:text-[128px] lg:leading-[128px]'>{item.no}</dt>
                                             <dd className='relative top-[13px] inline-block font-bold align-top text-[28px] leading-[28px] lg:text-[25px] lg:leading-[25px]'>{item.title}</dd>

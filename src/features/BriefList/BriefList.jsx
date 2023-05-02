@@ -15,7 +15,7 @@ export default function BriefList() {
     lastOrderNo: 0
   })
 
-  const [trigger] = briefApi.endpoints.getBriefList.useLazyQuery()
+  const [trigger] = briefApi.useLazyGetBriefListQuery()
 
   return (
     <div className='brief relative'>
@@ -49,8 +49,6 @@ export default function BriefList() {
 
 
       <ShareBriefModal brief={briefData.currentBriefData} />
-
-      <BriefView briefId={briefData.briefId} />
 
     </div>
   )
