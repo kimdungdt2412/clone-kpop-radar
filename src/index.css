@@ -67,4 +67,8 @@
   .title {
     @apply max-h-[224px] overflow-hidden mx-[5.3333vw] mb-[10px] pr-0 text-[38px] font-bold leading-[1.36px] tracking-normal text-left text-black lg:mt-[10px] lg:mx-0 lg:max-h-[224px] xl:mt-0
   }
+
+  .art-category {
+    @apply block mb-[15px] mr-[100px]
+  }
 }

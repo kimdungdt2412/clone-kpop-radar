@@ -1,9 +1,12 @@
-import { api } from './BaseApi'
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseConfig } from './BaseApi'
 
 let apiPrefix = "brief";
 var qs = require('qs');
 
-export const briefApi = api.injectEndpoints({
+export const briefApi = createApi({
+    ...baseConfig,
+    reducerPath: "briefApi",
     endpoints: (build) => ({
         getBriefList: build.query({
             query: (body) => {

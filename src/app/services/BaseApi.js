@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
+import { fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { DOMAIN } from '../../utils/config'
 
 
@@ -11,10 +11,14 @@ const baseQuery = fetchBaseQuery({
     }
 })
 
-export const api = createApi({
-    reducerPath: "splitApi",
-    baseQuery: baseQuery,
+export const baseConfig = {
     tagTypes: ['Brief', 'Artist', 'Subscribed', 'View', 'IG_follower', 'Tiktok_follower'],
-    keepUnusedDataFor: 120,
-    endpoints: () => ({})
-})
+    keepUnusedDataFor: 120,    
+    baseQuery: baseQuery,
+}
+
+// export const api = createApi({
+//     reducerPath: "splitApi",
+
+//     endpoints: () => ({})
+// })

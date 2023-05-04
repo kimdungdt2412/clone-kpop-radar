@@ -6,7 +6,7 @@ import BriefItem from '../../components/BriefItem/BriefItem';
 import BriefIntro from '../../components/BriefItem/BriefIntro';
 import Loading from '../../components/Loading/Loading';
 import { ShareBriefModal } from '../../components/ShareBriefModal';
-import BriefView from '../../components/BriefViewDetail';
+import BriefView from '../BriefViewDetail';
 
 export default function BriefList() {
   const briefData = useSelector(selectBrief);

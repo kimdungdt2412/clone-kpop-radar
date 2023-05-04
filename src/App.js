@@ -3,7 +3,7 @@ import './App.css';
 import Loading from './components/Loading/Loading';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeTemplate from './templates';
-import Homepage from './templates/Homepage/Homepage';
+import Homepage from './templates/Homepage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Dots from './components/Dots/Dots';
@@ -11,9 +11,10 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import { ScrollToTop } from './features/ScrollToTop';
 
 
-const About = React.lazy(() => import('./templates/AboutPage/AboutPage'))
-const Brief = React.lazy(() => import('./templates/BriefPage/BriefPage'))
-const BriefViewDetail = React.lazy(() => import('./components/BriefViewDetail'))
+const About = React.lazy(() => import('./templates/AboutPage'))
+const Brief = React.lazy(() => import('./templates/BriefPage'))
+const Artist = React.lazy(() => import('./templates/ArtistPage'))
+
 
 function App() {
 
@@ -27,6 +28,15 @@ function App() {
               <Route path="" element={<Homepage />}>
 
               </Route>
+
+
+              <Route
+                path="/artist-list"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <Artist />
+                  </React.Suspense>}
+              />
 
               <Route
                 path="/brief"
