@@ -39,7 +39,8 @@ module.exports = {
         'icon_brief_close': "url('/src/assets/images/icon_brief_close.jpg')",
         'icon_brief_url': "url('/src/assets/images/icon_brief_url.jpg')",
         'ico_brief_moreblack': "url('/src/assets/images/ico_brief_moreblack.svg')",
-        'ico_artist_arrow': "url('/src/assets/images/ico_artist_arrow.svg')"
+        'ico_artist_arrow': "url('/src/assets/images/ico_artist_arrow.svg')",
+        'icon_search': "url('/src/assets/images/icon_search.svg')"
       },
       backgroundSize: {
         '100': "100%"

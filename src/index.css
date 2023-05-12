@@ -69,6 +69,11 @@
   }
 
   .art-category {
-    @apply block mb-[15px] mr-[100px]
+    @apply block mb-[15px] mr-[100px] lg:mb-[23px] lg:mr-0
+  }
+
+  .art-category a:hover {
+    -webkit-text-stroke: 1px #606167;
+    -webkit-text-fill-color: transparent;
   }
 }

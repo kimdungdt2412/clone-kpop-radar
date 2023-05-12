@@ -1,13 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { artistApi } from '../../app/services/Artist';
+import { findKeyOfMap } from '../../utils/function';
 
 const initialState = {
     artistNames: [],
     artistNameIndices: [],
     recommendArtists: [],
+    artistInfo: {},
     count: 0,
 };
 
+export const getArtistLikeCount = createAsyncThunk(
+  'artistApi/getArtistLikeCount',
+  async (payload) => {
+    console.log("hi")
+    const [trigger] = artistApi.endpoints.incArtistLikeCount.useLazyQuery()
+    console.log(payload, trigger)
+    trigger(payload)
+    return {};
+  }
+);
 
 export const artistSlice = createSlice({
     name: 'artist',
@@ -26,6 +38,13 @@ export const artistSlice = createSlice({
             })
             .addMatcher(artistApi.endpoints.getRecommendArtists.matchFulfilled, (state, action) => {
                 state.recommendArtists = action.payload.artists
+            })
+            .addMatcher(artistApi.endpoints.getArtistInfo.matchFulfilled, (state, action) => {
+                state.artistInfo[action.payload.artistPath] = action.payload
+            })
+            .addMatcher(artistApi.endpoints.incArtistLikeCount.matchFulfilled, (state, action) => {
+               let key = action.meta.arg.originalArgs?.artistPath
+                state.artistInfo[key].count = action.payload.count
             })
     }
 });

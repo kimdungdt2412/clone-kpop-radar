@@ -54,7 +54,9 @@ export default function Header() {
 
     const handleScroll = () => {
         const position = window.pageYOffset;
-        setScrollPosition(position);
+        if ((scrollPosition <= 200 && position > 200) ||(scrollPosition > 200 && position <= 200) ) {
+            setScrollPosition(position);
+        }
     };
 
     useEffect(() => {

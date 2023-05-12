@@ -7,7 +7,6 @@
     overflow: auto;
     width: 100px;
     height: 102px;
-    display: none;
 }
 
 @keyframes spinner-ellipsis3 {
@@ -147,7 +146,7 @@
     height: 100%;
     top: 45%;
     position: absolute;
-    left: 45%;
+    left: 48%;
 }
 
 .spinner-ellipsis > div {

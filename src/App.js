@@ -14,6 +14,7 @@ import { ScrollToTop } from './features/ScrollToTop';
 const About = React.lazy(() => import('./templates/AboutPage'))
 const Brief = React.lazy(() => import('./templates/BriefPage'))
 const Artist = React.lazy(() => import('./templates/ArtistPage'))
+const DetailArtist = React.lazy(() => import('./templates/DetailArtistPage'))
 
 
 function App() {
@@ -35,6 +36,14 @@ function App() {
                 element={
                   <React.Suspense fallback={<Loading />}>
                     <Artist />
+                  </React.Suspense>}
+              />
+
+              <Route
+                path="/artist/:artistPath"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <DetailArtist />
                   </React.Suspense>}
               />
 

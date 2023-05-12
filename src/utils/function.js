@@ -60,3 +60,13 @@ export const handleShareLink = (type, brief) => {
             break;
     }
 }
+
+export const findKeyOfMap = (type, keyValue, map) => {
+    let result = null;
+    for (const [key, value] of map) {
+      if (value.elements?.[type].includes(keyValue)) {
+        result = key;
+      }
+    }
+    return result;
+  };
