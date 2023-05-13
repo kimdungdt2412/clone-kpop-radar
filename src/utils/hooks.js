@@ -1,6 +1,6 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-function useIsFirstRender() {
+export const useIsFirstRender = () => {
   const isFirst = useRef(true)
 
   if (isFirst.current) {
@@ -11,5 +11,18 @@ function useIsFirstRender() {
 
   return isFirst.current
 }
+
+export const useAutoFocus = () => {
+  const divRef = useRef(null);
+
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.focus();
+    }
+  }, []);
+
+  return divRef;
+};
+
 
 export default useIsFirstRender

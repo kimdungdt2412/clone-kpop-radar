@@ -29,9 +29,12 @@
     font-weight: 300;
     font-style: normal;
     src: local('※'),
-    url('./assets/fonts/ITCAvantGardeStdDemi.otf') format('opentype');
+    url('./assets/fonts/ITCAvantGardeStdMedium.otf') format('opentype');
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
     position: relative;
@@ -40,5 +43,37 @@
     font-size: 14px;
     max-width: 1920px;
     overflow-x: hidden;
+    vertical-align: baseline ;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .btn-more {
+    @apply rounded-full bg-black border-0 w-[51px] h-[51px] before:content-[""] before:absolute before:top-[50%] before:left-[50%] before:h-[1px] before:w-[11px] before:bg-white before:translate-x-[-50%] before:translate-y-[-50%] after:absolute after:w-[11px] after:h-[1px] after:top-[50%] after:left-[50%] after:translate-x-[-50%] after:translate-y-[-50%] after:rotate-90 after:content-[""] after:bg-white hover:rotate-90 hover:transition-all
+  }
+
+  .share-icon {
+    @apply relative cursor-pointer block float-right border-0 overflow-hidden bg-transparent w-[16px] h-[15px] bottom-[-4px] before:absolute before:top-[50%] before:bg-black before:rounded-full before:content-[""] before:mt-[-2px] before:w-[4px] before:h-[4px] before:left-0 before:transition-[left] after:absolute after:top-[50%] after:bg-black after:rounded-full after:content-[""] after:mt-[-2px] after:w-[4px] after:h-[4px] after:right-0 after:transition-[right] xl:w-[18px] xl:h-[19px] xl:bottom-[-3px]
+  }
+
+  .front-panel {
+    @apply relative h-full box-border overflow-hidden border-t-[0px] cursor-pointer pt-[40px] transition-transform duration-700 ease-in-out delay-0 lg:pt-[24px] lg:border-t-[1px] lg:border-t-black xl:pt-[30px]
+  }
+
+  .title {
+    @apply max-h-[224px] overflow-hidden mx-[5.3333vw] mb-[10px] pr-0 text-[38px] font-bold leading-[1.36px] tracking-normal text-left text-black lg:mt-[10px] lg:mx-0 lg:max-h-[224px] xl:mt-0
+  }
+
+  .art-category {
+    @apply block mb-[15px] mr-[100px] lg:mb-[23px] lg:mr-0
+  }
+
+  .art-category a:hover {
+    -webkit-text-stroke: 1px #606167;
+    -webkit-text-fill-color: transparent;
   }
 }

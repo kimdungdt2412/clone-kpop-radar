@@ -1,0 +1,61 @@
+.brief-view {
+    transition: opacity .2s cubic-bezier(0.25, 0.1, 0.25, 1),visibility 0s .2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.brief-view.open {
+    transition: opacity 195ms ease;
+    opacity: 1;
+    visibility: visible;
+    background-color: rgba(0,0,0,.6);
+    pointer-events: all;
+}
+
+.brief-view_inner {
+    transition: transform .2s,-webkit-transform .2s;
+}
+
+.brief-view.open .brief-view_inner {
+    transform: translateX(0);
+    transition: transform .5s,-webkit-transform .5s;
+}
+
+
+.brief-view .brief_info figure {
+    max-height: 442px!important;
+}
+
+.brief-view .brief_info .front-panel {
+    border-top: 1px solid #000!important;
+    padding-top: 20px!important;
+}
+
+.brief-view .brief_info:nth-child(2n) {
+    margin-top: 60px;
+}
+
+.brief-view .brief_info .date {
+   top: 20px;
+   right: 5px;
+}
+
+.brief-view .brief_info .artist {
+    margin-left: 0px;
+ }
+
+
+ .brief-view .brief_info .title {
+   margin-right: 0px;
+   margin-left: 0px;
+ }
+
+ @media screen and (min-width: 1024px) {
+    .brief-view .brief_info {
+        height: 470px;
+        padding: 0 15px;
+        padding-left: 0;
+    }
+
+    .brief-view .brief_info:nth-child(2n) {
+        margin-top: 0px;
+    }
+  }
