@@ -76,4 +76,8 @@
     -webkit-text-stroke: 1px #606167;
     -webkit-text-fill-color: transparent;
   }
+
+  .section {
+    @apply relative pl-[20px] max-w-[1160px] my-0 mx-auto box-border
+  }
 }

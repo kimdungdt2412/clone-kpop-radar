@@ -64,9 +64,52 @@ export const handleShareLink = (type, brief) => {
 export const findKeyOfMap = (type, keyValue, map) => {
     let result = null;
     for (const [key, value] of map) {
-      if (value.elements?.[type].includes(keyValue)) {
-        result = key;
-      }
+        if (value.elements?.[type].includes(keyValue)) {
+            result = key;
+        }
     }
     return result;
-  };
+};
+
+
+export const handlePositionByArtistImg = (imgRef) => {
+    let arrays = ["shareIcon", "heartIcon", "enName", "krName"]
+    let size = imgRef.current?.getBoundingClientRect() || null
+
+    for (let index = 0; index < arrays.length; index++) {
+        const element = arrays[index];
+
+        let top = 0
+        let left = 0
+
+        switch (element) {
+            case "heartIcon":
+                top = size?.top - 58
+                left = size?.left - 25
+                break;
+
+            case "shareIcon":
+                top = size?.top - 35
+                left = size?.left + size?.width - 20
+                break;
+
+            case "enName":
+                top = size?.top + size?.width - 200
+                break;
+
+            case "krName":
+                top = size?.top + size?.width - 260
+                break;
+
+            default:
+                break;
+        }
+
+        document.getElementById(element).style.top = `${top ?? 0}px`
+        if (element === "heartIcon" || element === "shareIcon") {
+            document.getElementById(element).style.left = `${left ?? 0}px`
+        }
+
+    }
+
+}

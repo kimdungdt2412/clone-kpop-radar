@@ -32,7 +32,7 @@ function App() {
 
 
               <Route
-                path="/artist-list"
+                path="/artist"
                 element={
                   <React.Suspense fallback={<Loading />}>
                     <Artist />

@@ -14,7 +14,7 @@ export default function Footer() {
         },
         {
             title: "artist",
-            url: "/artist-list"
+            url: "/artist"
         },
         {
             title: "brief",
@@ -27,24 +27,24 @@ export default function Footer() {
     ]
 
 
-    const snsList = [
-        {
-            title: "twitter",
-            url: "/"
-        },
-        {
-            title: "artist",
-            url: "/artist-list"
-        },
-        {
-            title: "brief",
-            url: "/brief"
-        },
-        {
-            title: "about",
-            url: "/about"
-        }
-    ]
+    // const snsList = [
+    //     {
+    //         title: "twitter",
+    //         url: "/"
+    //     },
+    //     {
+    //         title: "artist",
+    //         url: "/artist"
+    //     },
+    //     {
+    //         title: "brief",
+    //         url: "/brief"
+    //     },
+    //     {
+    //         title: "about",
+    //         url: "/about"
+    //     }
+    // ]
 
     return (
         <footer id="footer" className='block relative w-full bg-black text-white pt-[100px] px-[13px] pb-[35px] lg:p-[60px] lg:pt-[180px] box-border overflow-hidden z-[2]'>

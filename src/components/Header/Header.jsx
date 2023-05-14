@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation } from "react-router-dom";
-import { useIsFirstRender, useScrollDirection } from '../../utils/hooks';
+import { useIsFirstRender } from '../../utils/hooks';
 import { usePrevLocation } from '../../features/ScrollToTop';
 
 export default function Header() {
@@ -20,7 +20,7 @@ export default function Header() {
         },
         {
             title: "ARTIST",
-            url: "/artist-list"
+            url: "/artist"
         },
         {
             title: "BRIEF",

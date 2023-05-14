@@ -10,7 +10,7 @@ import BriefView from '../BriefViewDetail';
 
 export default function BriefList() {
   const briefData = useSelector(selectBrief);
-  const { isFetching } = useGetBriefListQuery({
+  const { isFetching, isSuccess, data } = useGetBriefListQuery({
     orderCountInPage: briefData.orderCountInPage,
     lastOrderNo: 0
   })
