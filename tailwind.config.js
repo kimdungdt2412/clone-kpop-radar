@@ -42,6 +42,9 @@ module.exports = {
         'ico_artist_arrow': "url('/src/assets/images/ico_artist_arrow.svg')",
         'icon_search': "url('/src/assets/images/icon_search.svg')",
         'icon_detail': "url('/src/assets/images/kr-chartdetail-btn-info2.svg')",
+        'icon_rank_up': "url('/src/assets/images/icon_rank_up.svg')",
+        'icon_rank_down': "url('/src/assets/images/icon_rank_down.svg')",
+        'icon_close': "url('/src/assets/images/close.png')"
       },
       backgroundSize: {
         '100': "100%"
@@ -72,6 +75,11 @@ module.exports = {
         mmfadeOut: 'mmfadeOut 0.3s ease-out',
         mmslideIn: 'mmslideIn 0.3s ease-out',
         mmslideOut: 'mmslideOut 0.3s ease-out',
+      },
+      rotate: {
+        'y-turn': {
+          transform: 'rotateY(1turn)'
+        }
       }
     },
   },

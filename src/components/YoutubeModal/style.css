@@ -1,0 +1,10 @@
+.youtubeModal {
+    transition: opacity .2s cubic-bezier(0.25, 0.1, 0.25, 1),visibility 0s .2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.youtubeModal.open {
+    transition: opacity 195ms ease;
+    opacity: 1;
+    visibility: visible;
+    z-index: 9999;
+}

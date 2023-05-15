@@ -76,8 +76,72 @@ export const artistApi = createApi({
                 }
             },
             transformResponse: (response) => response.body,
-        })
+        }),
+        getBlipData: build.query({
+            query: (body) => {
+                return {
+                    url: `${apiPrefix}/getBlipData`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            transformResponse: (response) => response.body,
+        }),
+        getRealtimeDataNew: build.query({
+            query: (body) => {
+                // {
+                //     artistId: 326
+                //     sortType: 1 //1 GROWTH //2 Total
+                // dateOrder: 1 => newest
+                //     orderCountInPage: 6
+                //     lastOrderNo: 0
+                // }
+                return {
+                    url: `${apiPrefix}/realtimeDataNew`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            transformResponse: (response) => response.body,
+        }),
+        getDailyDataNew: build.query({
+            query: (body) => {
+                // {
+                //day
+                // }
+                return {
+                    url: `${apiPrefix}/dailyDataNew`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            transformResponse: (response) => response.body,
+        }),
+        getWeeklyDataNew: build.query({
+            query: (body) => {
+                // {
+                //week
+                // }
+                return {
+                    url: `${apiPrefix}/weeklyDataNew`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            transformResponse: (response) => response.body,
+        }),
     })
 })
 
-export const { useGetArtistNameIndicesQuery, useGetArtistNamesQuery, useGetRecommendArtistsQuery, useGetArtistInfoQuery, useLazyGetArtistInfoQuery, useLazyIncArtistLikeCountQuery, useIncArtistLikeCountQuery, useGetArtistBadgeQuery, useGetRelatedArtistsQuery } = artistApi
+export const { 
+    useGetArtistNameIndicesQuery, 
+    useGetArtistNamesQuery, 
+    useGetRecommendArtistsQuery, 
+    useGetArtistInfoQuery, 
+    useLazyGetArtistInfoQuery, 
+    useLazyIncArtistLikeCountQuery, 
+    useIncArtistLikeCountQuery, 
+    useGetArtistBadgeQuery, 
+    useGetRelatedArtistsQuery,
+    useGetBlipDataQuery
+} = artistApi

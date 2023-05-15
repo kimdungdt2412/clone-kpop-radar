@@ -111,10 +111,10 @@ export default function BriefView() {
 
                                 <div className='count-info border-t-[1px] border-t-black mt-[10px] pt-[10px] pb-[5px] font-light lg:mt-[20px] lg:pt-[24px] lg:pb-0'>
                                     <dl className='inline-block mb-0 lg:flex lg:flex-wrap lg:justify-between lg:mb-[10px]'>
-                                        <dt className='inline-block text-[12px] leading-[20px] font-medium lg:text-[16px] lg:leading-[24px]'>
+                                        <dt className='inline-block text-[12px] leading-[22px] font-medium lg:text-[16px] lg:leading-[24px]'>
                                             views
                                         </dt>
-                                        <dd className='float-left mr-[3px] text-[12px] leading-[20px] font-medium lg:text-[16px] lg:leading-[24px]'>
+                                        <dd className='float-left mr-[3px] text-[12px] leading-[22px] font-medium lg:text-[16px] lg:leading-[24px]'>
                                             {brief.viewCount}
                                         </dd>
                                     </dl>
@@ -123,7 +123,7 @@ export default function BriefView() {
                                         <dt className='inline-block text-[12px] leading-[20px] font-medium lg:text-[16px] lg:leading-[24px]'>
                                             share
                                         </dt>
-                                        <dd className='float-left mr-[3px] text-[12px] leading-[20px] font-medium lg:text-[16px] lg:leading-[24px]'>
+                                        <dd className='float-left mr-[3px] text-[12px] leading-[22px] font-medium lg:text-[16px] lg:leading-[24px]'>
                                             {brief.shareCount}
                                         </dd>
                                     </dl>

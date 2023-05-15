@@ -9,7 +9,8 @@ const initialState = {
     artistInfo: {},
     badge: {},
     summaryBadge: {},
-    relatedArtist: {}
+    relatedArtist: {},
+    blipData: {}
 };
 
 export const artistSlice = createSlice({
@@ -43,15 +44,15 @@ export const artistSlice = createSlice({
 
                 action.payload.badges?.forEach(item => {
                     let newItem = {
-                        key: item.number >= 10 ? 10 : item.number,
+                        key: item.unit === "10000" ? `${item.number}-${item.unit}` : `${item.number >= 10 ? 10 : item.number}-${item.unit}`,
                         badgeImg: item.summaryImgUrl,
                         songInfo: [],
-                        count: 0
+                        count: 0,
                     }
 
                     if (!Object.hasOwnProperty(newItem.key)) {
                         newItem.count = action.payload.badges?.filter(badge => {
-                            let newNumber = badge.number >= 10 ? 10 : badge.number
+                            let newNumber = badge.unit === "10000" ? `${badge.number}-${badge.unit}` : `${badge.number >= 10 ? 10 : badge.number}-${badge.unit}`
                             if (newNumber === newItem.key) {
                                 newItem.songInfo.push({
                                     name: badge.name,
@@ -68,11 +69,17 @@ export const artistSlice = createSlice({
                 })
 
                 state.badge[key] = action.payload.badges
-                state.summaryBadge[key] = Object.keys(summaryBadges).map((key) => summaryBadges[key]).reverse()
+                state.summaryBadge[key] = Object.keys(summaryBadges).map((key) => summaryBadges[key]).sort((item1, item2) => (
+                    item1.minViewCount > item2.minViewCount
+                ))
             })
             .addMatcher(artistApi.endpoints.getRelatedArtists.matchFulfilled, (state, action) => {
                 let key = action.meta.arg.originalArgs?.artistId
                 state.relatedArtist[key] = action.payload.artists
+            })
+            .addMatcher(artistApi.endpoints.getBlipData.matchFulfilled, (state, action) => {
+                let key = action.meta.arg.originalArgs?.artistId
+                state.blipData[key] = action.payload
             })
     }
 });
