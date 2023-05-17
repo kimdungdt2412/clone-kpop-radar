@@ -3,33 +3,52 @@ import './App.css';
 import Loading from './components/Loading/Loading';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeTemplate from './templates';
-import Homepage from './templates/Homepage';
-import Header from './components/Header/Header';
+import DashboardTemplate from './templates/Dashboard';
 import Footer from './components/Footer/Footer';
 import Dots from './components/Dots/Dots';
 import { ParallaxProvider } from 'react-scroll-parallax';
-import { ScrollToTop } from './features/ScrollToTop';
+import { ScrollToTop } from './components/ScrollToTop';
 
 
-const About = React.lazy(() => import('./templates/AboutPage'))
-const Brief = React.lazy(() => import('./templates/BriefPage'))
-const Artist = React.lazy(() => import('./templates/ArtistPage'))
-const DetailArtist = React.lazy(() => import('./templates/DetailArtistPage'))
-
+const About = React.lazy(() => import('./pages/AboutPage'))
+const Brief = React.lazy(() => import('./pages/BriefPage'))
+const Artist = React.lazy(() => import('./pages/ArtistPage'))
+const DetailArtist = React.lazy(() => import('./pages/DetailArtistPage'))
+const BoardPage = React.lazy(() => import('./pages/BoardPage'))
 
 function App() {
 
   return (
     <BrowserRouter>
-      <Header />
       <ParallaxProvider>
         <ScrollToTop>
           <Routes>
-            <Route path="/" element={<HomeTemplate />}>
-              <Route path="" element={<Homepage />}>
+            <Route element={<DashboardTemplate />}>
+              <Route
+                path="/"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <BoardPage />
+                  </React.Suspense>}
+              />
+              <Route
+                path="/board"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <BoardPage />
+                  </React.Suspense>}
+              />
 
-              </Route>
+              <Route
+                path="/board/:type"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <BoardPage />
+                  </React.Suspense>}
+              />
+            </Route>
 
+            <Route element={<HomeTemplate />}>
 
               <Route
                 path="/artist"
@@ -62,12 +81,6 @@ function App() {
                     <Brief />
                   </React.Suspense>}
               />
-
-              {/* <Route
-                path="/brief/:id"
-                element={<BriefViewDetail />}
-              /> */}
-
 
               <Route
                 path="/about"

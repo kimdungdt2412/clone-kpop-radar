@@ -14,9 +14,7 @@ export default function ArtistPage() {
   const artistData = useSelector(selectArtist);
   const nameIndices = useGetArtistNameIndicesQuery()
   const names = useGetArtistNamesQuery()
-  const recommendedArt = useGetRecommendArtistsQuery({
-    lang: "en"
-  })
+  const recommendArtists = ["EXO", "BLACKPINK", "TWICE", "LE SSERAFIM", "SEVENTEEN"]
 
   const handleScroll = async (type) => {
     if (type === "recommend") {
@@ -28,7 +26,7 @@ export default function ArtistPage() {
 
   return (
     <section className='artists block m-0 mt-[72px] relative overflow-hidden lg:mt-0 min-h-screen'>
-      {(recommendedArt.isFetching || names.isFetching) ? (
+      {(names.isFetching) ? (
         <Loading />) : (
         <React.Fragment>
           <article className='artist mb-0 pt-[160px] my-0 mx-auto lg:pt-[300px]'>
@@ -42,10 +40,10 @@ export default function ArtistPage() {
 
                     <span className='font-noto text-[13px] font-bold block mb-[15px] mr-[100px] lg:text-[16px] lg:mb-[23px] lg:mr-0'>Recommended Artist</span>
 
-                    {artistData.recommendArtists?.length > 0 && artistData.recommendArtists?.map(item => (
-                      <span key={item.artistId} className='art-category'>
-                        <Link to={`/artist/${item.artistPath}`} className='font-noto text-[38px] font-bold m-0 leading-[38px] lg:text-[68px] lg:leading-[68px]'>
-                          {item.artistName}
+                    {recommendArtists?.map(item => (
+                      <span key={item} className='art-category'>
+                        <Link to={`/artist/${item.replace(" ","")}`} className='font-noto text-[38px] font-bold m-0 leading-[38px] lg:text-[68px] lg:leading-[68px]'>
+                          {item}
                         </Link>
                       </span>
                     )

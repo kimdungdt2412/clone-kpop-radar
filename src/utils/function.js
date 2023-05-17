@@ -70,3 +70,7 @@ export const findKeyOfMap = (type, keyValue, map) => {
     }
     return result;
 };
+
+export const formatNumber = (number = 0) => {
+    return Intl.NumberFormat('en-US').format(number)
+}

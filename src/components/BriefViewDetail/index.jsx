@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "./style.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { removeBriefID, selectBrief } from '../BriefList/BriefSlice';
+import { removeBriefID, selectBrief } from '../../features/BriefList/BriefSlice';
 import { getDateByString, handleShareLink, splitArtistData } from '../../utils/function';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { snsList } from '../../utils/config';
 import shareIcon from "../../assets/images/kr-artist-ic-share.svg"
-import BriefItem from '../../components/BriefItem/BriefItem';
+import BriefItem from '../BriefItem/BriefItem';
 import { briefApi } from '../../app/services/Brief';
 
 export default function BriefView() {

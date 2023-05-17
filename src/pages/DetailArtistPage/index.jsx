@@ -12,7 +12,7 @@ import { skipToken } from '@reduxjs/toolkit/dist/query'
 import SNSTodayItem from '../../components/SNSTodayItem'
 import YoutubeModal from '../../components/YoutubeModal'
 import { snsList } from '../../utils/config'
-import { handleShareLink } from '../../utils/function'
+import Loading from '../../components/Loading/Loading';
 
 export default function DetailArtist() {
   const params = useParams()
@@ -25,7 +25,7 @@ export default function DetailArtist() {
   const imgRef = useRef(null)
   const [selectedBadge, setSelectedBadge] = useState({})
 
-  const { data, isSuccess } = useGetArtistInfoQuery(params.artistPath ? {
+  const { data, isSuccess, isFetching } = useGetArtistInfoQuery(params.artistPath ? {
     artistPath: params.artistPath
   } : skipToken)
 
@@ -89,70 +89,72 @@ export default function DetailArtist() {
   return (
     <section className="artist-content relative overflow-hidden m-0 pt-[72px] lg:pt-0">
 
-      <article className="section artist mb-[100px] pt-[160px] lg:pt-[300px] lg:max-w-full lg:pl-0">
-        <div className="artist-inner mt-[-70px] max-w-[1160px] mx-auto my-0 lg:mt-0">
-          <div className="artist-img relative py-0 px-[10.6667%] my-0 mx-auto lg:px-[6.897%] lg:mb-[200px]">
+      {isFetching ? (<Loading />) : (
+        <article className="section artist mb-[100px] pt-[160px] lg:pt-[300px] lg:max-w-full lg:pl-0">
+          <div className="artist-inner mt-[-70px] max-w-[1160px] mx-auto my-0 lg:mt-0">
+            <div className="artist-img relative py-0 px-[10.6667%] my-0 mx-auto lg:px-[6.897%] lg:mb-[200px]">
 
-            <div className="relative bg-gradient-to-b from-transparent to-white/[.65]">
-              <img id="shareIcon" src={shareIcon}
-                onClick={() => { setOpen(true) }} alt="shareIcon" className="absolute w-[20px] right-0 top-[-35px] lg:hidden"
-              />
+              <div className="relative bg-gradient-to-b from-transparent to-white/[.65]">
+                <img id="shareIcon" src={shareIcon}
+                  onClick={() => { setOpen(true) }} alt="shareIcon" className="absolute w-[20px] right-0 top-[-35px] lg:hidden"
+                />
 
-              <span className='hidden sns-list absolute h-[30px] w-[134px] right-0 top-[-55px] lg:block xl:w-[156px] xl:right-[55px]'>
-                {snsList.map(item => {
-                  return (
-                    <a key={item.id} href="#" className={`no-underline inline-block ml-[4px] overflow-hidden float-left w-[30px] h-[30px] first:ml-0 xl:ml-[12px]`} onClick={() => handleShareArtistLink(artist, item.id)}>
-                      <img src={item.img} className='w-[22px] m-auto' />
-                    </a>
-                  )
-                })}
+                <span className='hidden sns-list absolute h-[30px] w-[134px] right-0 top-[-55px] lg:block xl:w-[156px]'>
+                  {snsList.map(item => {
+                    return (
+                      <a key={item.id} href="#" className={`no-underline inline-block ml-[4px] overflow-hidden float-left w-[30px] h-[30px] first:ml-0 xl:ml-[12px]`} onClick={() => handleShareArtistLink(artist, item.id)}>
+                        <img src={item.img} className='w-[22px] m-auto' />
+                      </a>
+                    )
+                  })}
 
-              </span>
-              <ShareArtistModal artist={artist} open={open} handleClose={() => setOpen(false)} />
+                </span>
+                <ShareArtistModal artist={artist} open={open} handleClose={() => setOpen(false)} />
 
 
-              <span
-                id="heartIcon"
-                className={`absolute left-[-25px] top-[-80px]`}
-                onClick={() => {
-                  heartRef.current?.play()
-                  setLikeCount(likeCount + 1)
-                }}
-              >
-                <Player
-                  ref={heartRef}
-                  autoplay={false}
-                  loop={false}
-                  mode="normal"
-                  speed="3"
-                  src="https://assets9.lottiefiles.com/private_files/lf30_kpak4iic.json"
-                  style={{
-                    width: "70px",
-                    height: "70px"
+                <span
+                  id="heartIcon"
+                  className={`absolute left-[-25px] top-[-80px]`}
+                  onClick={() => {
+                    heartRef.current?.play()
+                    setLikeCount(likeCount + 1)
                   }}
-                  complete
-                ></Player>
+                >
+                  <Player
+                    ref={heartRef}
+                    autoplay={false}
+                    loop={false}
+                    mode="normal"
+                    speed="3"
+                    src="https://assets9.lottiefiles.com/private_files/lf30_kpak4iic.json"
+                    style={{
+                      width: "70px",
+                      height: "70px"
+                    }}
+                    complete
+                  ></Player>
 
-                <span className='text-[12px] relative bottom-[45px] left-[60px]'>{artist.count ?? ""}</span>
+                  <span className='text-[12px] relative bottom-[45px] left-[60px]'>{artist.count ?? ""}</span>
 
-              </span>
-              <img ref={imgRef} id="artistImg" src={artist.imgUrl} alt="imgUrl" className='inline-block relative w-full z-[-1]' />
+                </span>
+                <img ref={imgRef} id="artistImg" src={artist.imgUrl} alt="imgUrl" className='inline-block relative w-full z-[-1]' />
 
-              <div className='absolute bottom-[-10%] left-[-5%]'>
-                <p id="krName" className="translate-y-[50%] text-[30px] leading-[0.9] font-bold text-left text-black mb-[25px] lg:text-[50px]">
-                  {artist.names?.[1]?.NAME || ""}
-                </p>
-                <p id="enName" className="text-[89px] leading-[0.9] font-bold text-left text-black whitespace-nowrap lg:text-[254px] lg:leading-[0.94]">
-                  {artist.names?.[0]?.NAME || ""}
-                </p>
+                <div className='absolute bottom-[-10%] left-[-5%]'>
+                  <p id="krName" className="translate-y-[50%] text-[30px] leading-[0.9] font-bold text-left text-black mb-[25px] lg:text-[50px]">
+                    {artist.names?.[1]?.NAME || ""}
+                  </p>
+                  <p id="enName" className="text-[89px] leading-[0.9] font-bold text-left text-black whitespace-nowrap lg:text-[254px] lg:leading-[0.94]">
+                    {artist.names?.[0]?.NAME || ""}
+                  </p>
+                </div>
+
               </div>
-
             </div>
           </div>
-        </div>
 
-      </article>
+        </article>
 
+      )}
 
       {summaryBadge[artist.artistId]?.length > 0 && (
         <article className='section summaryBadge'>
@@ -258,7 +260,7 @@ export default function DetailArtist() {
                     }, 500)
                   }} className='group inline-block text-center w-[33%] pb-[55px] px-0 lg:py-[50px] lg:w-[25%]'>
                     <div className="mr-[15px] lg:mr-0">
-                      <img src={item.normalImgUrl} className={`relative mx-auto h-full text-center transition-transform duration-500 w-[75px] cursor-pointer active:[transform:rotateY(1turn)] lg:w-[160px]` } />
+                      <img src={item.normalImgUrl} className={`relative mx-auto h-full text-center transition-transform duration-500 w-[75px] cursor-pointer active:[transform:rotateY(1turn)] lg:w-[160px]`} />
 
                       <span className={`mx-auto w-[75px] break-keep whitespace-nowrap relative top-[5px] text-[10px] lg:text-[17px] lg:top-[20px]`}>{item.name.length > 12 ? item.name.substring(0, 10) + ".." : item.name}
                       </span>
@@ -277,7 +279,7 @@ export default function DetailArtist() {
 
 
 
-      <YoutubeModal item={selectedBadge} closeModal={() => setSelectedBadge({})} />
+      <YoutubeModal url={selectedBadge?.videoUrl || ""} closeModal={() => setSelectedBadge({})} />
     </section>
   )
 }

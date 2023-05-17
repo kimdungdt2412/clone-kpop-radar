@@ -44,7 +44,11 @@ module.exports = {
         'icon_detail': "url('/src/assets/images/kr-chartdetail-btn-info2.svg')",
         'icon_rank_up': "url('/src/assets/images/icon_rank_up.svg')",
         'icon_rank_down': "url('/src/assets/images/icon_rank_down.svg')",
-        'icon_close': "url('/src/assets/images/close.png')"
+        'icon_close': "url('/src/assets/images/close.png')",
+        'icon_refresh': "url('/src/assets/images/icon_refresh.svg')",
+        'icon_view_yt': "url('/src/assets/images/icon_view_yt.svg')",
+        'kr-chart-link-nor': "url('/src/assets/images/kr-chart-link-nor.svg')",
+        'icon_arrow_right': "url('/src/assets/images/icon_arrow_right.svg')"
       },
       backgroundSize: {
         '100': "100%"

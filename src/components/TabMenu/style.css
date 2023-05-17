@@ -1,0 +1,39 @@
+.tabMenu {
+    visibility: hidden;
+}
+
+.tabMenu button {
+    opacity: 0;
+}
+
+.tabMenu .bg {
+    transform: scaleY(0);
+    transition: all .5s ease;
+    transform-origin: top;
+
+}
+
+.tabMenu li {
+    transition: transform .8s,opacity .5s .1s,-webkit-transform .8s;
+    transform: translateX(-20px);
+    opacity: 0;
+}
+
+.tabMenu.open {
+    visibility: visible;
+}
+
+.tabMenu.open button{
+    opacity: 1;
+}
+
+.tabMenu.open .bg {
+    transform: scaleY(1);
+}
+
+.tabMenu.open li {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+

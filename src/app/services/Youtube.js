@@ -46,7 +46,18 @@ export const youtubeApi = createApi({
             
             transformResponse: (response) => response.body,
         }),
+        getRealtimeData: build.query({
+            query: (body) => {
+                return {
+                    url: `${apiPrefix}/realtimeData`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            
+            transformResponse: (response) => response.body,
+        }),
     })
 })
 
-export const { useLazyGetMonthListQuery, useLazyGetStartDayQuery, useLazyGetWeekListQuery } = youtubeApi
+export const { useLazyGetMonthListQuery, useLazyGetStartDayQuery, useLazyGetWeekListQuery, useGetRealtimeDataQuery, useLazyGetRealtimeDataQuery } = youtubeApi

@@ -10,7 +10,7 @@ export default function Footer() {
     const menuList = [
         {
             title: "data board",
-            url: "/"
+            url: "/board"
         },
         {
             title: "artist",
@@ -25,26 +25,6 @@ export default function Footer() {
             url: "/about"
         }
     ]
-
-
-    // const snsList = [
-    //     {
-    //         title: "twitter",
-    //         url: "/"
-    //     },
-    //     {
-    //         title: "artist",
-    //         url: "/artist"
-    //     },
-    //     {
-    //         title: "brief",
-    //         url: "/brief"
-    //     },
-    //     {
-    //         title: "about",
-    //         url: "/about"
-    //     }
-    // ]
 
     return (
         <footer id="footer" className='block relative w-full bg-black text-white pt-[100px] px-[13px] pb-[35px] lg:p-[60px] lg:pt-[180px] box-border overflow-hidden z-[2]'>
