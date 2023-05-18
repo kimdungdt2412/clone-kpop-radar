@@ -48,7 +48,9 @@ module.exports = {
         'icon_refresh': "url('/src/assets/images/icon_refresh.svg')",
         'icon_view_yt': "url('/src/assets/images/icon_view_yt.svg')",
         'kr-chart-link-nor': "url('/src/assets/images/kr-chart-link-nor.svg')",
-        'icon_arrow_right': "url('/src/assets/images/icon_arrow_right.svg')"
+        'icon_arrow_right': "url('/src/assets/images/icon_arrow_right.svg')",
+        'kr-calendar-page-prev-next': "url('/src/assets/images/kr-calendar-page-prev-next.svg')",
+        'kr-calendar-page-nav-next': "url('/src/assets/images/kr-calendar-page-nav-next.svg')"
       },
       backgroundSize: {
         '100': "100%"

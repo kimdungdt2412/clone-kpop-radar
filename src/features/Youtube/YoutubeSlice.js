@@ -7,7 +7,10 @@ const initialState = {
     weekList: [],
     monthList: [],
     totalCount: {
-        realtime: 0
+        realtime: 0,
+        daily: 0,
+        weekly: 0,
+        monthly: 0
     },
     realtimeData: [],
     dailyData: [],
@@ -35,8 +38,19 @@ export const youtubeSlice = createSlice({
         builder.addMatcher(youtubeApi.endpoints.getRealtimeData.matchFulfilled, (state, action) => {
             state.realtimeData = action.payload.tasks
             state.updateDate = action.payload.updateDate
-            state.lastOrderNo = state.realtimeData.length
             state.totalCount.realtime = action.payload.maxOrderNo
+        })
+        builder.addMatcher(youtubeApi.endpoints.getDailyData.matchFulfilled, (state, action) => {
+            state.dailyData = action.payload.tasks
+            state.totalCount.daily = action.payload.maxOrderNo
+        })
+        builder.addMatcher(youtubeApi.endpoints.getWeeklyData.matchFulfilled, (state, action) => {
+            state.weeklyData = action.payload.tasks
+            state.totalCount.weekly = action.payload.maxOrderNo
+        })
+        builder.addMatcher(youtubeApi.endpoints.getMonthlyData.matchFulfilled, (state, action) => {
+            state.monthlyData = action.payload.tasks
+            state.totalCount.monthly = action.payload.maxOrderNo
         })
     }
 });

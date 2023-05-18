@@ -1,8 +1,8 @@
-.sortType button::after{
+.sortType .sortDate button::after{
     margin-top: -2px;
 }
 
-.sortType button.open::after{
+.sortType .sortDate button.open::after{
     margin-top: -7px;
     transform: rotate(180deg);
 }

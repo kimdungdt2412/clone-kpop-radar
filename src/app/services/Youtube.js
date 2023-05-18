@@ -57,7 +57,37 @@ export const youtubeApi = createApi({
             
             transformResponse: (response) => response.body,
         }),
+        getDailyData: build.query({
+            query: (body) => {
+                return {
+                    url: `${apiPrefix}/dailyData`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            transformResponse: (response) => response.body,
+        }),
+        getWeeklyData: build.query({
+            query: (body) => {
+                return {
+                    url: `${apiPrefix}/weeklyData`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            transformResponse: (response) => response.body,
+        }),
+        getMonthlyData: build.query({
+            query: (body) => {
+                return {
+                    url: `${apiPrefix}/monthlyData`,
+                    method: 'POST',
+                    body: qs.stringify(body)
+                }
+            },
+            transformResponse: (response) => response.body,
+        })
     })
 })
 
-export const { useLazyGetMonthListQuery, useLazyGetStartDayQuery, useLazyGetWeekListQuery, useGetRealtimeDataQuery, useLazyGetRealtimeDataQuery } = youtubeApi
+export const { useLazyGetMonthListQuery, useGetStartDayQuery, useGetMonthListQuery, useGetWeekListQuery, useGetRealtimeDataQuery, useLazyGetRealtimeDataQuery,useLazyGetDailyDataQuery, useGetDailyDataQuery, useLazyGetMonthlyDataQuery, useGetMonthlyDataQuery, useGetWeeklyDataQuery, useLazyGetWeeklyDataQuery } = youtubeApi

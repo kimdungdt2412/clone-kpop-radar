@@ -4,6 +4,7 @@ import { formatNumber, splitArtistData } from '../../utils/function'
 import IconRankUp from '../Icon/IconRankUp'
 import IconRankDown from '../Icon/IconRankDown'
 import IconRankEqual from '../Icon/IconRankEqual'
+import IconRankNew from '../Icon/IconRankNew'
 
 
 export default function BoardItem({ item, isViewCount, setSelectedItem, type }) {
@@ -12,22 +13,35 @@ export default function BoardItem({ item, isViewCount, setSelectedItem, type }) 
     return (
         <li className='relative z-[1] h-auto max-h-[300px] transition-[max-height]'>
             <div className="board-item flex items-center justify-center flex-row relative overflow-hidden py-[19px]">
-                <div className="ranking min-w-auto text-center text-[13px] leading-[16px] basis-[43px]  grow-0 relative break-words">
+                <div className="ranking min-w-auto text-center text-[13px] leading-[13px] basis-[43px] grow-0 relative break-words">
                     {item.orderNo}
-                    <span className='font-light static inline-block w-full text-[10px] leading-[11px] mt-[8px] translate-y-[-50%]'>
-                        {item.orderDiff === 0 && (
-                            <IconRankEqual />
-                        )}
+                    <span className='font-light static inline-block w-full text-[10px] leading-[10px] mt-[8px] translate-y-[-50%]'>
 
-                        {item.orderDiff > 0 && (
-                            <IconRankUp />
-                        )}
 
-                        {item.orderDiff < 0 && (
-                            <IconRankDown />
-                        )}
 
-                        {item.orderDiff !== 0 && (item.orderDiff > 0 ? item.orderDiff : -item.orderDiff)}
+                        {
+                            typeof item.orderDiff === "undefined" ? (
+                                <IconRankNew />
+                            ) : (
+                                <React.Fragment>
+                                    {item.orderDiff === 0 && (
+                                        <IconRankEqual />
+                                    )}
+
+                                    {item.orderDiff > 0 && (
+                                        <IconRankUp />
+                                    )}
+
+                                    {item.orderDiff < 0 && (
+                                        <IconRankDown />
+                                    )}
+
+                                    {item.orderDiff !== 0 && (item.orderDiff > 0 ? item.orderDiff : -item.orderDiff)}
+                                </React.Fragment>
+                            )
+                        }
+
+
                     </span>
                 </div>
 
@@ -67,10 +81,19 @@ export default function BoardItem({ item, isViewCount, setSelectedItem, type }) 
                     >
                         <p className='relative inline-block'>
                             <span>
-                                {item.prevIncCount > 0 && (
+                                {item.incCount > 0 && (
                                     <IconRankUp />
                                 )}
-                                {formatNumber(item.prevIncCount)}
+
+                                {item.incCount < 0 && (
+                                    <IconRankDown />
+                                )}
+
+                                {!item.incCount && (
+                                    <IconRankEqual />
+                                )}
+                                {!item.incCount ? "-" : formatNumber(item.incCount)}
+
                             </span>
                         </p>
                     </div>

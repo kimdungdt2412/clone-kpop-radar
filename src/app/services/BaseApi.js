@@ -15,6 +15,7 @@ export const baseConfig = {
     tagTypes: ['Brief', 'Artist', 'Subscribed', 'View', 'IG_follower', 'Tiktok_follower'],
     keepUnusedDataFor: 120,    
     baseQuery: baseQuery,
+    refetchOnMountOrArgChange: true
 }
 
 // export const api = createApi({

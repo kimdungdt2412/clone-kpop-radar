@@ -7,12 +7,14 @@ export default function SortByType({ type, searchParams }) {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
     return (
-        <li onClick={() => setOpen(!open)} className="sortType text-[17px] leading-[25px] relative float-left align-top">
+        <li 
+        onBlur={() => setOpen(false)}
+        onClick={() => setOpen(!open)} 
+        className="sortType text-[17px] leading-[25px] relative float-left align-top">
             <button
-                className={`${open ? "open" : ""} relative block pr-[10px] min-w-[75px] after:content-[""] after:block 
-        after:absolute after:w-0 after:h-0 after:top-[50%] after:right-0 after:border-[4px] after: after:border-transparent after:border-t-black`}>
+                className={`${open ? "open" : ""} sortButton`}>
                 <span
-                    className='inline-block relative after:content-[""] after:absolute after:block after:h-[1px] after:w-full after:bg-black after:bottom-[2px] after:ml-[1px]'
+                    className='sortTitle'
                 >
                     {type}
                 </span>
@@ -35,7 +37,8 @@ export default function SortByType({ type, searchParams }) {
                                         pathname: window.location.pathname,
                                         search: createSearchParams({
                                             ...Object.fromEntries([...searchParams]),
-                                            type: item
+                                            type: item,
+                                            page: 1
                                         }).toString()
                                     })
                             }}
