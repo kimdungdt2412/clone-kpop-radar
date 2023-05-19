@@ -50,7 +50,13 @@ module.exports = {
         'kr-chart-link-nor': "url('/src/assets/images/kr-chart-link-nor.svg')",
         'icon_arrow_right': "url('/src/assets/images/icon_arrow_right.svg')",
         'kr-calendar-page-prev-next': "url('/src/assets/images/kr-calendar-page-prev-next.svg')",
-        'kr-calendar-page-nav-next': "url('/src/assets/images/kr-calendar-page-nav-next.svg')"
+        'kr-calendar-page-nav-next': "url('/src/assets/images/kr-calendar-page-nav-next.svg')",
+        'icon_emoticon_all': "url('/src/assets/images/icon_emoticon_all.svg')",
+        'icon_emoticon_woman': "url('/src/assets/images/icon_emoticon_woman.svg')",
+        'icon_emoticon_man': "url('/src/assets/images/icon_emoticon_man.svg')",
+        'icon_emoticon_all_w': "url('/src/assets/images/icon_emoticon_all_w.svg')",
+        'icon_emoticon_woman_w': "url('/src/assets/images/icon_emoticon_woman_w.svg')",
+        'icon_emoticon_man_w': "url('/src/assets/images/icon_emoticon_man_w.svg')"
       },
       backgroundSize: {
         '100': "100%"

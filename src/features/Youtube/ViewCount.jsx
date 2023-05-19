@@ -3,17 +3,18 @@ import { useGetDailyDataQuery, useGetMonthListQuery, useGetMonthlyDataQuery, use
 import { selectYoutube } from './YoutubeSlice';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { youtubeSortTypeValue } from '../../utils/config';
+import { sortGenderMap, youtubeSortTypeValue } from '../../utils/config';
 import SortByType from '../../components/Sort/SortByType';
 import TableHeader from '../../components/TableHeader';
 import TableBody from '../../components/TableBody';
 import TablePagination from '../../components/TablePagination';
 import SortByDate from '../../components/Sort/SortByDate';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
-import DatePicker from '../../components/DatePicker';
+import BoardDate from '../../components/BoardDate';
+import SortByGender from '../../components/Sort/SortByGender';
 
 
-const isValidNumber = (value = "") => {
+export const isValidNumber = (value = "") => {
   return !isNaN(Number(value)) && Number(value) !== 0
 }
 
@@ -30,7 +31,7 @@ export default function ViewCount() {
   const payload = {
     orderCountInPage: youtubeData.orderCountInPage,
     lastOrderNo: (Number(page) - 1) * youtubeData.orderCountInPage,
-    gender: gender === "all" ? "" : gender,
+    gender: gender === "all" ? "" : sortGenderMap[gender],
     ...youtubeSortTypeValue[type],
   }
 
@@ -115,19 +116,12 @@ export default function ViewCount() {
         <ul className="list-none">
           <SortByType type={type} searchParams={searchParams} />
           <SortByDate date={date} searchParams={searchParams} />
+          <SortByGender gender={gender} searchParams={searchParams} />
         </ul>
       </div>
 
-      <div className="board-date relative min-h-[17px] border-b-[#e5e5e5] border-b-[1px] mt-[35px] ml-[43px] pr-[15px]">
-        <div className="block">
-          {date === "realtime" && (
-            <span className="date block w-full m-0 text-[10px] leading-[17px] mt-[10px] font-light text-[#999] align-middle">
-              updated {youtubeData.updateDate}
-            </span>
-          )}
-        </div>
-
-        {/* <DatePicker endDay={youtubeData.endDay} day={day}/> */}
+      <div className="board-date relative min-h-[17px] border-b-[#e5e5e5] border-b-[1px] mt-[35px] ml-[43px] pr-[15px] pb-[11px]">
+      <BoardDate data={youtubeData} date={date} day={day} weekId={weekId} year={year} month={month}/>
 
         <div className="float-right w-full">
           <button

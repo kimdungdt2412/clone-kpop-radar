@@ -74,3 +74,7 @@ export const findKeyOfMap = (type, keyValue, map) => {
 export const formatNumber = (number = 0) => {
     return Intl.NumberFormat('en-US').format(number)
 }
+
+export const formatDDMM = (value = 0) => {
+    return value  < 10 ? `0${value}` : value
+}

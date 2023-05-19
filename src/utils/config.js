@@ -206,9 +206,9 @@ export const youtubeSortTypeValue = {
 
 export const youtubeSortDateValue = ["realtime", "daily", "weekly", "monthly"]
 
-export const youtubeSortGender = ["all", "boys", "girls"]
+export const sortGender = ["all", "boys", "girls"]
 
-export const youtubeSortGenderMap = {
-    "boys": "F",
-    "girls": "M"
+export const sortGenderMap = {
+    "boys": "M",
+    "girls": "F"
 }

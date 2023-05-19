@@ -6,6 +6,7 @@ const initialState = {
     endDay: "",
     weekList: [],
     monthList: [],
+    yearList: [],
     totalCount: {
         realtime: 0,
         daily: 0,
@@ -34,6 +35,7 @@ export const youtubeSlice = createSlice({
         })
         builder.addMatcher(youtubeApi.endpoints.getMonthList.matchFulfilled, (state, action) => {
             state.monthList = action.payload
+            state.yearList = [...new Map(action.payload?.map(item => [item['year'], item])).values()]
         })
         builder.addMatcher(youtubeApi.endpoints.getRealtimeData.matchFulfilled, (state, action) => {
             state.realtimeData = action.payload.tasks
@@ -54,8 +56,6 @@ export const youtubeSlice = createSlice({
         })
     }
 });
-
-export const { } = youtubeSlice.actions;
 
 export const selectYoutube = (state) => state.youtube;
 

@@ -84,8 +84,6 @@ export const artistSlice = createSlice({
     }
 });
 
-export const { } = artistSlice.actions;
-
 export const selectArtist = (state) => state.artist;
 
 const artistReducer = artistSlice.reducer

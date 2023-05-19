@@ -159,7 +159,7 @@ export default function DetailArtist() {
       {summaryBadge[artist.artistId]?.length > 0 && (
         <article className='section summaryBadge'>
           <header className="relative">
-            <h2 className="font-[700] text-[15px] cursor-pointer lg:text-[30px]">
+            <h2 className="font-bold text-[15px] cursor-pointer lg:text-[30px]">
               BADGE
               <img src={linkIcon} alt="linkIcon" className='relative inline-block cursor-pointer left-[8px] w-[5px] top-[-1px] lg:w-[10px] lg:top-[-3px] lg:left-[18px]' />
             </h2>
@@ -186,7 +186,7 @@ export default function DetailArtist() {
 
       <article className='section today pt-[40px] lg:pt-[120px]'>
         <header className="relative">
-          <h2 className="font-[700] text-[38px] cursor-pointer lg:text-[102px]">
+          <h2 className="font-bold text-[38px] cursor-pointer lg:text-[102px]">
             TODAY
           </h2>
         </header>

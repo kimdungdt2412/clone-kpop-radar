@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { boardTypeMap } from '../../utils/config'
 import TabMenu from '../../components/TabMenu'
 import ViewCount from '../../features/Youtube/ViewCount'
@@ -37,7 +37,7 @@ export default function BoardPage() {
         <header className='absolute top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[120px]'>
 
           <div className="board-info relative max-w-[980px] pr-0 ml-[43px]">
-            <h2 className="text-[44px] leading-[48px] transition-all font-[700] tracking-[-0.01em]">
+            <h2 className="text-[44px] leading-[48px] transition-all font-bold tracking-[-0.01em]">
               <div className="flip-card relative [perspective:1600px] [transform-style:preserve-3d] w-full">
                 <div className="front-panel pt-0 duration-[.25s] [backface-visibility:hidden]">
                   <p className="current-title block">

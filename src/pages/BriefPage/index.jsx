@@ -1,6 +1,5 @@
 import React from 'react'
 import BriefList from '../../features/BriefList/BriefList'
-import { Outlet } from 'react-router-dom'
 import BriefView from '../../components/BriefViewDetail'
 
 export default function Brief() {

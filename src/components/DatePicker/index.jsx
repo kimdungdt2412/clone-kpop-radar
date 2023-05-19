@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import dayjs from "dayjs"
 import range from "lodash-es/range"
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom'
+import { formatDDMM } from '../../utils/function'
 
 const weekDays = ["S", "M", "T", "W", "T", "F", "S"]
 
-export default function DatePicker({ endDay, day }) {
-
+export default function DatePicker({ open, handleClose, endDay, day }) {
+    const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
     const [selectedDay, setSelectedDay] = useState(dayjs())
     const [dayObj, setDayObj] = useState(dayjs())
     const [endObj, setEndObj] = useState(dayjs())
@@ -29,25 +32,44 @@ export default function DatePicker({ endDay, day }) {
         setDayObj(dayObj.add(1, "month"))
     }
 
+    const handleSelectDate = (day) => {
+        handleClose()
+        navigate(
+            {
+                pathname: window.location.pathname,
+                search: createSearchParams({
+                    ...Object.fromEntries([...searchParams]),
+                    day: `${thisYear}${formatDDMM(thisMonth + 1)}${formatDDMM(day)}`
+                }).toString()
+            })
+
+    }
+
     useEffect(() => {
         if (!!endDay) {
             const date = new Date(endDay.toString().substring(0, 4) + "-" + endDay.toString().substring(4, 6) + "-" + endDay.toString().substring(6, 8))
             setEndObj(dayjs(date.toUTCString()))
+            if (day === "") {
+                setSelectedDay(dayjs(date.toUTCString()))
+            }
         }
     }, [endDay])
 
     useEffect(() => {
-        if (!!endDay) {
-            let date = new Date(endDay.toString().substring(0, 4) + "-" + endDay.toString().substring(4, 6) + "-" + endDay.toString().substring(6, 8))
-            if (day !== "") {
-                date = new Date(day.substring(0, 4) + "-" + day.substring(4, 6) + "-" + day.substring(6, 8))
-            }
-            setSelectedDay(dayjs(date.toUTCString()))
+        if (day !== "") {
+            let date = new Date(day.substring(0, 4) + "-" + day.substring(4, 6) + "-" + day.substring(6, 8))
+            let selected = dayjs(date.toUTCString())
+            setSelectedDay(selected)
+            setDayObj(dayjs().month(selected.month()))
         }
     }, [day])
 
     return (
-        <div className='datepicker absolute z-[10] bg-white box-border'>
+        <div
+            style={{
+                display: open ? "block" : "none"
+            }}
+            className='datepicker absolute z-[10] bg-white box-border'>
             <div className="block box-content border-[1.2px] border-black w-[216px] h-auto mt-[5px] mx-auto mb-0 text-[9px] px-[20px] pb-[15px]">
                 <div className="header relative w-[119%] left-[-20px]">
                     <button className='text-[12px] block relative font-bold float-left' onClick={handlePrev}>
@@ -103,6 +125,7 @@ export default function DatePicker({ endDay, day }) {
                                                 }}
                                                 className={`flex items-center justify-center p-[7px] basis-[14.2857%]`}
                                                 key={i}
+                                                onClick={() => handleSelectDate(i + 1)}
                                             >
                                                 <span>
                                                     {i + 1}
@@ -113,7 +136,7 @@ export default function DatePicker({ endDay, day }) {
 
                                     {range(daysInMonth - endObj.date()).map(i => (
                                         <div className="text-[#d7d7d7] flex items-center justify-center p-[7px] basis-[14.2857%]" key={i}>
-                                            <span>{dayObjOfLast.add(i + dayObj.date() + 1, "day").date()}</span>
+                                            <span>{i + dayObj.date()}</span>
                                         </div>
                                     ))}
                                 </>
@@ -133,6 +156,7 @@ export default function DatePicker({ endDay, day }) {
                                                 }}
                                                 className={`flex items-center justify-center p-[7px] basis-[14.2857%]`}
                                                 key={i}
+                                                onClick={() => handleSelectDate(i + 1)}
                                             >
                                                 <span>{i + 1}</span>
                                             </div>

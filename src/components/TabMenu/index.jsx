@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import "./style.css"
 import { listTabMenu } from '../../utils/config'
 import { Link } from 'react-router-dom'
@@ -20,13 +20,13 @@ export default function TabMenu({ boardType, open, onClose, param = "" }) {
 
                     <button
                         onClick={onClose}
-                        className='absolute left-[43px] top-[40px] font-[700] text-[26px] block w-auto text-white transition-opacity duration-300'>
+                        className='absolute left-[43px] top-[40px] font-bold text-[26px] block w-auto text-white transition-opacity duration-300'>
                         close
                     </button>
 
                     <ul className="list-none min-h-full pt-[130px] pr-[20px] pb-[40px] pl-[43px]">
                         {listTabMenu.map((item, index) => (
-                            <li key={index} className={`text-[44px] leading-[48px] font-[700] first:mt-0 mt-[36px] tracking-[-0.01em]`} style={{
+                            <li key={index} className={`text-[44px] leading-[48px] font-bold first:mt-0 mt-[36px] tracking-[-0.01em]`} style={{
                                 transitionDelay: `${(index * 0.1)}s`
                             }}>
                                 <Link
