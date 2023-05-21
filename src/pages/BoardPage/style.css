@@ -1,0 +1,53 @@
+@tailwind base;
+
+@layer base {
+    .board-header {
+        @apply absolute top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[120px] lg:h-[440px]
+    }
+
+    .mini-board-header {
+        @apply fixed top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[90px]
+    }
+
+
+    .board-header h2 {
+        @apply text-[44px] leading-[48px] lg:text-[86px] lg:leading-[100px]
+    }
+
+    .mini-board-header h2 {
+        @apply text-[26px] leading-[28px]
+    }
+
+    .board-header button {
+        @apply w-[52px] h-[52px] lg:w-[100px] lg:h-[100px]
+    }
+
+    .mini-board-header button{
+        @apply w-[32px] h-[32px]
+    }
+
+    .board-header button i {
+        @apply w-[7px] h-[7px] lg:w-[14px] lg:h-[14px]
+    }
+
+    .board-header button:hover i {
+        @apply ml-[-7px] lg:ml-[-14px]
+    }
+
+    .board-header button:hover i:first-child {
+        @apply ml-0
+    }
+
+    .mini-board-header button i {
+        @apply relative top-[-10px] w-[5px] h-[5px]
+    }
+
+    .mini-board-header button:hover i {
+        @apply ml-[-5px]
+    }
+
+    .mini-board-header button:hover i:first-child {
+        @apply ml-0
+    }
+
+}

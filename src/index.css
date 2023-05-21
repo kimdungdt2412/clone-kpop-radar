@@ -81,11 +81,11 @@
     @apply relative pl-[20px] max-w-[1160px] my-0 mx-auto box-border
   }
 
-  .sortButton {
-    @apply relative block pr-[10px] min-w-[75px] after:content-[""] after:block after:absolute after:w-0 after:h-0 after:top-[50%] after:right-0 after:border-[4px] after:border-transparent after:border-t-black
+  .sort-button {
+    @apply relative block text-left pr-[10px] min-w-[75px] after:content-[""] after:block after:absolute after:w-0 after:h-0 after:top-[50%] after:right-0 after:border-[4px] after:border-transparent after:border-t-black lg:min-w-[150px] lg:after:border-[6px]
   }
 
-  .sortTitle {
-    @apply inline-block relative after:content-[""] after:absolute after:block after:h-[1px] after:w-full after:bg-black after:bottom-[2px] after:ml-[1px]
+  .sort-title {
+    @apply inline-block relative after:content-[""] after:absolute after:block after:h-[1px] after:w-full after:bg-black after:bottom-[2px] after:ml-[1px] lg:after:bottom-[4px]
   }
 }

@@ -31,11 +31,12 @@ export default function SortByGender({ gender, searchParams }) {
         <li
             onBlur={() => setOpen(false)}
             onClick={() => setOpen(!open)}
-            className="sortGender text-[17px] leading-[25px] relative float-left align-top ml-[10%]">
+            className="sort-gender inline-block relative align-top ml-[10%] lg:ml-[16%]">
+                <span className='hidden lg:block'>sort by gender</span>
             <button
-                className={`${open ? "open" : ""} sortButton w-[72px] text-left`}>
+                className={`${open ? "open" : ""} sort-button w-[72px] text-left`}>
                 <span
-                    className='sortTitle after:content-none'
+                    className='sort-title after:content-none'
                 >
                     {handleIcon(gender)}
                 </span>
@@ -44,7 +45,7 @@ export default function SortByGender({ gender, searchParams }) {
                     style={{
                         visibility: open ? "visible" : "hidden"
                     }}
-                    className="dropdown z-[2] absolute bg-white border-black border-[1px] w-[100px] top-[34px]">
+                    className="dropdown">
 
                     {sortGender.map(item => (
                         <li key={item}
@@ -62,7 +63,7 @@ export default function SortByGender({ gender, searchParams }) {
                                         }).toString()
                                     })
                             }}
-                            className='block w-full first:border-t-0 border-t-[1px] border-t-black h-[30px] leading-[30px] text-[12px] pl-[10px] text-left'
+                            className='block w-full first:border-t-0 border-t-[1px] border-t-black h-[30px] leading-[30px] text-[12px] pl-[10px] text-left lg:text-[16px] lg:pl-[20px] lg:leading-[46px] lg:h-[46px]'
                         >
                             <span>
                                 {handleIcon(item, item === gender)}

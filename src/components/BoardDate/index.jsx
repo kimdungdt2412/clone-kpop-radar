@@ -61,20 +61,22 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
 
     return (
         <React.Fragment>
-            <div className="block">
+
+            <div className="info-right float-none lg:float-right">
                 {date === "realtime" && (
-                    <span className="date block w-full m-0 text-[10px] leading-[17px] mt-[10px] font-light text-[#999] align-middle">
+                    <span className="date block w-full m-0 text-[10px] leading-[17px] mt-[10px] font-light text-[#999] align-middle lg:mr-[15px] lg:text-[13px] lg:leading-[20px] lg:mt-0">
                         updated {data.updateDate}
                     </span>
                 )}
-
+            </div>
+            <div className="block">
 
                 {/* daily */}
                 {
                     date === "daily" && (
                         <button
                             onClick={() => setOpenDatePicker(!openDatePicker)}
-                            className='sortButton font-noto text-[12px] leading-[22px] pr-[15px] font-medium w-auto after:mt-[-2px]'>
+                            className='sort-button font-noto text-[12px] leading-[22px] pr-[15px] font-medium w-auto after:mt-[-2px]'>
                             <span>{handleDate()}</span>
                         </button>
                     )
@@ -85,7 +87,7 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
 
                         {/* yearList */}
                         <li className="relative w-auto inline-block mr-[20px] ">
-                            <button onClick={() => setOpenWeekYear(!openWeekYear)} className='sortButton w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
+                            <button onClick={() => setOpenWeekYear(!openWeekYear)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
                                 {selectYear}
                             </button>
 
@@ -119,7 +121,7 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
                         {date === "weekly" && (
                             <li className='relative w-auto inline-block mr-[20px] '>
                                 <button
-                                    onClick={() => setOpenWeekList(!openWeekList)} className='sortButton w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
+                                    onClick={() => setOpenWeekList(!openWeekList)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
                                     {formatDDMM(selectWeek.startMonth)}.{formatDDMM(selectWeek.startDay)} ~ {formatDDMM(selectWeek.endMonth)}.{formatDDMM(selectWeek.endDay)} (week {selectWeek.week})
                                 </button>
 
@@ -161,7 +163,7 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
                         {date === "monthly" && (
                             <li className='relative w-auto inline-block mr-[20px] '>
                                 <button
-                                    onClick={() => setOpenMonthList(!openMonthList)} className='sortButton w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
+                                    onClick={() => setOpenMonthList(!openMonthList)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
                                     {formatDDMM(selectMonth.month)}
                                 </button>
 
@@ -173,25 +175,26 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
                                     {data.monthList?.filter(item => item.year === selectYear)?.map(item => {
                                         let isSelected = item.month === selectMonth.month && item.year === selectMonth.year
                                         return (
-                                        <button
-                                            key={item.month}
-                                            style={{
-                                                background: isSelected ? "black" : "white",
-                                                color: isSelected ? "white" : "black",
-                                                border: isSelected ? "none" : ""
-                                            }}
-                                            onClick={() => {
-                                                setOpenMonthList(false)
-                                                onSubmit({
-                                                    month: item.month,
-                                                    year: item.year
-                                                })
-                                            }}
-                                            className='block relative whitespace-nowrap w-full h-[30px] leading-[30px] py-0 px-[10px] border-t-[black] border-[1px] first:border-none'
-                                        >
-                                            <span>{formatDDMM(item.month)}</span>
-                                        </button>
-                                    )})}
+                                            <button
+                                                key={item.month}
+                                                style={{
+                                                    background: isSelected ? "black" : "white",
+                                                    color: isSelected ? "white" : "black",
+                                                    border: isSelected ? "none" : ""
+                                                }}
+                                                onClick={() => {
+                                                    setOpenMonthList(false)
+                                                    onSubmit({
+                                                        month: item.month,
+                                                        year: item.year
+                                                    })
+                                                }}
+                                                className='block relative whitespace-nowrap w-full h-[30px] leading-[30px] py-0 px-[10px] border-t-[black] border-[1px] first:border-none'
+                                            >
+                                                <span>{formatDDMM(item.month)}</span>
+                                            </button>
+                                        )
+                                    })}
 
                                 </div>
 

@@ -1,8 +1,29 @@
-.sortType .sortDate button::after{
+@tailwind base;
+
+
+@layer base {
+    .board-sort .sort-type,
+    .board-sort .sort-date,
+    .board-sort .sort-gender {
+        @apply text-[17px] leading-[25px] lg:text-[23px] lg:leading-[33px]
+    }
+
+    .mini-board-sort .sort-type,
+    .mini-board-sort .sort-date,
+    .mini-board-sort .sort-gender {
+        @apply text-[13px] leading-[20px]
+    }
+
+    .dropdown {
+     @apply z-[2] absolute bg-white border-black border-[1px] w-[100px] top-[34px] lg:top-[45px] lg:w-[200px]
+    }
+}
+
+.sort-type .sort-date button::after {
     margin-top: -2px;
 }
 
-.sortType .sortDate button.open::after{
+.sort-type .sort-date button.open::after {
     margin-top: -7px;
     transform: rotate(180deg);
 }

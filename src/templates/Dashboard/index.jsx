@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import DashboardHeader from '../../components/DashboardHeader'
 import { boardTypeMap } from '../../utils/config'
+import TopButton from '../../components/TopButton'
 
 export default function Dashboard() {
   const params = useParams()
@@ -20,6 +21,7 @@ export default function Dashboard() {
       <main id="container max-w-[1920px] mx-0 my-auto">
         <Outlet />
       </main>
+      <TopButton/>
     </React.Fragment>
   )
 }

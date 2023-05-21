@@ -16,8 +16,8 @@ module.exports = {
       'xl': { 'min': '1280px' },
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': { 'min': '1536px' },
-      // => @media (min-width: 1536px) { ... }
+      '2xl': { 'min': '1441px' },
+      // => @media (min-width: 1441px) { ... }
     },
     extend: {
       backgroundImage: {

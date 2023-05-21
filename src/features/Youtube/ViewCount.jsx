@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useGetDailyDataQuery, useGetMonthListQuery, useGetMonthlyDataQuery, useGetRealtimeDataQuery, useGetStartDayQuery, useGetWeekListQuery, useGetWeeklyDataQuery, useLazyGetDailyDataQuery, useLazyGetMonthlyDataQuery, useLazyGetRealtimeDataQuery, useLazyGetWeeklyDataQuery } from '../../app/services/Youtube'
 import { selectYoutube } from './YoutubeSlice';
 import { useSelector } from 'react-redux';
@@ -12,13 +12,14 @@ import SortByDate from '../../components/Sort/SortByDate';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
 import BoardDate from '../../components/BoardDate';
 import SortByGender from '../../components/Sort/SortByGender';
-
+import ScrollProgress from '../../components/ScrollProgress'
+import "./style.css"
 
 export const isValidNumber = (value = "") => {
   return !isNaN(Number(value)) && Number(value) !== 0
 }
 
-export default function ViewCount() {
+export default function ViewCount({ isScrollDown }) {
   const [searchParams] = useSearchParams()
   let { type = "growth", date = "realtime", gender = "all", page = "1", day = "", weekId = "", month = "", year = "" } = Object.fromEntries([...searchParams])
 
@@ -39,7 +40,7 @@ export default function ViewCount() {
   const getWeek = useGetWeekListQuery()
   const getMonth = useGetMonthListQuery()
 
-  useGetRealtimeDataQuery(date === "realtime" ? {...payload} : skipToken)
+  useGetRealtimeDataQuery(date === "realtime" ? { ...payload } : skipToken)
 
   useGetDailyDataQuery((date === "daily" && !!getDay.data?.endDay) ? {
     ...payload,
@@ -111,30 +112,50 @@ export default function ViewCount() {
 
 
   return (
-    <div className='relative'>
-      <div className="board-sort p-0 pt-[25px] ml-[43px] max-w-[980px]">
-        <ul className="list-none">
-          <SortByType type={type} searchParams={searchParams} />
-          <SortByDate date={date} searchParams={searchParams} />
-          <SortByGender gender={gender} searchParams={searchParams} />
-        </ul>
+
+    <React.Fragment>
+      <div
+        className={`${isScrollDown ? "mini-board-sort" : "board-sort"} bg-white z-[80] w-full`}>
+        <div className="p-0 pt-[25px] ml-[43px] max-w-[980px]">
+          <ul className="list-none">
+            <SortByType type={type} searchParams={searchParams} isScrollDown={isScrollDown}/>
+            <SortByDate date={date} searchParams={searchParams} isScrollDown={isScrollDown}/>
+            <SortByGender gender={gender} searchParams={searchParams} isScrollDown={isScrollDown}/>
+          </ul>
+        </div>
+        {!isScrollDown && (
+
+          <div className="board-date relative min-h-[17px] border-b-[#e5e5e5] border-b-[1px] mt-[35px] ml-[43px] pr-[15px] pb-[11px]">
+            <BoardDate data={youtubeData} date={date} day={day} weekId={weekId} year={year} month={month} />
+
+            <div className="float-right w-full lg:float-none relative">
+
+              <button
+                onClick={handleRefreshData}
+                className='absolute inline-block overflow-hidden text-transparent align-sub bottom-[11px] right-[15px] w-[17px] h-[17px] after:content-[""] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-full after:rotate-0 after:[transform-origin:50%] after:bg-icon_refresh after:transition-transform after:duration-300 hover:after:rotate-[-1turn] lg:bottom-[-15px] lg:right-0 lg:w-[20px] lg:h-[20px]'>
+                refresh
+              </button>
+
+            </div>
+          </div>
+        )}
+
+        {isScrollDown && (
+          <ScrollProgress/>
+        )}
+
       </div>
 
-      <div className="board-date relative min-h-[17px] border-b-[#e5e5e5] border-b-[1px] mt-[35px] ml-[43px] pr-[15px] pb-[11px]">
-      <BoardDate data={youtubeData} date={date} day={day} weekId={weekId} year={year} month={month}/>
 
-        <div className="float-right w-full">
-          <button
-            onClick={handleRefreshData}
-            className='absolute inline-block overflow-hidden text-transparent align-sub bottom-[11px] right-[15px] w-[17px] h-[17px] after:content-[""] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-full after:rotate-0 after:[transform-origin:50%] after:bg-icon_refresh after:transition-transform after:duration-300 hover:after:rotate-[-1turn]'>
-            refresh
-          </button>
+      <div className="board-content max-w-[1100px] my-0 mx-auto bg-white
+         transition-all duration-300 pb-[30px] overflow-hidden">
+        <div id="main-board" className='relative'>
+          <TableHeader isViewCount={true} type={type} />
+          <TableBody data={getData()} isViewCount={true} type={type} />
+          <TablePagination total={youtubeData.totalCount[date]} orderCountInPage={youtubeData.orderCountInPage} currentPage={Number(page)} searchParams={searchParams} />
         </div>
       </div>
+    </React.Fragment>
 
-      <TableHeader isViewCount={true} type={type} />
-      <TableBody data={getData()} isViewCount={true} type={type} />
-      <TablePagination total={youtubeData.totalCount[date]} orderCountInPage={youtubeData.orderCountInPage} currentPage={Number(page)} searchParams={searchParams} />
-    </div>
   )
 }

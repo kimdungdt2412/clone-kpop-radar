@@ -3,12 +3,34 @@ import { useParams } from 'react-router-dom'
 import { boardTypeMap } from '../../utils/config'
 import TabMenu from '../../components/TabMenu'
 import ViewCount from '../../features/Youtube/ViewCount'
+import "./style.css"
 
 export default function BoardPage() {
   const params = useParams()
   const [boardType, setBoardType] = useState(boardTypeMap["viewcount"])
   const [openTabMenu, setOpenTabMenu] = useState(false)
+  const [isScrollDown, setIsScrollDown] = useState(false);
 
+  const handleScroll = () => {
+    let modifier = 200;
+
+    if (window.scrollY >  modifier) {
+      setIsScrollDown(true)
+    }
+    else {
+      setIsScrollDown(false)
+    }
+  };
+
+  const handleMainContent = () => {
+    switch (boardType.index) {
+      case 1:
+        return (<ViewCount isScrollDown={isScrollDown} />)
+
+      default:
+        break;
+    }
+  }
 
   useEffect(() => {
     if (params?.type) {
@@ -17,33 +39,47 @@ export default function BoardPage() {
   }, [params.type])
 
 
-  const handleView = () => {
-    switch (boardType.index) {
-      case 1:
-        return (<ViewCount/>)
-    
-      default:
-        break;
-    }
-  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [window.pageYOffset]);
 
   return (
-    <section className='relative overflow-hidden m-0 pt-[72px]'>
+    <section className='relative overflow-hidden m-0 pt-[72px] lg:mt-[135px]'>
       <TabMenu boardType={boardType} param={params.type} open={openTabMenu} onClose={() => {
         setOpenTabMenu(false)
       }} />
 
       <article className='inner overflow-hidden mb-[100px]'>
-        <header className='absolute top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[120px]'>
+        <header
+          className={`${isScrollDown ? "mini-board-header" : "board-header"}`}
+        >
 
-          <div className="board-info relative max-w-[980px] pr-0 ml-[43px]">
-            <h2 className="text-[44px] leading-[48px] transition-all font-bold tracking-[-0.01em]">
-              <div className="flip-card relative [perspective:1600px] [transform-style:preserve-3d] w-full">
-                <div className="front-panel pt-0 duration-[.25s] [backface-visibility:hidden]">
+          <div className="board-info relative max-w-[980px] pr-0 ml-[43px] lg:ml-[120px]">
+            <h2 className={`transition-all duration-500 font-bold tracking-[-0.01em]`}>
+              <div className="flip-card relative [perspective:1600px] [transform-style:preserve-3d] w-full lg:w-[60%] 2xl:w-full">
+                <div className="front-panel pt-0 duration-[.25s] [backface-visibility:hidden] lg:border-none">
                   <p className="current-title block">
-                    {boardType.name}
-                    <span className='text-[11px] leading-[1] align-top font-bold'>{boardType.index}</span>
-                    <span className='block [-webkit-text-stroke:1px_#000] [-webkit-text-fill-color:#fff]'> {boardType.detail}</span>
+                    {boardType.name}&nbsp;
+                    {window?.innerWidth < 1200 && (
+                      <span className='text-[11px] leading-[1] align-top font-bold'>{boardType.index}</span>
+                    )}
+
+                    <span
+                      style={{
+                        display: isScrollDown ? "initial" : `${window?.innerWidth >= 1200 ? 'inline-block' : 'block'}`,
+                        marginLeft: isScrollDown ? "4px" : "0px"
+                      }}
+                      className='[-webkit-text-stroke:1px_#000] [-webkit-text-fill-color:#fff]'>
+                      {boardType.detail}
+                    </span>
+
+                    {window?.innerWidth >= 1200 && (
+                      <span className='text-[22px] leading-[1] align-top font-bold'>{boardType.index}</span>
+                    )}
                   </p>
                 </div>
 
@@ -57,12 +93,15 @@ export default function BoardPage() {
               </div>
             </h2>
 
-            <p className='font-noto text-[12px] leading-[20px] text-[#999] pr-[30px] pt-[5px]'>
-              <i className='bg-icon_detail inline-block ml-[2px] align-middle bg-no-repeat bg-[length:100%_auto] w-[12px] h-[14px] mr-[4px] lg:w-[20px] lg:h-[22px] lg:mr-[8px]'></i>
-              <span>
-                {boardType.desc}
-              </span>
-            </p>
+            {!isScrollDown && (
+              <p className='font-noto text-[12px] leading-[20px] text-[#999] pr-[30px] pt-[5px] lg:text-[20px] lg:pt-[20px]'>
+                <i className='bg-icon_detail inline-block ml-[2px] align-middle bg-no-repeat bg-[length:100%_auto] w-[12px] h-[14px] mr-[4px] lg:w-[20px] lg:h-[22px] lg:mr-[8px]'></i>
+                <span>
+                  {boardType.desc}
+                </span>
+              </p>
+            )}
+
 
             <button
               style={{
@@ -72,21 +111,17 @@ export default function BoardPage() {
               onClick={() => {
                 setOpenTabMenu(true)
               }}
-              className={`group absolute block rounded-[50%] text-transparent text-center top-[-4px]  right-[25px] w-[52px] h-[52px] leading-[52px]`}>
-              <i className='inline-block rounded-[50%] bg-white align-middle [transition:margin_0.2s] w-[7px] h-[7px] '></i>
-              <i className='inline-block rounded-[50%] bg-white align-middle [transition:margin_0.2s] w-[7px] h-[7px] ml-[4px] group-hover:ml-[-7px]'></i>
-              <i className='inline-block rounded-[50%] bg-white align-middle [transition:margin_0.2s] w-[7px] h-[7px] ml-[4px] group-hover:ml-[-7px]'></i>
+              className={`group absolute block rounded-[50%] text-transparent text-center top-[-4px]  right-[25px] leading-[52px] lg:right-0 2xl:right-[43px]`}>
+              <i className='inline-block rounded-[50%] bg-white align-middle [transition:margin_0.2s]'></i>
+              <i className='inline-block rounded-[50%] bg-white align-middle ml-[4px] [transition:margin_0.2s] lg:ml-[8px]'></i>
+              <i className='inline-block rounded-[50%] bg-white align-middle ml-[4px]  [transition:margin_0.2s] lg:ml-[8px]'></i>
             </button>
           </div>
 
-          
-
         </header>
 
-        <div className="board-content max-w-[1100px] my-0 mx-auto bg-white
-         pt-[180px] transition-all duration-300 pb-[30px] overflow-hidden">
-          {handleView()}
-        </div>
+        {handleMainContent()}
+
       </article>
     </section>
   )

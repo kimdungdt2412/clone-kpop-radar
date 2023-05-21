@@ -6,15 +6,21 @@ import { createSearchParams, useNavigate } from 'react-router-dom'
 export default function SortByType({ type, searchParams }) {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
+
+    console.log(open)
     return (
-        <li 
-        onBlur={() => setOpen(false)}
-        onClick={() => setOpen(!open)} 
-        className="sortType text-[17px] leading-[25px] relative float-left align-top">
+        <li
+            onBlur={() => setOpen(false)}
+            onClick={() => {
+                console.log("he")
+                setOpen(!open)
+            }}
+            className={`sort-type inline-block relative align-top`}>
+            <span className='hidden lg:block'>sort by view</span>
             <button
-                className={`${open ? "open" : ""} sortButton`}>
+                className={`${open ? "open" : ""} sort-button`}>
                 <span
-                    className='sortTitle'
+                    className='sort-title'
                 >
                     {type}
                 </span>
@@ -23,7 +29,7 @@ export default function SortByType({ type, searchParams }) {
                     style={{
                         visibility: open ? "visible" : "hidden"
                     }}
-                    className="dropdown z-[2] absolute bg-white border-black border-[1px] w-[100px] top-[34px]">
+                    className="dropdown">
 
                     {youtubeSortType.map(item => (
                         <li key={item}
@@ -42,7 +48,7 @@ export default function SortByType({ type, searchParams }) {
                                         }).toString()
                                     })
                             }}
-                            className='block w-full first:border-t-0 border-t-[1px] border-t-black h-[30px] leading-[30px] text-[12px] pl-[10px] text-left'
+                            className='block w-full first:border-t-0 border-t-[1px] border-t-black h-[30px] leading-[30px] text-[12px] pl-[10px] text-left lg:text-[16px] lg:pl-[20px] lg:leading-[46px] lg:h-[46px]'
 
                         >
                             <span>
