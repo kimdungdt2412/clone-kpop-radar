@@ -12,7 +12,7 @@ export default function BoardPage() {
   const [isScrollDown, setIsScrollDown] = useState(false);
 
   const handleScroll = () => {
-    let modifier = window.screen.width >= 1024 ? 200 : 50;
+    let modifier = window.innerWidth >= 1024 ? 200 : 50;
     if (window.scrollY >  modifier) {
       setIsScrollDown(true)
     }

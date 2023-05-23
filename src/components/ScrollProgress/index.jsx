@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 export default function ScrollProgress() {
     const [position, setPosition] = useState(0)
+    const [width, setWidth] = useState(0)
 
     const handleScroll = () => {
       let mainBoard = document.getElementById('main-board')
-      let percent = window.scrollY/(mainBoard.offsetHeight - window.outerHeight)*100;
+      let percent = window.scrollY/(mainBoard.offsetHeight - window.outerHeight + 300)*100;
       setPosition(percent >= 100 ? 100 : percent)
     }
 
@@ -15,9 +16,22 @@ export default function ScrollProgress() {
         window.removeEventListener('scroll', handleScroll);
       };
     }, [window.pageYOffset]);
+
+    useEffect(() => {
+        if(window.innerWidth >= 1024) {
+          let screenW = window.innerWidth
+          let w = screenW >= 1100 ? (1100 + (screenW - 1100)/2 - 120) : (screenW - 120)
+          setWidth(w) 
+          console.log(w, screenW)
+        }
+    }, [])
     
   return (
-    <div className='scroll-progress fixed z-[1] top-[180px] right-0 w-full h-[1px] bg-[#f0f0f0] overflow-hidden lg:top-[178px] lg:w-[1030px] lg:mx-auto'>
+    <div 
+    style={{
+      width: width > 0 ? `${width}px`: '100%'
+    }}
+    className='scroll-progress fixed z-[100] top-[180px] right-0 w-full h-[1px] bg-[#f0f0f0] overflow-hidden lg:top-[177px] lg:mx-auto lg:z-[1]'>
         <span 
         style={{
             transform: `translate3d(${-(100-position)}%, 0px, 0px)`

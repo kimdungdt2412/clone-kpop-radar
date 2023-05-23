@@ -43,6 +43,7 @@
     font-size: 14px;
     max-width: 1920px;
     overflow-x: hidden;
+    margin: 0 auto!important;
     vertical-align: baseline ;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */

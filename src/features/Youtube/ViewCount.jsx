@@ -16,7 +16,7 @@ import ScrollProgress from '../../components/ScrollProgress'
 import "./style.css"
 
 export const isValidNumber = (value = "") => {
-  return !isNaN(Number(value)) && Number(value) !== 0
+  return !isNaN(Number(value)) && Number(value) > 0
 }
 
 export default function ViewCount({ isScrollDown }) {
@@ -31,7 +31,7 @@ export default function ViewCount({ isScrollDown }) {
 
   const payload = {
     orderCountInPage: youtubeData.orderCountInPage,
-    lastOrderNo: (Number(page) - 1) * youtubeData.orderCountInPage,
+    lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * youtubeData.orderCountInPage,
     gender: gender === "all" ? "" : sortGenderMap[gender],
     ...youtubeSortTypeValue[type],
   }

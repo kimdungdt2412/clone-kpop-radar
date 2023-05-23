@@ -18,7 +18,7 @@ export default function Dashboard() {
 
     <React.Fragment>
       <DashboardHeader boardType={boardType} />
-      <main id="container max-w-[1920px] mx-0 my-auto">
+      <main id="container max-w-[1920px] mx-auto my-0">
         <Outlet />
       </main>
       <TopButton/>

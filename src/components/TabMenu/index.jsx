@@ -1,10 +1,12 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import "./style.css"
 import { listTabMenu } from '../../utils/config'
 import { Link } from 'react-router-dom'
+import { boardTypeMap } from '../../utils/config'
 
 export default function TabMenu({ boardType, open, onClose, param = "" }) {
     const scrollRef = useRef(null)
+    const [color, setColor] = useState(boardType.color)
 
     // useEffect(() => {
     //     if (scrollRef) {
@@ -14,13 +16,13 @@ export default function TabMenu({ boardType, open, onClose, param = "" }) {
     // }, [param])
 
     return (
-        <article className={`tabMenu ${open ? "open" : ""} fixed z-[200] top-0 left-0 right-0 min-w-auto w-full h-full overflow-hidden`}>
+        <article className={`tabMenu ${open ? "open" : ""} fixed z-[200] top-0 left-0 right-0 min-w-auto w-full h-full overflow-hidden lg:overflow-auto`}>
             <div className="inner relative top-0 left-0 right-0 bottom-0 h-full w-full max-w-[1110px] lg:h-fit lg:pt-[170px] lg:pb-[80px] lg:pl-[120px] lg:left-[50%] lg:translate-x-[-50%]">
-                <div ref={scrollRef} className="menu absolute z-[2] top-0 bottom-0 right-0 left-0 w-full h-full max-h-full overflow-y-auto overflow-x-hidden lg:right-[unset] lg:left-[unset] lg:h-fit lg:[position:inherit] lg:overflow-visible">
+                <div ref={scrollRef} className="menu absolute z-[2] top-0 bottom-0 right-0 left-0 w-full h-full max-h-full overflow-y-auto overflow-x-hidden lg:right-[unset] lg:left-[unset] lg:h-fit lg:[position:inherit] lg:overflow-visible ">
 
                     <button
                         onClick={onClose}
-                        className='absolute left-[43px] top-[40px] font-bold text-[26px] block w-auto text-white transition-opacity duration-300 lg:left-0 lg:top-[-120px] lg:text-[46px] lg:font-normal'>
+                        className='absolute left-[43px] top-[40px] font-bold text-[26px] block w-auto text-white transition-opacity duration-300 hover:[-webkit-text-stroke:1px_white] hover:[-webkit-text-fill-color:transparent] lg:left-0 lg:top-[-120px] lg:text-[46px] lg:font-normal'>
                         close
                     </button>
 
@@ -41,14 +43,17 @@ export default function TabMenu({ boardType, open, onClose, param = "" }) {
                                             });
                                         }, 400)
                                     }}
+                                    onMouseEnter={() => {
+                                        setColor(boardTypeMap[item.path]?.color || boardType.color)
+                                    }}
                                 >
                                     {item.name}&nbsp;
-                                    {window.screen.width < 1024 && (
+                                    {window.innerWidth < 1024 && (
                                         <span className='inline-block text-[11px] leading-[1] align-top font-bold mt-[5px] ml-[7px]'>{index + 1}</span>
                                     )}
 
                                     <span className='block lg:inline-block'> {item.detail}</span>
-                                    {window.screen.width >= 1024 && (
+                                    {window.innerWidth >= 1024 && (
                                         <span className='inline-block text-[22px] leading-[1] font-bold align-top'>{index + 1}</span>
                                     )}
                                 </Link>
@@ -59,7 +64,7 @@ export default function TabMenu({ boardType, open, onClose, param = "" }) {
                 </div>
 
                 <div style={{
-                    backgroundColor: boardType.color
+                    backgroundColor: color
                 }} className='bg z-[1] h-[100vh] max-h-none block absolute top-0 left-[50%] ml-[-580px] w-[1540px] lg:h-full'></div>
 
             </div>
