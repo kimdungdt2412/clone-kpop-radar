@@ -12,8 +12,7 @@ export default function BoardPage() {
   const [isScrollDown, setIsScrollDown] = useState(false);
 
   const handleScroll = () => {
-    let modifier = 200;
-
+    let modifier = window.screen.width >= 1024 ? 200 : 50;
     if (window.scrollY >  modifier) {
       setIsScrollDown(true)
     }
@@ -48,7 +47,7 @@ export default function BoardPage() {
   }, [window.pageYOffset]);
 
   return (
-    <section className='relative overflow-hidden m-0 pt-[72px] lg:mt-[135px]'>
+    <section className={`${isScrollDown ? "minify" : ""} relative overflow-hidden m-0 pt-[72px] lg:mt-[135px]`}>
       <TabMenu boardType={boardType} param={params.type} open={openTabMenu} onClose={() => {
         setOpenTabMenu(false)
       }} />
@@ -59,26 +58,26 @@ export default function BoardPage() {
         >
 
           <div className="board-info relative max-w-[980px] pr-0 ml-[43px] lg:ml-[120px]">
-            <h2 className={`transition-all duration-500 font-bold tracking-[-0.01em]`}>
+            <h2 className={`transition-all duration-500 font-bold tracking-[-0.01em] lg:transition-none`}>
               <div className="flip-card relative [perspective:1600px] [transform-style:preserve-3d] w-full lg:w-[60%] 2xl:w-full">
                 <div className="front-panel pt-0 duration-[.25s] [backface-visibility:hidden] lg:border-none">
                   <p className="current-title block">
                     {boardType.name}&nbsp;
-                    {window?.innerWidth < 1200 && (
+                    {window?.screen.width < 1024 && (
                       <span className='text-[11px] leading-[1] align-top font-bold'>{boardType.index}</span>
                     )}
 
                     <span
                       style={{
-                        display: isScrollDown ? "initial" : `${window?.innerWidth >= 1200 ? 'inline-block' : 'block'}`,
+                        display: isScrollDown ? "initial" : `${window?.screen.width >= 1024 ? 'inline-block' : 'block'}`,
                         marginLeft: isScrollDown ? "4px" : "0px"
                       }}
                       className='[-webkit-text-stroke:1px_#000] [-webkit-text-fill-color:#fff]'>
-                      {boardType.detail}
+                      {boardType.detail}&nbsp;
                     </span>
 
-                    {window?.innerWidth >= 1200 && (
-                      <span className='text-[22px] leading-[1] align-top font-bold'>{boardType.index}</span>
+                    {window?.screen.width >= 1024 && (
+                      <span className='sup leading-[1] align-top font-bold'>{boardType.index}</span>
                     )}
                   </p>
                 </div>
@@ -111,7 +110,7 @@ export default function BoardPage() {
               onClick={() => {
                 setOpenTabMenu(true)
               }}
-              className={`group absolute block rounded-[50%] text-transparent text-center top-[-4px]  right-[25px] leading-[52px] lg:right-0 2xl:right-[43px]`}>
+              className={`group absolute block rounded-[50%] text-transparent text-center top-[-4px]  right-[25px] leading-[52px] lg:right-0 2xl:right-[-43px]`}>
               <i className='inline-block rounded-[50%] bg-white align-middle [transition:margin_0.2s]'></i>
               <i className='inline-block rounded-[50%] bg-white align-middle ml-[4px] [transition:margin_0.2s] lg:ml-[8px]'></i>
               <i className='inline-block rounded-[50%] bg-white align-middle ml-[4px]  [transition:margin_0.2s] lg:ml-[8px]'></i>

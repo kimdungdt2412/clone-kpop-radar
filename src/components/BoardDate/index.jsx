@@ -36,11 +36,11 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
     }
 
     useEffect(() => {
-        if (date !== "weekly" || data.monthList?.length === 0) return
+        if (date !== "weekly" || data.weekList?.length === 0) return
         const week = isValidNumber(weekId) ? data.weekList?.filter(item => item.weekId === Number(weekId))?.[0] : data.weekList[0]
         setSelectWeek(week)
         setSelectYear(week.year)
-    }, [data.weekList, weekId])
+    }, [date, data.weekList, weekId])
 
     useEffect(() => {
         if (date !== "monthly" || data.monthList?.length === 0) return
@@ -57,14 +57,14 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
         }
         setSelectMonth(_month)
 
-    }, [data.monthList, year, month])
+    }, [date, data.monthList, year, month])
 
     return (
-        <React.Fragment>
+        <div className='lg:ml-[120px] border-b-[#e5e5e5] border-b-[1px] pb-[11px] lg:pb-[25px]'>
 
-            <div className="info-right float-none lg:float-right">
+            <div className="info-right lg:text-right">
                 {date === "realtime" && (
-                    <span className="date block w-full m-0 text-[10px] leading-[17px] mt-[10px] font-light text-[#999] align-middle lg:mr-[15px] lg:text-[13px] lg:leading-[20px] lg:mt-0">
+                    <span className="date inline w-full m-0 text-[10px] leading-[17px] mt-[10px] font-light text-[#999] align-middle lg:mr-[30px] lg:text-[13px] lg:leading-[20px] lg:mt-0">
                         updated {data.updateDate}
                     </span>
                 )}
@@ -76,18 +76,18 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
                     date === "daily" && (
                         <button
                             onClick={() => setOpenDatePicker(!openDatePicker)}
-                            className='sort-button font-noto text-[12px] leading-[22px] pr-[15px] font-medium w-auto after:mt-[-2px]'>
+                            className='sort-button font-noto text-[12px] leading-[22px] pr-[15px] font-medium w-auto after:mt-[-2px] lg:text-[14px] lg:min-w-0 lg:pr-[20px]'>
                             <span>{handleDate()}</span>
                         </button>
                     )
                 }
 
                 {(date === "weekly" || date === "monthly") && (
-                    <ul className='list-none font-noto font-medium text-[12px]'>
+                    <ul className='list-none font-noto font-medium text-[12px] lg:text-[14px]'>
 
                         {/* yearList */}
-                        <li className="relative w-auto inline-block mr-[20px] ">
-                            <button onClick={() => setOpenWeekYear(!openWeekYear)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
+                        <li className="relative w-auto inline-block mr-[20px] lg:mr-[36px]">
+                            <button onClick={() => setOpenWeekYear(!openWeekYear)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px] lg:pr-[20px]'>
                                 {selectYear}
                             </button>
 
@@ -121,7 +121,7 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
                         {date === "weekly" && (
                             <li className='relative w-auto inline-block mr-[20px] '>
                                 <button
-                                    onClick={() => setOpenWeekList(!openWeekList)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
+                                    onClick={() => setOpenWeekList(!openWeekList)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px] lg:pr-[20px]'>
                                     {formatDDMM(selectWeek.startMonth)}.{formatDDMM(selectWeek.startDay)} ~ {formatDDMM(selectWeek.endMonth)}.{formatDDMM(selectWeek.endDay)} (week {selectWeek.week})
                                 </button>
 
@@ -163,7 +163,7 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
                         {date === "monthly" && (
                             <li className='relative w-auto inline-block mr-[20px] '>
                                 <button
-                                    onClick={() => setOpenMonthList(!openMonthList)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px]'>
+                                    onClick={() => setOpenMonthList(!openMonthList)} className='sort-button w-auto pr-[15px] leading-[22px] min-w-0 after:mt-[-2px] lg:pr-[20px]'>
                                     {formatDDMM(selectMonth.month)}
                                 </button>
 
@@ -209,6 +209,6 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
             <DatePicker open={openDatePicker} handleClose={() => {
                 setOpenDatePicker(false)
             }} endDay={data.endDay} day={day} />
-        </React.Fragment>
+        </div>
     )
 }

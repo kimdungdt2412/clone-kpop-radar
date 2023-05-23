@@ -54,6 +54,7 @@ export default function SortByGender({ gender, searchParams }) {
                                 color: item === gender ? "white" : "black"
                             }}
                             onClick={() => {
+                                if (gender === item) return
                                 navigate(
                                     {
                                         pathname: window.location.pathname,

@@ -62,7 +62,7 @@ export default function BriefIntro({
                                     </span>
                                     &nbsp;shares
                                 </span>
-                                {window.screen.width >= 1200 && open && (
+                                {window.screen.width >= 1024 && open && (
                                     <span className='sns-list absolute top-0 h-[30px] w-[134px] right-[35px] xl:w-[156px] xl:right-[55px]'>
                                         {snsList.map(item => {
                                             return (
@@ -76,7 +76,7 @@ export default function BriefIntro({
                                 )}
                                 <img src={shareIcon} className='share-icon' onClick={(e) => {
                                     e && e.stopPropagation()
-                                    if (window.screen.width < 1200) {
+                                    if (window.screen.width < 1024) {
                                         dispatch(setCurrentBriefData(brief))
                                     } else {
                                         setOpen(!open)

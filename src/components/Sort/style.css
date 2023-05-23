@@ -2,6 +2,10 @@
 
 
 @layer base {
+
+    .mini-board-sort {
+        @apply lg:after:content-none
+    }
     .board-sort .sort-type,
     .board-sort .sort-date,
     .board-sort .sort-gender {
@@ -14,9 +18,43 @@
         @apply text-[13px] leading-[20px]
     }
 
+    .mini-board-sort .sort-date,
+    .mini-board-sort .sort-gender {
+        @apply ml-[10%]
+    }
+
+    .mini-board-sort .sort-type > span,
+    .mini-board-sort .sort-date > span,
+    .mini-board-sort .sort-gender > span {
+        @apply lg:hidden
+    }
+
+    .mini-board-sort .sort-type .sort-button,
+    .mini-board-sort .sort-date .sort-button,
+    .mini-board-sort .sort-gender .sort-button {
+        @apply lg:min-w-[120px]
+    }
+
+    .mini-board-sort .sort-title {
+        @apply lg:after:content-none
+    }
+
+    .mini-board-sort .sort-title > i{
+        @apply lg:w-[16px] lg:h-[16px]
+    }
+
     .dropdown {
      @apply z-[2] absolute bg-white border-black border-[1px] w-[100px] top-[34px] lg:top-[45px] lg:w-[200px]
     }
+
+    .mini-board-sort .dropdown {
+        @apply lg:top-[30px]
+    }
+
+    .mini-board-sort .dropdown i{
+        @apply lg:w-[16px] lg:h-[16px]
+    }
+
 }
 
 .sort-type .sort-date button::after {

@@ -4,6 +4,7 @@
 
 .tabMenu button {
     opacity: 0;
+    transition-duration: 150ms;
 }
 
 .tabMenu .bg {

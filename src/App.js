@@ -94,7 +94,6 @@ function App() {
           </Routes>
         </ScrollToTop>
       </ParallaxProvider>
-      <Dots />
       <Footer />
     </BrowserRouter>
   );

@@ -7,12 +7,10 @@ export default function SortByType({ type, searchParams }) {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
 
-    console.log(open)
     return (
         <li
             onBlur={() => setOpen(false)}
             onClick={() => {
-                console.log("he")
                 setOpen(!open)
             }}
             className={`sort-type inline-block relative align-top`}>

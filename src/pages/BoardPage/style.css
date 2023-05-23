@@ -2,11 +2,11 @@
 
 @layer base {
     .board-header {
-        @apply absolute top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[120px] lg:h-[440px]
+        @apply absolute top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[120px] 2xl:h-[150px]
     }
 
     .mini-board-header {
-        @apply fixed top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[90px]
+        @apply fixed top-0 left-0 right-0 max-w-[1100px] my-0 mx-auto bg-white transition-all z-[90] h-auto pt-[90px] lg:z-[99] lg:pt-[24px] lg:h-[74px]
     }
 
 
@@ -15,7 +15,15 @@
     }
 
     .mini-board-header h2 {
-        @apply text-[26px] leading-[28px]
+        @apply text-[26px] leading-[28px] lg:text-[40px] lg:leading-[50px]
+    }
+
+    .board-header h2 .sup {
+        @apply text-[22px]
+    }
+
+    .mini-board-header h2 .sup {
+        @apply lg:text-[10px] lg:ml-[3px]
     }
 
     .board-header button {
@@ -23,7 +31,7 @@
     }
 
     .mini-board-header button{
-        @apply w-[32px] h-[32px]
+        @apply w-[32px] h-[32px] lg:left-[50%] lg:w-[50px] lg:h-[50px] lg:ml-[14px]
     }
 
     .board-header button i {
@@ -39,13 +47,16 @@
     }
 
     .mini-board-header button i {
-        @apply relative top-[-10px] w-[5px] h-[5px]
+        @apply relative top-[-10px] w-[5px] h-[5px] lg:w-[7px] lg:h-[7px] lg:top-0 lg:ml-[4px]
     }
 
     .mini-board-header button:hover i {
-        @apply ml-[-5px]
+        @apply ml-[-5px] lg:ml-[-7px]
     }
-
+    
+    .mini-board-header button i:first-child {
+        @apply ml-0
+    }
     .mini-board-header button:hover i:first-child {
         @apply ml-0
     }

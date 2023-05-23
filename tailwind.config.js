@@ -56,7 +56,8 @@ module.exports = {
         'icon_emoticon_man': "url('/src/assets/images/icon_emoticon_man.svg')",
         'icon_emoticon_all_w': "url('/src/assets/images/icon_emoticon_all_w.svg')",
         'icon_emoticon_woman_w': "url('/src/assets/images/icon_emoticon_woman_w.svg')",
-        'icon_emoticon_man_w': "url('/src/assets/images/icon_emoticon_man_w.svg')"
+        'icon_emoticon_man_w': "url('/src/assets/images/icon_emoticon_man_w.svg')",
+        'icon_rank_up_w': "url('/src/assets/images/icon_rank_up_w.svg')"
       },
       backgroundSize: {
         '100': "100%"

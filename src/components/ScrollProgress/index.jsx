@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 export default function ScrollProgress() {
-    const [position, setPosition] = useState(100)
+    const [position, setPosition] = useState(0)
 
     const handleScroll = () => {
       let mainBoard = document.getElementById('main-board')
@@ -17,7 +17,7 @@ export default function ScrollProgress() {
     }, [window.pageYOffset]);
     
   return (
-    <div className='scroll-progress fixed z-[1] top-[180px] right-0 w-full h-[1px] bg-[#f0f0f0] overflow-hidden'>
+    <div className='scroll-progress fixed z-[1] top-[180px] right-0 w-full h-[1px] bg-[#f0f0f0] overflow-hidden lg:top-[178px] lg:w-[1030px] lg:mx-auto'>
         <span 
         style={{
             transform: `translate3d(${-(100-position)}%, 0px, 0px)`
