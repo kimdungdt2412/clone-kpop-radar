@@ -188,6 +188,7 @@ export const boardTypeMap = {
     },
 }
 
+export const sortTypes = ["growth", "total"]
 
 export const youtubeSortType = ["growth", "total", "latest"]
 
@@ -203,6 +204,9 @@ export const youtubeSortTypeValue = {
         dateOrder: 1
     },
 }
+
+export const sortDateV1 = ["weekly", "monthly"]
+export const sortDateV2 = ["daily", "weekly", "monthly"]
 
 export const youtubeSortDateValue = ["realtime", "daily", "weekly", "monthly"]
 

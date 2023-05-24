@@ -1,12 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { baseConfig } from './BaseApi';
 
-let apiPrefix = "youtube";
+let apiPrefix = "channel";
 var qs = require('qs');
 
-export const youtubeApi = createApi({
+export const channelApi = createApi({
     ...baseConfig,
-    reducerPath: "youtubeApi",
+    reducerPath: "channelApi",
     endpoints: (build) => ({
         getStartDay: build.query({
             query: () => {
@@ -46,27 +46,6 @@ export const youtubeApi = createApi({
             
             transformResponse: (response) => response.body,
         }),
-        getRealtimeData: build.query({
-            query: (body) => {
-                return {
-                    url: `${apiPrefix}/realtimeData`,
-                    method: 'POST',
-                    body: qs.stringify(body)
-                }
-            },
-            
-            transformResponse: (response) => response.body,
-        }),
-        getDailyData: build.query({
-            query: (body) => {
-                return {
-                    url: `${apiPrefix}/dailyData`,
-                    method: 'POST',
-                    body: qs.stringify(body)
-                }
-            },
-            transformResponse: (response) => response.body,
-        }),
         getWeeklyData: build.query({
             query: (body) => {
                 return {
@@ -90,4 +69,4 @@ export const youtubeApi = createApi({
     })
 })
 
-export const { useGetStartDayQuery, useGetMonthListQuery, useGetWeekListQuery, useGetRealtimeDataQuery, useLazyGetRealtimeDataQuery,useLazyGetDailyDataQuery, useGetDailyDataQuery, useLazyGetMonthlyDataQuery, useGetMonthlyDataQuery, useGetWeeklyDataQuery, useLazyGetWeeklyDataQuery } = youtubeApi
+export const { useGetMonthListQuery, useGetWeekListQuery, useGetStartDayQuery, useGetWeeklyDataQuery, useGetMonthlyDataQuery, useLazyGetMonthlyDataQuery, useLazyGetWeeklyDataQuery } = channelApi

@@ -58,7 +58,9 @@ module.exports = {
         'icon_emoticon_woman_w': "url('/src/assets/images/icon_emoticon_woman_w.svg')",
         'icon_emoticon_man_w': "url('/src/assets/images/icon_emoticon_man_w.svg')",
         'icon_tap_arrow_up': "url('/src/assets/images/icon_tap_arrow_up.svg')",
-        'icon_tap_arrow_down': "url('/src/assets/images/icon_tap_arrow_down.svg')"
+        'icon_tap_arrow_down': "url('/src/assets/images/icon_tap_arrow_down.svg')",
+        'icon_rank_up_w': "url('/src/assets/images/icon_rank_up_w.svg')",
+        'icon_rank_down_w': "url('/src/assets/images/icon_rank_down_w.svg')"
       },
       backgroundSize: {
         '100': "100%"

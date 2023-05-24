@@ -1,0 +1,56 @@
+@tailwind base;
+
+@layer base {
+
+    .view-table-body li {
+        @apply transition-[max-height] lg:min-h-[120px] lg:hover:min-h-[320px] lg:hover:max-h-[320px]
+    }
+
+    .view-table-body li.active {
+        @apply text-white
+    }
+
+    .view-table-body .board-item {
+        @apply lg:group-hover:text-white lg:group-hover:overflow-visible
+    }
+    .view-table-body .board-item .intro {
+        @apply grow basis-[41%] text-left text-[#666] relative text-[10px] pl-[73px] break-words overflow-hidden lg:text-[14px] lg:group-hover:text-white lg:group-hover:overflow-visible
+    }
+
+    .view-table-body .board-item .growth {
+        @apply  grow break-words text-left basis-[110px] text-[11px] px-[25px] pb-[14px] lg:min-w-[100px] lg:text-[13px] lg:grow-0 lg:basis-auto lg:p-0 lg:leading-[13px] lg:text-center
+    }
+    .view-table-body .board-item .total {
+        @apply grow break-words text-left basis-[110px] text-[11px] px-[25px] pb-[14px] lg:min-w-[100px] lg:text-[13px] lg:grow-0 lg:basis-auto lg:ml-[55px] lg:p-0 lg:leading-[13px] lg:text-center
+    }
+
+    .table-body li {
+        @apply bg-white transition-colors
+    }
+
+    .table-body li.active {
+        @apply bg-[#ff354e] text-white
+    }
+
+    .table-body .board-item {
+        @apply text-[10px] 
+    }
+
+
+    .table-body .board-item .intro {
+        @apply flex items-center grow basis-[30%] text-left text-[#666] relative text-[10px] pl-[60px] h-[46px] leading-[46px] w-auto break-words overflow-hidden lg:text-[14px] lg:group-hover:text-white lg:group-hover:overflow-visible
+    }
+
+    .table-body .board-item .growth {
+        @apply  basis-[96px] pl-[30px] pr-0 grow-0 lg:min-w-[100px] lg:grow-0 lg:basis-auto lg:text-center
+    }
+    .table-body .board-item .total {
+        @apply text-center basis-[110px] pr-[25px] grow-0 lg:min-w-[100px] lg:basis-auto lg:grow-0 lg:ml-[55px]
+    }
+
+    .artistName {
+        @apply block text-black max-w-[390px] w-full text-[13px] leading-[20px] overflow-hidden text-ellipsis align-middle  whitespace-nowrap lg:text-[17px] lg:font-bold lg:leading-[29px] lg:group-hover:text-white
+    }
+
+
+}

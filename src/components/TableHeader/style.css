@@ -1,0 +1,28 @@
+@tailwind base;
+
+@layer base {
+    .view-table-head .intro {
+        @apply grow basis-[41%] pl-[16px] lg:pl-[20px]
+    }
+
+    .view-table-head .growth {
+        @apply text-[#ff354e] basis-[76px] pl-[30px] pr-0 grow lg:min-w-[100px] lg:grow-0 lg:basis-auto lg:text-center
+    }
+    .view-table-head .total {
+        @apply text-[#ff354e] basis-[76px] pr-0 grow lg:min-w-[100px] lg:basis-auto lg:grow-0 lg:ml-[55px] lg:text-center
+    }
+
+
+    .table-head .intro {
+        @apply grow basis-[30%] pl-[60px] lg:pl-[72px] lg:basis-[41%]
+    }
+
+    .table-head .growth {
+        @apply text-[black] basis-[96px] pl-[18px] pr-0 grow-0 lg:min-w-[100px] lg:grow-0 lg:basis-auto lg:text-center
+    }
+    .table-head .total {
+        @apply text-[black] basis-[80px] pr-[45px] grow-0 lg:min-w-[100px] lg:basis-auto lg:grow-0 lg:ml-[55px] lg:text-center
+    }
+
+
+}

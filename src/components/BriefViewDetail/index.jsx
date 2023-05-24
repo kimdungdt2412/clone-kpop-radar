@@ -38,7 +38,7 @@ export default function BriefView() {
             sectionRef.current.scroll({
                 top: 0,
                 behavior: "smooth"
-              });
+            });
         }
     }, [brief])
 
@@ -52,10 +52,12 @@ export default function BriefView() {
 
     return (
         <section className={`brief-view ${!!briefId ? "open" : ""} flex flex-nowrap justify-end fixed top-0 bottom-0 right-0 z-[999] w-[101%] opacity-0 invisible`}>
-            <button type='button' className='close-btn z-[10] fixed rounded-[50%] w-[40px] h-[40px] p-0 border-0 bg-ico_brief_moreblack bg-no-repeat rotate-45 top-[15px] right-[15px] xl:top-[20px] xl:right-[37px]' onClick={() => {
-                dispatch(removeBriefID(briefId))
-                navigate('/brief')
-            }}>
+            <button
+                className='close-btn z-[10] fixed rounded-[50%] w-[40px] h-[40px] p-0 border-0 bg-ico_brief_moreblack bg-no-repeat rotate-45 top-[15px] right-[15px] xl:top-[20px] xl:right-[37px]'
+                onClick={() => {
+                    dispatch(removeBriefID(briefId))
+                    navigate('/brief')
+                }}>
             </button>
 
             <div id="detail" ref={sectionRef} className='brief-view_inner max-w-[1200px] h-full overflow-hidden overflow-y-auto bg-[white] translate-x-[30px]'>

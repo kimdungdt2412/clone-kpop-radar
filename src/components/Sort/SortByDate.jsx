@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import "./style.css"
 import { createSearchParams, useNavigate } from 'react-router-dom'
-import { youtubeSortDateValue } from '../../utils/config'
+import { sortDateV1, youtubeSortDateValue } from '../../utils/config'
 
-export default function SortByDate({ date, searchParams }) {
+export default function SortByDate({ date, searchParams, isViewCount = false }) {
     const navigate = useNavigate()
     const [open, setOpen] = useState(false)
+
+    const listDate = isViewCount ? youtubeSortDateValue : sortDateV1
     return (
         <li
             onBlur={() => setOpen(false)}
@@ -21,7 +23,7 @@ export default function SortByDate({ date, searchParams }) {
                     }}
                     className="dropdown">
 
-                    {youtubeSortDateValue.map(item => (
+                    {listDate.map(item => (
                         <li key={item}
                             style={{
                                 background: item === date ? "black" : "white",

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import "./style.css"
-import { youtubeSortType } from '../../utils/config'
+import { sortTypes, youtubeSortType } from '../../utils/config'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 
-export default function SortByType({ type, searchParams }) {
+export default function SortByType({ type, searchParams, isViewCount = false }) {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
+
+    let listType = isViewCount ? youtubeSortType : sortTypes
 
     return (
         <li
@@ -29,7 +31,7 @@ export default function SortByType({ type, searchParams }) {
                     }}
                     className="dropdown">
 
-                    {youtubeSortType.map(item => (
+                    {listType.map(item => (
                         <li key={item}
                             style={{
                                 background: item === type ? "black" : "white",

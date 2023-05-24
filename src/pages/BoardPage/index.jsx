@@ -4,6 +4,7 @@ import { boardTypeMap } from '../../utils/config'
 import TabMenu from '../../components/TabMenu'
 import ViewCount from '../../features/Youtube/ViewCount'
 import "./style.css"
+import Channel from '../../features/Channel/Channel'
 
 export default function BoardPage() {
   const params = useParams()
@@ -13,7 +14,7 @@ export default function BoardPage() {
 
   const handleScroll = () => {
     let modifier = window.innerWidth >= 1024 ? 200 : 50;
-    if (window.scrollY >  modifier) {
+    if (window.scrollY > modifier) {
       setIsScrollDown(true)
     }
     else {
@@ -26,6 +27,9 @@ export default function BoardPage() {
       case 1:
         return (<ViewCount isScrollDown={isScrollDown} />)
 
+      case 2:
+        return (<Channel isScrollDown={isScrollDown} />)
+
       default:
         break;
     }
@@ -34,6 +38,9 @@ export default function BoardPage() {
   useEffect(() => {
     if (params?.type) {
       setBoardType(boardTypeMap[params?.type])
+    }
+    else {
+      setBoardType(boardTypeMap["viewcount"])
     }
   }, [params.type])
 
@@ -58,7 +65,7 @@ export default function BoardPage() {
         >
 
           <div className="board-info relative max-w-[980px] pr-0 ml-[43px] lg:ml-[120px]">
-            <h2 className={`transition-all duration-500 font-bold tracking-[-0.01em] lg:transition-none`}>
+            <h2 className={`transition-all duration-300 font-bold tracking-[-0.01em] lg:transition-none`}>
               <div className="flip-card relative [perspective:1600px] [transform-style:preserve-3d] w-full lg:w-[60%] 2xl:w-full">
                 <div className="front-panel pt-0 duration-[.25s] [backface-visibility:hidden] lg:border-none">
                   <p className="current-title block">

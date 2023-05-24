@@ -51,7 +51,7 @@ export default function DashboardHeader({ boardType = {} }) {
         <header id="header" className={`pointer-events-none block z-[120] p-[13px] lg:py-[30px] lg:px-[32px] lg:pr-[15px] xl:pl-[60px] xl:pr-[25px] xl:pb-[10px] w-full max-w-[1920px] box-border z-120 lg:z-[100] fixed top-0 left-0 right-0 transition duration-300 after:block after:clear-both after:content-[''] ${scrollPosition > 200 ? "xl:h-[80px] xl:pt-[20px] 2xl:pt-[35px]" : "xl:pt-[35px]"}`}>
             <LogoComponent />
 
-            <nav className='float-right relative top-[1px] lg:top-0'>
+            <nav className='pointer-events-auto float-right relative top-[1px] lg:top-0'>
                 <ul className='block list-none'>
                     {menus.map(item => (
                         <li onClick={() => setIsFirst(true)} className='float-left max-w-[90px] mr-[12px] lg:max-w-none lg:mr-0' key={item.title}>

@@ -61,4 +61,24 @@
         @apply ml-0
     }
 
+    .board-sort {
+        @apply relative pt-[180px] lg:max-w-[1100px] lg:pt-[330px] lg:pb-[70px] lg:mx-auto 2xl:pt-[230px]
+    }
+
+    .mini-board-sort {
+        @apply fixed top-0 pt-[120px] pb-[15px] after:content-none after:z-[-1] after:absolute after:bottom-0 after:left-[50%] after:ml-[-960px] after:block after:w-[1920px] after:h-[1px] after:bg-[#e5e5e5] lg:pb-0
+    }
+
+    .mini-board-sort > div {
+        @apply lg:max-w-[1100px] lg:mx-auto lg:pb-[11px]
+    }
+
+    .minify .board-content {
+        @apply pt-[170px] lg:pt-[290px]
+    }
+
+    .minify .spinner {
+        @apply mt-[300px] lg:mt-[500px] z-0
+    }
+
 }

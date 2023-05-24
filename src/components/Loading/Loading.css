@@ -146,7 +146,11 @@
     height: 100%;
     top: 45%;
     position: absolute;
-    left: 48%;
+    left: 50%;
+}
+
+.inner .spinner-ellipsis {
+    top: 50%;
 }
 
 .spinner-ellipsis > div {
@@ -202,6 +206,6 @@
 .spinner-ellipsis {
     width: 56px !important;
     height: 56px !important;
-    -webkit-transform: translate(-28px, -28px) scale(0.28) translate(28px, 28px);
-    transform: translate(-28px, -28px) scale(0.28) translate(28px, 28px);
+    -webkit-transform: translate(-28px, -28px) scale(0.28) translate(28px, 28px) translateX(-100%);
+    transform: translate(-28px, -28px) scale(0.28) translate(28px, 28px) translateX(-100%);
 }

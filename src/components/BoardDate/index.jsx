@@ -4,7 +4,7 @@ import { isValidNumber } from '../../features/Youtube/ViewCount'
 import { formatDDMM } from '../../utils/function'
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom'
 
-export default function BoardDate({ date, data = {}, day, weekId, year, month }) {
+export default function BoardDate({ date, data = {}, day = "", weekId, year, month }) {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
 
@@ -205,10 +205,11 @@ export default function BoardDate({ date, data = {}, day, weekId, year, month })
                 )}
 
             </div>
-
-            <DatePicker open={openDatePicker} handleClose={() => {
-                setOpenDatePicker(false)
-            }} endDay={data.endDay} day={day} />
+            {date === "daily" && (
+                <DatePicker open={openDatePicker} handleClose={() => {
+                    setOpenDatePicker(false)
+                }} endDay={data.endDay} day={day} />
+            )}
         </div>
     )
 }

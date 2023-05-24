@@ -5,8 +5,8 @@ export default function ScrollProgress() {
     const [width, setWidth] = useState(0)
 
     const handleScroll = () => {
-      let mainBoard = document.getElementById('main-board')
-      let percent = window.scrollY/(mainBoard.offsetHeight - window.outerHeight + 300)*100;
+      let footer = document.getElementById('footer')
+      let percent = window.scrollY/footer.offsetTop*100;
       setPosition(percent >= 100 ? 100 : percent)
     }
 
@@ -22,7 +22,6 @@ export default function ScrollProgress() {
           let screenW = window.innerWidth
           let w = screenW >= 1100 ? (1100 + (screenW - 1100)/2 - 120) : (screenW - 120)
           setWidth(w) 
-          console.log(w, screenW)
         }
     }, [])
     

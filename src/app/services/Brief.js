@@ -6,6 +6,7 @@ var qs = require('qs');
 
 export const briefApi = createApi({
     ...baseConfig,
+    refetchOnMountOrArgChange: false,
     reducerPath: "briefApi",
     endpoints: (build) => ({
         getBriefList: build.query({

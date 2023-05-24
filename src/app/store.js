@@ -6,6 +6,8 @@ import { artistApi } from './services/Artist';
 import artistReducer from '../features/Artist/ArtistSlice';
 import youtubeReducer from '../features/Youtube/YoutubeSlice';
 import { youtubeApi } from './services/Youtube';
+import { channelApi } from './services/Channel';
+import channelReducer from '../features/Channel/ChannelSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,13 +16,16 @@ export const store = configureStore({
     artist: artistReducer,
     [artistApi.reducerPath]: artistApi.reducer,
     youtube: youtubeReducer,
-    [youtubeApi.reducerPath]: youtubeApi.reducer
+    [youtubeApi.reducerPath]: youtubeApi.reducer,
+    channel: channelReducer,
+    [channelApi.reducerPath]: channelApi.reducer,
   },
   //enable cac tinh nang cua rtk
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
   .concat(briefApi.middleware)
   .concat(artistApi.middleware)
   .concat(youtubeApi.middleware)
+  .concat(channelApi.middleware)
 });
 
 
