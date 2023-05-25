@@ -5,6 +5,8 @@ import TabMenu from '../../components/TabMenu'
 import ViewCount from '../../features/Youtube/ViewCount'
 import "./style.css"
 import Channel from '../../features/Channel/Channel'
+import SNSFollowers from '../../features/SNS/SNS'
+import TiktokCreation from '../../features/Tiktok/Tiktok'
 
 export default function BoardPage() {
   const params = useParams()
@@ -29,6 +31,13 @@ export default function BoardPage() {
 
       case 2:
         return (<Channel isScrollDown={isScrollDown} />)
+
+      case 3:
+      case 4:
+        return (<SNSFollowers siteId={boardType.siteId} isScrollDown={isScrollDown} />)
+
+      case 5:
+        return (<TiktokCreation isScrollDown={isScrollDown} />)
 
       default:
         break;

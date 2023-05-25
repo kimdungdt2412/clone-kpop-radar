@@ -60,7 +60,8 @@ module.exports = {
         'icon_tap_arrow_up': "url('/src/assets/images/icon_tap_arrow_up.svg')",
         'icon_tap_arrow_down': "url('/src/assets/images/icon_tap_arrow_down.svg')",
         'icon_rank_up_w': "url('/src/assets/images/icon_rank_up_w.svg')",
-        'icon_rank_down_w': "url('/src/assets/images/icon_rank_down_w.svg')"
+        'icon_rank_down_w': "url('/src/assets/images/icon_rank_down_w.svg')",
+        'kr-chart-link-hover': "url('/src/assets/images/kr-chart-link-hover.svg')"
       },
       backgroundSize: {
         '100': "100%"

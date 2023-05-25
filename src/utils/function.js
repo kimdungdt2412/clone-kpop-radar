@@ -78,3 +78,7 @@ export const formatNumber = (number = 0) => {
 export const formatDDMM = (value = 0) => {
     return value  < 10 ? `0${value}` : value
 }
+
+export const isValidNumber = (value = "") => {
+    return !isNaN(Number(value)) && Number(value) > 0
+  }

@@ -6,6 +6,7 @@ export default function TableBody(
     {
         data = [],
         isViewCount = false,
+        isCreation = false,
         type
     }
 ) {
@@ -15,10 +16,10 @@ export default function TableBody(
     return (
         <React.Fragment>
             <div 
-            className={isViewCount ? "view-table-body" : "table-body"}>
+            className={(isCreation ||isViewCount) ? "view-table-body" : "table-body"}>
                 <ul className="list-none w-full overflow-hidden">
                     {data?.map((item, index) => (
-                        <BoardItem key={index} isViewCount={isViewCount} type={type} item={item} setSelectedItem={setSelectedItem}/>
+                        <BoardItem key={index} isCreation={isCreation} isViewCount={isViewCount} type={type} item={item} setSelectedItem={setSelectedItem}/>
                     ))}
                 </ul>
             </div>

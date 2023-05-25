@@ -2,17 +2,18 @@ import React from 'react'
 import "./style.css"
 
 export default function TableHeader(
-  {
+  { 
+    isCreation = false,
     isViewCount = false,
     type
   }
 ) {
   return (
-    <div className={`${isViewCount ? "view-table-head" : "table-head"} relative flex flex-row items-center justify-center pt-[20px] pb-[15px] uppercase tracking-[.05em] text-[10px] text-left leading-[10px] w-full lg:py-[35px] lg:text-[12px]`}>
+    <div className={`${(isViewCount || isCreation) ? "view-table-head" : "table-head"} relative flex flex-row items-center justify-center pt-[20px] pb-[15px] uppercase tracking-[.05em] text-[10px] text-left leading-[10px] w-full lg:py-[35px] lg:text-[12px]`}>
       <div className="ranking basis-[120px] grow-0 min-w-auto max-w-[43px] lg:min-w-[120px]" />
 
       <div className="intro">
-        {isViewCount ? "SONG" : "ARTIST"}
+        {(isViewCount || isCreation) ? "SONG" : "ARTIST"}
       </div>
 
       {isViewCount && (
@@ -70,9 +71,13 @@ export default function TableHeader(
           </div>
         </React.Fragment>
       )}
- 
-      {isViewCount && (
+
+      {(isViewCount) && (
         <div className="hidden mr-[40px] font-light ml-[55px] min-w-[100px] lg:block">RELEASE</div>
+      )}
+
+      {!(isViewCount || isCreation) && (
+        <div className="hidden ml-[70px] min-w-[90px] grow-0 lg:block"></div>
       )}
 
     </div>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import DatePicker from '../DatePicker'
-import { isValidNumber } from '../../features/Youtube/ViewCount'
-import { formatDDMM } from '../../utils/function'
+import { formatDDMM, isValidNumber } from '../../utils/function'
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom'
 
 export default function BoardDate({ date, data = {}, day = "", weekId, year, month }) {

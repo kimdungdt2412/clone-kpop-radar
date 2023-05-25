@@ -11,28 +11,36 @@ import { skipToken } from '@reduxjs/toolkit/dist/query';
 import BoardDate from '../../components/BoardDate';
 import SortByGender from '../../components/Sort/SortByGender';
 import ScrollProgress from '../../components/ScrollProgress'
-import { selectChannel } from './ChannelSlice';
-import { useGetMonthListQuery, useGetMonthlyDataQuery, useGetWeekListQuery, useGetWeeklyDataQuery, useLazyGetMonthlyDataQuery, useLazyGetWeeklyDataQuery } from '../../app/services/Channel';
 import InnerLoading from '../../components/Loading/InnerLoading';
 import { isValidNumber } from '../../utils/function';
+import { selectSNS } from './Slice';
+import { useGetDailyDataQuery, useGetMonthListQuery, useGetMonthlyDataQuery, useGetStartDayQuery, useGetWeekListQuery, useGetWeeklyDataQuery, useLazyGetDailyDataQuery, useLazyGetMonthlyDataQuery, useLazyGetWeeklyDataQuery } from '../../app/services/SNS';
 
-export default function Channel({ isScrollDown }) {
+export default function SNSFollowers({ isScrollDown, siteId }) {
   const [searchParams] = useSearchParams()
-  let { type = "growth", date = "weekly", gender = "all", page = "1", weekId = "", month = "", year = "" } = Object.fromEntries([...searchParams])
+  let { type = "growth", date = "daily", gender = "all", page = "1", day = "", weekId = "", month = "", year = "" } = Object.fromEntries([...searchParams])
 
-  const channelData = useSelector(selectChannel);
+  const snsData = useSelector(selectSNS);
+  const [getDailyData] = useLazyGetDailyDataQuery()
   const [getWeeklyData] = useLazyGetWeeklyDataQuery()
   const [getMonthlyData] = useLazyGetMonthlyDataQuery()
 
   const payload = {
-    orderCountInPage: channelData.orderCountInPage,
-    lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * channelData.orderCountInPage,
+    siteId,
+    orderCountInPage: snsData.orderCountInPage,
+    lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * snsData.orderCountInPage,
     gender: gender === "all" ? "" : sortGenderMap[gender],
     ...youtubeSortTypeValue[type],
   }
 
-  const getWeek = useGetWeekListQuery()
-  const getMonth = useGetMonthListQuery()
+  const getDay = useGetStartDayQuery(siteId)
+  const getWeek = useGetWeekListQuery(siteId)
+  const getMonth = useGetMonthListQuery(siteId)
+
+  const getDaily = useGetDailyDataQuery((date === "daily" && !!getDay.data?.endDay) ? {
+    ...payload,
+    day: (day !== "" && Number(day) <= Number(getDay.data?.endDay)) ? day : getDay.data?.endDay,
+  } : skipToken)
 
   const getWeekly = useGetWeeklyDataQuery((date === "weekly" && getWeek.data?.length > 0) ? {
     ...payload,
@@ -47,6 +55,13 @@ export default function Channel({ isScrollDown }) {
 
   const handleRefreshData = () => {
     switch (date) {
+      case "daily":
+        getDailyData({
+          ...payload,
+          day: (day !== "" && Number(day) <= Number(getDay.data?.endDay)) ? day : getDay.data?.endDay,
+        })
+        break;
+
       case "weekly":
         getWeeklyData({
           ...payload,
@@ -69,11 +84,14 @@ export default function Channel({ isScrollDown }) {
 
   const getData = () => {
     switch (date) {
+      case "daily":
+        return snsData.dailyData
+
       case "weekly":
-        return channelData.weeklyData
+        return snsData.weeklyData
 
       case "monthly":
-        return channelData.monthlyData
+        return snsData.monthlyData
 
       default:
         return []
@@ -89,7 +107,7 @@ export default function Channel({ isScrollDown }) {
         <div className="p-0 pt-[25px] max-w-[980px]">
           <ul className="list-none ml-[43px] lg:ml-[120px]">
             <SortByType type={type} searchParams={searchParams} isScrollDown={isScrollDown} />
-            <SortByDate isChannel={true} date={date} searchParams={searchParams} isScrollDown={isScrollDown} />
+            <SortByDate date={date} searchParams={searchParams} isScrollDown={isScrollDown} />
             <SortByGender gender={gender} searchParams={searchParams} isScrollDown={isScrollDown} />
           </ul>
         </div>
@@ -99,7 +117,7 @@ export default function Channel({ isScrollDown }) {
       {!isScrollDown && (
 
         <div className="board-date relative min-h-[17px] mt-[10px] ml-[43px] pr-[15px] max-w-[1100px] lg:mx-auto">
-          <BoardDate data={channelData} date={date} weekId={weekId} year={year} month={month} />
+          <BoardDate data={snsData} date={date} day={day} weekId={weekId} year={year} month={month} />
 
           <div className="float-right w-full lg:float-none relative">
 
@@ -119,16 +137,19 @@ export default function Channel({ isScrollDown }) {
 
 
       <div className="board-content max-w-[1100px] my-0 mx-auto bg-white
-         transition-all duration-300 pb-[30px]">
-        {(getWeekly.isFetching || getMonthly.isFetching) ? (
+         transition-all duration-300 pb-[30px] overflow-hidden">
+
+        {(getDaily.isFetching || getWeekly.isFetching || getMonthly.isFetching) ? (
           <InnerLoading />
         ) : (
           <div id="main-board" className='relative'>
             <TableHeader type={type} />
             <TableBody data={getData()} type={type} />
-            <TablePagination total={channelData.totalCount[date]} orderCountInPage={channelData.orderCountInPage} currentPage={Number(page)} searchParams={searchParams} />
+            <TablePagination total={snsData.totalCount[date]} orderCountInPage={snsData.orderCountInPage} currentPage={Number(page)} searchParams={searchParams} />
           </div>
         )}
+
+
       </div>
     </React.Fragment>
 

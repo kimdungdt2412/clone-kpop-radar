@@ -3,18 +3,23 @@
 @layer base {
 
     .view-table-body li {
-        @apply transition-[max-height] lg:min-h-[120px] lg:hover:min-h-[320px] lg:hover:max-h-[320px]
+        @apply lg:min-h-[120px] [transition:max-height_.4s,height_.4s,min-height_.4s]
     }
 
     .view-table-body li.active {
-        @apply text-white
+        @apply text-white lg:hover:min-h-[320px] lg:hover:max-h-[320px]
     }
 
-    .view-table-body .board-item {
-        @apply lg:group-hover:text-white lg:group-hover:overflow-visible
+    .view-table-body li.creation, .view-table-body li.active.creation{
+        @apply lg:min-h-0
     }
+
+    .view-table-body li.active .board-item{
+        @apply lg:text-white lg:overflow-visible
+    }
+
     .view-table-body .board-item .intro {
-        @apply grow basis-[41%] text-left text-[#666] relative text-[10px] pl-[73px] break-words overflow-hidden lg:text-[14px] lg:group-hover:text-white lg:group-hover:overflow-visible
+        @apply grow basis-[41%] text-left text-[#666] relative text-[10px] pl-[73px] break-words overflow-hidden lg:text-[14px] 
     }
 
     .view-table-body .board-item .growth {
@@ -24,22 +29,53 @@
         @apply grow break-words text-left basis-[110px] text-[11px] px-[25px] pb-[14px] lg:min-w-[100px] lg:text-[13px] lg:grow-0 lg:basis-auto lg:ml-[55px] lg:p-0 lg:leading-[13px] lg:text-center
     }
 
-    .table-body li {
-        @apply bg-white transition-colors
+    .view-table-body li.active .board-item .intro {
+        @apply lg:text-white lg:overflow-visible
     }
 
-    .table-body li.active {
-        @apply bg-[#ff354e] text-white
+    .view-table-body li.active .board-item .intro .text-wrap > a {
+        @apply lg:text-white lg:pr-[10px] lg:pl-[10px] lg:rounded-[14px] lg:border-white lg:border-[1px] lg:leading-[24px]
     }
 
-    .table-body .board-item {
-        @apply text-[10px] 
+    .view-table-body li.creation.active .board-item .intro .text-wrap > a {
+        @apply lg:text-white lg:px-0 lg:rounded-none lg:border-none lg:leading-none
+    }
+
+    .view-table-body li.active .preview {
+        @apply h-full opacity-100
+    }
+
+    .view-table-body li.active .preview > img {
+        @apply opacity-100
+    }
+
+
+    .table-body li.active, .view-table-body li.active.creation {
+        @apply text-white
+    }
+
+    .table-body li .board-item, .view-table-body li.creation .board-item {
+        @apply text-[10px] h-full overflow-hidden after:content-[""] after:block after:absolute after:z-[-1] after:top-0 after:left-[50%] after:ml-[-580px] after:w-[1540px] after:h-full after:bg-[#ff354e] after:pointer-events-none after:transition-transform after:duration-200 after:origin-bottom after:ease-out after:scale-y-0 after:opacity-0 lg:text-[13px]
+    }
+
+    .table-body li.active .board-item, .view-table-body li.active.creation .board-item {
+        @apply text-white overflow-visible after:opacity-100 after:scale-y-100 
     }
 
 
     .table-body .board-item .intro {
-        @apply flex items-center grow basis-[30%] text-left text-[#666] relative text-[10px] pl-[60px] h-[46px] leading-[46px] w-auto break-words overflow-hidden lg:text-[14px] lg:group-hover:text-white lg:group-hover:overflow-visible
+        @apply flex items-center grow basis-[30%] text-left text-[#666] relative text-[10px] pl-[60px] h-[46px] leading-[46px] w-auto break-words overflow-hidden lg:text-[14px] 
     }
+
+    .table-body li.active .board-item .intro {
+        @apply lg:text-white lg:overflow-visible
+    }
+ 
+
+    .table-body li.active .board-item .intro .artistName {
+        @apply text-white after:bg-white
+    }
+ 
 
     .table-body .board-item .growth {
         @apply  basis-[96px] pl-[30px] pr-0 grow-0 lg:min-w-[100px] lg:grow-0 lg:basis-auto lg:text-center
@@ -49,7 +85,11 @@
     }
 
     .artistName {
-        @apply block text-black max-w-[390px] w-full text-[13px] leading-[20px] overflow-hidden text-ellipsis align-middle  whitespace-nowrap lg:text-[17px] lg:font-bold lg:leading-[29px] lg:group-hover:text-white
+        @apply block text-black max-w-[390px] w-full text-[13px] leading-[20px] overflow-hidden text-ellipsis align-middle  whitespace-nowrap lg:text-[17px] lg:font-bold lg:leading-[29px] 
+    }
+
+    .view-table-body li.active .artistName, .table-body li.active .artistName {
+        @apply text-white after:bg-white
     }
 
 

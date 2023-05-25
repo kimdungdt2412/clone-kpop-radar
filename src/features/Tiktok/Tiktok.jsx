@@ -1,7 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { sortGenderMap, youtubeSortTypeValue } from '../../utils/config';
+import { youtubeSortTypeValue } from '../../utils/config';
 import SortByType from '../../components/Sort/SortByType';
 import TableHeader from '../../components/TableHeader';
 import TableBody from '../../components/TableBody';
@@ -9,30 +9,35 @@ import TablePagination from '../../components/TablePagination';
 import SortByDate from '../../components/Sort/SortByDate';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
 import BoardDate from '../../components/BoardDate';
-import SortByGender from '../../components/Sort/SortByGender';
 import ScrollProgress from '../../components/ScrollProgress'
-import { selectChannel } from './ChannelSlice';
-import { useGetMonthListQuery, useGetMonthlyDataQuery, useGetWeekListQuery, useGetWeeklyDataQuery, useLazyGetMonthlyDataQuery, useLazyGetWeeklyDataQuery } from '../../app/services/Channel';
 import InnerLoading from '../../components/Loading/InnerLoading';
 import { isValidNumber } from '../../utils/function';
+import { useGetStartDayQuery, useGetWeekListQuery,useGetMonthListQuery, useLazyGetDailyDataQuery, useLazyGetMonthlyDataQuery, useLazyGetWeeklyDataQuery, useGetDailyDataQuery, useGetWeeklyDataQuery, useGetMonthlyDataQuery } from '../../app/services/Tiktok';
+import { selectTiktok } from './TiktokSlice';
 
-export default function Channel({ isScrollDown }) {
+export default function TiktokCreation({ isScrollDown }) {
   const [searchParams] = useSearchParams()
-  let { type = "growth", date = "weekly", gender = "all", page = "1", weekId = "", month = "", year = "" } = Object.fromEntries([...searchParams])
+  let { type = "growth", date = "daily", page = "1", day = "", weekId = "", month = "", year = "" } = Object.fromEntries([...searchParams])
 
-  const channelData = useSelector(selectChannel);
+  const tiktokData = useSelector(selectTiktok);
+  const [getDailyData] = useLazyGetDailyDataQuery()
   const [getWeeklyData] = useLazyGetWeeklyDataQuery()
   const [getMonthlyData] = useLazyGetMonthlyDataQuery()
 
   const payload = {
-    orderCountInPage: channelData.orderCountInPage,
-    lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * channelData.orderCountInPage,
-    gender: gender === "all" ? "" : sortGenderMap[gender],
+    orderCountInPage: tiktokData.orderCountInPage,
+    lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * tiktokData.orderCountInPage,
     ...youtubeSortTypeValue[type],
   }
 
+  const getDay = useGetStartDayQuery()
   const getWeek = useGetWeekListQuery()
   const getMonth = useGetMonthListQuery()
+
+  const getDaily = useGetDailyDataQuery((date === "daily" && !!getDay.data?.endDay) ? {
+    ...payload,
+    day: (day !== "" && Number(day) <= Number(getDay.data?.endDay)) ? day : getDay.data?.endDay,
+  } : skipToken)
 
   const getWeekly = useGetWeeklyDataQuery((date === "weekly" && getWeek.data?.length > 0) ? {
     ...payload,
@@ -47,6 +52,13 @@ export default function Channel({ isScrollDown }) {
 
   const handleRefreshData = () => {
     switch (date) {
+      case "daily":
+        getDailyData({
+          ...payload,
+          day: (day !== "" && Number(day) <= Number(getDay.data?.endDay)) ? day : getDay.data?.endDay,
+        })
+        break;
+
       case "weekly":
         getWeeklyData({
           ...payload,
@@ -69,11 +81,14 @@ export default function Channel({ isScrollDown }) {
 
   const getData = () => {
     switch (date) {
+      case "daily":
+        return tiktokData.dailyData
+
       case "weekly":
-        return channelData.weeklyData
+        return tiktokData.weeklyData
 
       case "monthly":
-        return channelData.monthlyData
+        return tiktokData.monthlyData
 
       default:
         return []
@@ -89,8 +104,7 @@ export default function Channel({ isScrollDown }) {
         <div className="p-0 pt-[25px] max-w-[980px]">
           <ul className="list-none ml-[43px] lg:ml-[120px]">
             <SortByType type={type} searchParams={searchParams} isScrollDown={isScrollDown} />
-            <SortByDate isChannel={true} date={date} searchParams={searchParams} isScrollDown={isScrollDown} />
-            <SortByGender gender={gender} searchParams={searchParams} isScrollDown={isScrollDown} />
+            <SortByDate date={date} searchParams={searchParams} isScrollDown={isScrollDown} />
           </ul>
         </div>
       </div>
@@ -99,7 +113,7 @@ export default function Channel({ isScrollDown }) {
       {!isScrollDown && (
 
         <div className="board-date relative min-h-[17px] mt-[10px] ml-[43px] pr-[15px] max-w-[1100px] lg:mx-auto">
-          <BoardDate data={channelData} date={date} weekId={weekId} year={year} month={month} />
+          <BoardDate data={tiktokData} date={date} day={day} weekId={weekId} year={year} month={month} />
 
           <div className="float-right w-full lg:float-none relative">
 
@@ -119,16 +133,19 @@ export default function Channel({ isScrollDown }) {
 
 
       <div className="board-content max-w-[1100px] my-0 mx-auto bg-white
-         transition-all duration-300 pb-[30px]">
-        {(getWeekly.isFetching || getMonthly.isFetching) ? (
+         transition-all duration-300 pb-[30px] overflow-hidden">
+
+        {(getDaily.isFetching || getWeekly.isFetching || getMonthly.isFetching) ? (
           <InnerLoading />
         ) : (
           <div id="main-board" className='relative'>
-            <TableHeader type={type} />
-            <TableBody data={getData()} type={type} />
-            <TablePagination total={channelData.totalCount[date]} orderCountInPage={channelData.orderCountInPage} currentPage={Number(page)} searchParams={searchParams} />
+            <TableHeader isCreation={true} type={type} />
+            <TableBody isCreation={true} data={getData()} type={type} />
+            <TablePagination total={tiktokData.totalCount[date]} orderCountInPage={tiktokData.orderCountInPage} currentPage={Number(page)} searchParams={searchParams} />
           </div>
         )}
+
+
       </div>
     </React.Fragment>
 

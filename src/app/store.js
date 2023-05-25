@@ -8,6 +8,10 @@ import youtubeReducer from '../features/Youtube/YoutubeSlice';
 import { youtubeApi } from './services/Youtube';
 import { channelApi } from './services/Channel';
 import channelReducer from '../features/Channel/ChannelSlice';
+import { snsApi } from './services/SNS';
+import snsReducer from '../features/SNS/Slice';
+import tiktokReducer from '../features/Tiktok/TiktokSlice';
+import { tiktokApi } from './services/Tiktok';
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +23,10 @@ export const store = configureStore({
     [youtubeApi.reducerPath]: youtubeApi.reducer,
     channel: channelReducer,
     [channelApi.reducerPath]: channelApi.reducer,
+    sns: snsReducer,
+    [snsApi.reducerPath]: snsApi.reducer,
+    tiktok: tiktokReducer,
+    [tiktokApi.reducerPath]: tiktokApi.reducer
   },
   //enable cac tinh nang cua rtk
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
@@ -26,6 +34,8 @@ export const store = configureStore({
   .concat(artistApi.middleware)
   .concat(youtubeApi.middleware)
   .concat(channelApi.middleware)
+  .concat(snsApi.middleware)
+  .concat(tiktokApi.middleware)
 });
 
 

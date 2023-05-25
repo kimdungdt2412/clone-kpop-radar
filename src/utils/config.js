@@ -131,7 +131,8 @@ export const boardTypeMap = {
         logo: blueLogo,
         logo_gif: blueLogoGif,
         color: "#00a3ff",
-        desc: "Detects official Twitter followers every day."
+        desc: "Detects official Twitter followers every day.",
+        siteId: 53
     },
     "instagram": {
         index: 4,
@@ -140,7 +141,8 @@ export const boardTypeMap = {
         logo: pinkLogo,
         logo_gif: pinkLogoGif,
         color: "#ff0075",
-        desc: "Detects official Instagram followers every day."
+        desc: "Detects official Instagram followers every day.",
+        siteId: 52
     },
     "tiktok_creations": {
         index: 5,

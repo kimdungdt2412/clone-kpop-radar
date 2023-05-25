@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import prevIcon from "../../assets/images/kr-chart-page-nav-prev-dim.svg"
 import nextIcon from "../../assets/images/kr-chart-page-nav-next.svg"
 import { createSearchParams, useNavigate } from 'react-router-dom'
-import { isValidNumber } from '../../features/Youtube/ViewCount'
+import { isValidNumber } from '../../utils/function'
 
 export default function TablePagination({ total, currentPage, orderCountInPage, searchParams }) {
 
@@ -22,14 +22,6 @@ export default function TablePagination({ total, currentPage, orderCountInPage, 
                     page
                 }).toString()
             })
-    }
-
-    const handleValidPage = () => {
-        if (isValidNumber(currentPage)) {
-            if (currentPage > totalPage) return totalPage
-            return currentPage
-        }
-        return 0
     }
 
     const handlePageList = () => {

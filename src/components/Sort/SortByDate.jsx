@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import "./style.css"
 import { createSearchParams, useNavigate } from 'react-router-dom'
-import { sortDateV1, youtubeSortDateValue } from '../../utils/config'
+import { sortDateV1, sortDateV2, youtubeSortDateValue } from '../../utils/config'
 
-export default function SortByDate({ date, searchParams, isViewCount = false }) {
+export default function SortByDate({ date, searchParams, isViewCount = false, isChannel = false }) {
     const navigate = useNavigate()
     const [open, setOpen] = useState(false)
 
-    const listDate = isViewCount ? youtubeSortDateValue : sortDateV1
+    const listDate = isViewCount ? youtubeSortDateValue : (isChannel ? sortDateV1 : sortDateV2)
     return (
         <li
             onBlur={() => setOpen(false)}

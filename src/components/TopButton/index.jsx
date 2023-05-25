@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useSearchParams, createSearchParams, useNavigate } from 'react-router-dom'
-import { isValidNumber } from '../../features/Youtube/ViewCount'
+import { isValidNumber } from '../../utils/function'
 
 export default function TopButton() {
   const [searchParams] = useSearchParams()
@@ -44,7 +44,7 @@ export default function TopButton() {
             setIsActive(true)
           }
         }}
-        className='relative inline-block w-full border-none p-0 text-center align-middle text-white bg-transparent rounded-[50%] rotate-0 scale-[1] text-[11px] h-[40px] leading-[40px]  lg:text-[24px] lg:h-[80px] lg:leading-[80px]' >
+        className='relative inline-block w-full border-none p-0 text-center align-middle text-white bg-transparent rounded-[50%] rotate-0 scale-100 text-[11px] h-[40px] leading-[40px]  lg:text-[24px] lg:h-[80px] lg:leading-[80px]' >
         <div
           style={{
             transform: isActive ? 'scale(1)' : 'scale(0)'

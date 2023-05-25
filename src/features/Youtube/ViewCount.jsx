@@ -14,10 +14,7 @@ import BoardDate from '../../components/BoardDate';
 import SortByGender from '../../components/Sort/SortByGender';
 import ScrollProgress from '../../components/ScrollProgress'
 import InnerLoading from '../../components/Loading/InnerLoading';
-
-export const isValidNumber = (value = "") => {
-  return !isNaN(Number(value)) && Number(value) > 0
-}
+import { isValidNumber } from '../../utils/function';
 
 export default function ViewCount({ isScrollDown }) {
   const [searchParams] = useSearchParams()

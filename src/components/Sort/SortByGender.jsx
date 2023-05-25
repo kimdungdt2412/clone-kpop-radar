@@ -4,9 +4,7 @@ import { sortGender } from '../../utils/config'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 import IconEmoAll from '../Icon/IconEmoAll'
 import IconEmoWoman from '../Icon/IconEmoWoman'
-import { IconEmoAllWhite } from '../Icon/IconEmoAllWhite'
-import { IconEmoManWhite } from '../Icon/IconEmoManWhite'
-import { IconEmoWomanWhite } from '../Icon/IconEmoWomanWhite'
+import IconEmoMan from '../Icon/IconEmoMan'
 
 
 export default function SortByGender({ gender, searchParams }) {
@@ -16,11 +14,11 @@ export default function SortByGender({ gender, searchParams }) {
     const handleIcon = (type, isSelected = false) => {
         switch (type) {
             case "all":
-                return isSelected ? <IconEmoAllWhite/> : <IconEmoAll />
+                return <IconEmoAll isWhite={isSelected} />
             case "boys":
-                return isSelected ? <IconEmoManWhite/> : <IconEmoWoman />
+                return <IconEmoMan isWhite={isSelected} />
             case "girls":
-                return isSelected ? <IconEmoWomanWhite/> : <IconEmoWoman/>
+                return <IconEmoWoman isWhite={isSelected} />
 
             default:
                 return (<></>);
@@ -32,7 +30,7 @@ export default function SortByGender({ gender, searchParams }) {
             onBlur={() => setOpen(false)}
             onClick={() => setOpen(!open)}
             className="sort-gender inline-block relative align-top ml-[10%] lg:ml-[16%]">
-                <span className='hidden lg:block'>sort by gender</span>
+            <span className='hidden lg:block'>sort by gender</span>
             <button
                 className={`${open ? "open" : ""} sort-button w-[72px] text-left`}>
                 <span
