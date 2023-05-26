@@ -23,33 +23,33 @@ export default function BadgeBoardItem({ item, setSelectedItem, badges }) {
                     <Link
                         to={`/artist/${item.path}`}
                     >
-                        <strong className='absolute text-[13px] w-[70px] pt-[18px] pl-[13px] font-noto overflow-hidden text-ellipsis  whitespace-nowrap underline box-content leading-[13px]'>{item.name}
+                        <strong className='absolute text-[13px] w-[70px] pt-[18px] pl-[13px] font-noto overflow-hidden text-ellipsis  whitespace-nowrap underline box-content leading-[13px] lg:text-[17px] lg:pt-[14px] lg:[pl-15px] lg:w-[150px] lg:leading-[17px]'>{item.name}
                         </strong>
                     </Link>
                 </div>
 
-                <div className="badge text-left grow basis-0">
-                    <ul className='list-none'>
+                <div className="badge text-left grow basis-0 lg:basis-[25%]">
+                    <ul className='list-none lg:mr-[-35px] lg:ml-[35px]'>
                         {badges?.map((item, index) => {
-                            let isMore = index === 4 || index === badges.length - 1
-                            if (index <= 4) return (
+                            let isMore = index === 3 || index === badges.length - 1
+                            if ((isMobile && index < 4 ) || !isMobile) return (
                                 <React.Fragment key={index}>
                                     <li
-                                        className='inline-flex text-center px-[11px]'>
+                                        className='inline-flex text-center px-[10px] ml-[-28px] first:ml-0 lg:px-[11px] lg:ml-[-36px] lg:first:ml-[-36px]'>
                                         <img src={item.imageUrl}
                                             style={{
                                                 filter: "drop-shadow(1px 0px 0 rgba(141, 32, 46, 0.5))",
                                                 zIndex: badges.length - index
                                             }}
-                                            className='w-auto h-[32px]' />
+                                            className='w-auto h-[32px] lg:h-[41px]' />
                                     </li>
 
-                                    {isMore && (
+                                    {(!isMobile && isMobile) && (
                                         <li
-                                            className='inline-flex text-center px-[11px]'>
+                                            className='inline-flex text-center px-[10px] ml-[-28px] lg:hidden'>
                                             <img src={"https://storage.kpop-radar.com/static/badge/kr-artist-badge-red-more.png"}
                                                 style={{
-                                                    zIndex: badges.length - index
+                                                    zIndex: badges.length - index - 1
                                                 }}
                                                 className='w-auto h-[32px]' />
                                         </li>
@@ -62,13 +62,13 @@ export default function BadgeBoardItem({ item, setSelectedItem, badges }) {
                     </ul>
                 </div>
 
-                <div className="total text-left grow max-w-[40px]">
+                <div className="total text-left grow max-w-[40px] lg:max-w-[170px] lg:text-center">
                     {item.totCount}
                 </div>
 
                 <a onClick={() => {
                     setVisible(!visible)
-                }} className='link block w-[21px] h-[21px] z-[1] mt-[-8px] mr-[10px] overflow-hidden'>
+                }} className='link block w-[21px] h-[21px] z-[1] mt-[-8px] mr-[10px] overflow-hidden lg:w-[28px] lg:h-[28px]'>
                     <img className='w-full p-[1px]' src={visible ? CloseIcon : MoreIcon} alt="link" />
                 </a>
 

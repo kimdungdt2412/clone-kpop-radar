@@ -59,7 +59,7 @@
         @apply text-white
     }
 
-    .table-body li .board-item, .view-table-body li.creation .board-item, .badge-table-body li.active .board-item {
+    .table-body li .board-item, .view-table-body li.creation .board-item, .badge-table-body li .board-item {
         @apply text-[10px] h-full overflow-hidden after:content-[""] after:block after:absolute after:z-[-1] after:top-0 after:left-[50%] after:ml-[-580px] after:w-[1540px] after:h-full after:bg-[#ff354e] after:pointer-events-none after:transition-transform after:duration-200 after:origin-bottom after:ease-out after:scale-y-0 after:opacity-0 lg:text-[13px]
     }
 
@@ -68,7 +68,7 @@
     }
 
 
-    .table-body .board-item .intro.board-item .intro{
+    .table-body .board-item .intro{
         @apply flex items-center grow basis-[30%] text-left text-[#666] relative text-[10px] pl-[60px] h-[46px] leading-[46px] w-auto break-words overflow-hidden lg:text-[14px] 
     }
 
@@ -96,23 +96,27 @@
 
     /* Badge */
 
-    .badge-table-body li {
+    .badge-table-body > ul > li {
         @apply [transition:max-height_.2s] text-[10px] lg:text-[13px]
     }
 
-    .badge-table-body li.active {
+    .badge-table-body > ul > li.active {
         @apply max-h-[1200px]
     }
 
-    .badge-table-body li.active .board-item{
-        @apply bg-black text-white
+    .badge-table-body > ul > li .board-item{
+        @apply after:bg-[black]
     }
 
-    .badge-table-body li.active .board-item .intro {
+    .badge-table-body > ul > li.active .board-item{
+        @apply text-white overflow-visible after:opacity-100 after:scale-y-100 
+    }
+
+    .badge-table-body > ul > li.active .board-item .intro {
         @apply lg:text-white lg:overflow-visible
     }
 
-    .badge-table-body li.active .board-item .intro .artistName {
+    .badge-table-body > ul > li.active .board-item .intro .artistName {
         @apply text-white after:bg-white
     }
  
