@@ -12,6 +12,8 @@ import { snsApi } from './services/SNS';
 import snsReducer from '../features/SNS/Slice';
 import tiktokReducer from '../features/Tiktok/TiktokSlice';
 import { tiktokApi } from './services/Tiktok';
+import { siteArtistApi } from './services/SiteArtist';
+import siteArtistReducer from '../features/SiteArtist/SiteArtistSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,7 +28,9 @@ export const store = configureStore({
     sns: snsReducer,
     [snsApi.reducerPath]: snsApi.reducer,
     tiktok: tiktokReducer,
-    [tiktokApi.reducerPath]: tiktokApi.reducer
+    [tiktokApi.reducerPath]: tiktokApi.reducer,
+    siteArtist: siteArtistReducer,
+    [siteArtistApi.reducerPath]: siteArtistApi.reducer
   },
   //enable cac tinh nang cua rtk
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
@@ -36,6 +40,7 @@ export const store = configureStore({
   .concat(channelApi.middleware)
   .concat(snsApi.middleware)
   .concat(tiktokApi.middleware)
+  .concat(siteArtistApi.middleware)
 });
 
 

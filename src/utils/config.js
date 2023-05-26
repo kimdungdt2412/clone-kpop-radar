@@ -159,7 +159,8 @@ export const boardTypeMap = {
         detail: "followers",
         logo_gif: turqouiseLogoGif,
         color: "#00f4ec",
-        desc: "Detects official TikTok followers every day. * Updates are made between 12 pm and 7 pm (KST)."
+        desc: "Detects official TikTok followers every day. * Updates are made between 12 pm and 7 pm (KST).",
+        siteId: 54
     },
     "spotify": {
         index: 7,
@@ -168,7 +169,8 @@ export const boardTypeMap = {
         logo: greenLogo,
         logo_gif: greenLogoGif,
         color: "#1ed760",
-        desc: "Detects Spotify followers every day."
+        desc: "Detects Spotify followers every day.",
+        siteId: 11
     },
     "fancafe": {
         index: 8,

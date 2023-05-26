@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { getBriefList, selectBrief } from './BriefSlice';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import { selectBrief } from './BriefSlice';
 import { briefApi, useGetBriefListQuery } from '../../app/services/Brief';
 import BriefItem from '../../components/BriefItem/BriefItem';
 import BriefIntro from '../../components/BriefItem/BriefIntro';
@@ -9,7 +9,7 @@ import { ShareBriefModal } from '../../components/ShareBriefModal';
 
 export default function BriefList() {
   const briefData = useSelector(selectBrief);
-  const { isFetching, isSuccess, data } = useGetBriefListQuery({
+  const { isFetching } = useGetBriefListQuery({
     orderCountInPage: briefData.orderCountInPage,
     lastOrderNo: 0
   })

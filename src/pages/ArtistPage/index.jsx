@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { selectArtist } from '../../features/Artist/ArtistSlice';
 import { useSelector } from 'react-redux';
-import { useGetArtistNameIndicesQuery, useGetArtistNamesQuery, useGetRecommendArtistsQuery } from '../../app/services/Artist';
+import { useGetArtistNameIndicesQuery, useGetArtistNamesQuery } from '../../app/services/Artist';
 import { Link } from 'react-router-dom';
 import recommendIcon from '../../assets/images/kr-artist-ic-index-recommend.png'
 import { useAutoFocus } from '../../utils/hooks';

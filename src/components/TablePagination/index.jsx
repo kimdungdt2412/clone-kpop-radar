@@ -96,7 +96,7 @@ export default function TablePagination({ total, currentPage, orderCountInPage, 
                 onClick={() => {
                     if ((currentSection + 1) * quantity < totalPage) setCurrentSection(currentSection + 1)
                 }}
-                className="next absolute top-[10px] bg-transparent border-0 text-[14px] font-bold right-0 cursor-pointer">
+                className="next absolute top-[10px] bg-transparent border-0 text-[14px] font-bold right-0 cursor-pointer lg:top-[15px]">
                 <img src={nextIcon} alt="next page" />
 
             </button>

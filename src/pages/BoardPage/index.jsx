@@ -7,6 +7,7 @@ import "./style.css"
 import Channel from '../../features/Channel/Channel'
 import SNSFollowers from '../../features/SNS/SNS'
 import TiktokCreation from '../../features/Tiktok/Tiktok'
+import SiteArtist from '../../features/SiteArtist/SiteArtist'
 
 export default function BoardPage() {
   const params = useParams()
@@ -38,6 +39,10 @@ export default function BoardPage() {
 
       case 5:
         return (<TiktokCreation isScrollDown={isScrollDown} />)
+
+      case 6:
+      case 7:
+        return (<SiteArtist siteId={boardType.siteId} isScrollDown={isScrollDown} />)
 
       default:
         break;
