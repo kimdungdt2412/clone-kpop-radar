@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import CreationThumb from "../../assets/images/creation_thum_200x200.jpg"
 import { splitArtistData } from '../../utils/function'
@@ -9,10 +9,14 @@ export default function BoardIntro({ item }) {
         if (item.imgUrl2) setImgSrc(item.imgUrl2)
     }
 
+    useEffect(() => {
+        setImgSrc(item.imgUrl)
+    }, [item.imgUrl])
+
     return (
         <div className="intro">
             <a
-                onClick={() => { window.open(item.url) }
+                onClick={() => { if(!item.rank) window.open(item.url) }
                 }>
                 <figure className='absolute top-[50%] left-0 translate-y-[-50%] overflow-hidden w-[46px] h-[46px] rounded-[50%]'>
                     <img className='block absolute top-[50%] left-[50%] max-w-[46px] translate-x-[-50%] translate-y-[-50%]' src={imgSrc} onError={onError} />

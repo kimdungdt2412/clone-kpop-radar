@@ -220,3 +220,15 @@ export const sortGenderMap = {
     "boys": "M",
     "girls": "F"
 }
+
+export const badgeTypes = ["total", "highest"]
+export const badgeTypeValue = {
+    "total": {
+        filterType: 2
+    },
+    "highest": {
+        filterType: 1
+    }
+}
+
+export const badgeDates = ["overall", "annual"]

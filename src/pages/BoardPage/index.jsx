@@ -8,6 +8,8 @@ import Channel from '../../features/Channel/Channel'
 import SNSFollowers from '../../features/SNS/SNS'
 import TiktokCreation from '../../features/Tiktok/Tiktok'
 import SiteArtist from '../../features/SiteArtist/SiteArtist'
+import Fancafe from '../../features/Fancafe/Fancafe'
+import Badge from '../../features/Badge/Badge'
 
 export default function BoardPage() {
   const params = useParams()
@@ -44,6 +46,10 @@ export default function BoardPage() {
       case 7:
         return (<SiteArtist siteId={boardType.siteId} isScrollDown={isScrollDown} />)
 
+      case 8:
+        return (<Fancafe isScrollDown={isScrollDown} />)
+      case 9:
+        return (<Badge isScrollDown={isScrollDown} />)
       default:
         break;
     }

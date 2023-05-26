@@ -178,7 +178,7 @@ export default function BoardItem({ item, isViewCount = false, setSelectedItem, 
 
                 {
                     !(isViewCount || isCreation) && (
-                        <div className="link hidden grow-0 basis-auto min-w-[90px] ml-[70px] lg:flex">
+                        <div className="link hidden cursor-pointer grow-0 basis-auto min-w-[90px] ml-[70px] lg:flex">
                             <a onClick={() => window.open(item.url)} className='inline-block w-[31px] h-[31px] overflow-hidden'>
                                 <img className='w-full p-[1px]' src={visible ? RedIconLink : IconLink} alt="link" />
                             </a>

@@ -3,7 +3,7 @@ import DatePicker from '../DatePicker'
 import { formatDDMM, isValidNumber } from '../../utils/function'
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom'
 
-export default function BoardDate({ date, data = {}, day = "", weekId, year, month }) {
+export default function BoardDate({ date, data = {}, day = "", weekId, year, month, isBadge = false }) {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
 
@@ -34,6 +34,15 @@ export default function BoardDate({ date, data = {}, day = "", weekId, year, mon
             })
     }
 
+    const setYear = (defaultYear) => {
+        let mYear = defaultYear
+        if (isValidNumber(year)) {
+            mYear = Number(year)
+        }
+        setSelectYear(mYear)
+        return mYear
+    }
+
     useEffect(() => {
         if (date !== "weekly" || data.weekList?.length === 0) return
         const week = isValidNumber(weekId) ? data.weekList?.filter(item => item.weekId === Number(weekId))?.[0] : data.weekList[0]
@@ -42,24 +51,28 @@ export default function BoardDate({ date, data = {}, day = "", weekId, year, mon
     }, [date, data.weekList, weekId])
 
     useEffect(() => {
-        if (date !== "monthly" || data.monthList?.length === 0) return
+        if (date === "monthly" && data.monthList?.length > 0) {
+            let mYear = setYear(data.monthList[0].year || 0)
 
-        let _year = data.monthList[0].year || 0
-        if (isValidNumber(year)) {
-            _year = Number(year)
+            let _month = data.monthList[0]
+            if (isValidNumber(month)) {
+                _month = data.monthList.filter(item => item.year === mYear && item.month === Number(month))?.[0] || {}
+            }
+            setSelectMonth(_month)
         }
-        setSelectYear(_year)
-
-        let _month = data.monthList[0]
-        if (isValidNumber(month)) {
-            _month = data.monthList.filter(item => item.year === _year && item.month === Number(month))?.[0] || {}
+        else if (date === "annual" && data.yearList?.length > 0) {
+            setYear(data.yearList[0].year || 0)
         }
-        setSelectMonth(_month)
 
-    }, [date, data.monthList, year, month])
+
+    }, [date, data.monthList, year, month, data.yearList])
 
     return (
-        <div className='lg:ml-[120px] border-b-[#e5e5e5] border-b-[1px] pb-[11px] lg:pb-[25px]'>
+        <div 
+        style={{
+            minHeight: isBadge ? "33px" : "auto"
+        }}
+        className='lg:ml-[120px] border-b-[#e5e5e5] border-b-[1px] pb-[11px] lg:pb-[25px]'>
 
             <div className="info-right lg:text-right">
                 {date === "realtime" && (
@@ -81,7 +94,7 @@ export default function BoardDate({ date, data = {}, day = "", weekId, year, mon
                     )
                 }
 
-                {(date === "weekly" || date === "monthly") && (
+                {(date === "weekly" || date === "monthly" || date === "annual") && (
                     <ul className='list-none font-noto font-medium text-[12px] lg:text-[14px]'>
 
                         {/* yearList */}
@@ -108,6 +121,11 @@ export default function BoardDate({ date, data = {}, day = "", weekId, year, mon
                                             setOpenWeekYear(false)
                                             if (date === "weekly") setOpenWeekList(true)
                                             if (date === "monthly") setOpenMonthList(true)
+                                            if (date === "annual") {
+                                                onSubmit({
+                                                    year: item.year
+                                                })
+                                            }
                                         }}
                                         className='block relative whitespace-nowrap w-full h-[30px] leading-[30px] py-0 px-[10px] border-t-[black] border-[1px] first:border-none'
                                     >

@@ -14,6 +14,10 @@ import tiktokReducer from '../features/Tiktok/TiktokSlice';
 import { tiktokApi } from './services/Tiktok';
 import { siteArtistApi } from './services/SiteArtist';
 import siteArtistReducer from '../features/SiteArtist/SiteArtistSlice';
+import { fancafeApi } from './services/Fancafe';
+import fancafeReducer from '../features/Fancafe/FancafeSlice';
+import { badgeApi } from './services/Badge';
+import badgeReducer from '../features/Badge/BadgeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -30,7 +34,11 @@ export const store = configureStore({
     tiktok: tiktokReducer,
     [tiktokApi.reducerPath]: tiktokApi.reducer,
     siteArtist: siteArtistReducer,
-    [siteArtistApi.reducerPath]: siteArtistApi.reducer
+    [siteArtistApi.reducerPath]: siteArtistApi.reducer,
+    fancafe: fancafeReducer,
+    [fancafeApi.reducerPath]: fancafeApi.reducer,
+    badge: badgeReducer,
+    [badgeApi.reducerPath]: badgeApi.reducer
   },
   //enable cac tinh nang cua rtk
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
@@ -41,6 +49,8 @@ export const store = configureStore({
   .concat(snsApi.middleware)
   .concat(tiktokApi.middleware)
   .concat(siteArtistApi.middleware)
+  .concat(fancafeApi.middleware)
+  .concat(badgeApi.middleware)
 });
 
 
