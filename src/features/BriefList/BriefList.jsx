@@ -28,7 +28,6 @@ export default function BriefList() {
               {briefData.briefs?.map((item, index) => index === 0 ? <BriefIntro key={item.briefId} brief={item} /> : <BriefItem key={item.briefId} brief={item} />)}
             </React.Fragment>
           )}
-          <Loading />
         </ul>
       </div>
 

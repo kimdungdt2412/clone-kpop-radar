@@ -11,7 +11,7 @@
 
 
     .board-header h2 {
-        @apply text-[44px] leading-[48px] lg:text-[86px] lg:leading-[100px]
+        @apply text-[44px] leading-[48px] lg:text-[86px] lg:leading-[110px]
     }
 
     .mini-board-header h2 {

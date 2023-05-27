@@ -34,13 +34,13 @@ export default function Badge({ isScrollDown }) {
 
     const getBadges = useGetBadgeDataQuery({
         ...payload,
-        periodId: date === "overall" ? "0" : (!isValidNumber(year) ? "0" : `${year}000`)
+        periodId: date === "annual" ? (!isValidNumber(year) ? `2023000` : `${year}000`) : "0" 
     })
 
     const handleRefreshData = () => {
         getBadgeData({
             ...payload,
-            periodId: date === "overall" ? "0" : (!isValidNumber(year) ? "0" : `${year}000`)
+            periodId: date === "annual" ? (!isValidNumber(year) ? `2023000` : `${year}000`) : "0" 
         })
     }
 

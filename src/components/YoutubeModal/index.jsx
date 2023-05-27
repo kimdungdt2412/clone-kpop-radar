@@ -35,6 +35,7 @@ export default function YoutubeModal({ url = "", closeModal, isViewcount = false
 
                 <button
                     onClick={closeModal}
+                    id="closeYoutubeModal"
                     className='absolute top-[-12.5px] right-[-12.5px] w-[30px] h-[30px] bg-icon_close indent-[-999px] bg-contain bg-no-repeat bg-[position:center_center] text-transparent'                >
                     Close
                 </button>

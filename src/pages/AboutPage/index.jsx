@@ -3,7 +3,7 @@ import arrowIcon from '../../assets/images/kr-about-faq-arrow.png';
 import spaceOddityThumbnail from '../../assets/images/thumbnail_space-oddity.jpg'
 import bgContact from '../../assets/images/bg_contact_img.jpg'
 import { NavLink } from 'react-router-dom';
-import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax';
+import { ParallaxBanner } from 'react-scroll-parallax';
 import kvBanner from "../../assets/images/img_kv_banner.jpg"
 import mkvBanner from "../../assets/images/img_kv_banner_m.jpg"
 import './style.css'
@@ -154,7 +154,7 @@ export default function About() {
                         </p>
 
                         <div className='blip-list overflow-hidden h-[360px] lg:h-auto'>
-                            <ul className='mt-[42px] mx-0 mb-0 whitespace-nowrap overflow-x-scroll overflow-y-hidden w-full text-0 lg:mt-[135px] lg:mx-[-4%]'>
+                            <ul className='mt-[42px] mx-0 mb-0 whitespace-nowrap overflow-x-scroll overflow-y-hidden w-full text-0 lg:mt-[135px] lg:mx-[-4%] lg:overflow-hidden'>
                                 {blipList.map(item => (
                                     <li key={item.no} className='inline-block text-white align-top border-t-[1px] border-t-white w-[255px] pt-[22px] whitespace-normal mt-0 mr-0 mb-0 ml-[40px] first:m-0 last:mx-[40px] last:my-0 lg:w-[25%] lg:my-0 lg:mx-[4%] lg:pt-[36px] lg:first:mx-[4%] lg:last:mx-[4%]'>
                                         <dl className='mb-[18px] lg:mb-[31px]'>

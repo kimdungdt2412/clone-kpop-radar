@@ -16,7 +16,7 @@ export default function BoardIntro({ item }) {
     return (
         <div className="intro">
             <a
-                onClick={() => { if(!item.rank) window.open(item.url) }
+                onClick={() => { if (!item.rank) window.open(item.url) }
                 }>
                 <figure className='absolute top-[50%] left-0 translate-y-[-50%] overflow-hidden w-[46px] h-[46px] rounded-[50%]'>
                     <img className='block absolute top-[50%] left-[50%] max-w-[46px] translate-x-[-50%] translate-y-[-50%]' src={imgSrc} onError={onError} />
@@ -57,12 +57,19 @@ export const ViewCountBoardIntro = ({ setSelectedItem, item }) => {
             <div className="text-wrap overflow-hidden ml-auto w-full pr-0 lg:pr-[40px] lg:ml-[20px]">
                 <span className='artistName'>{item.songName}
                 </span>
-                <Link
-                    to={`/artist/${artistBr}`}
-                    className='relative inline-block text-[#666] overflow-hidden whitespace-nowrap text-ellipsis max-w-[300px] text-[12px] p-0 h-auto leading-[17px] mr-[10px] after:content-[""] after:absolute after:block after:rounded-[14px] after:opacity-100 after:top-auto after:left-0 after:bottom-0 after:w-full after:h-[1px] after:bg-[#666] after:border-none lg:text-[14px] lg:after:content-none lg:h-[24px] '
-                >
-                    <span className='font-light m-0 transition-all'>{artistName}</span>
-                </Link>
+                {artistBr ? (
+                    <Link
+                        to={`/artist/${artistBr}`}
+                        className='relative inline-block text-[#666] overflow-hidden whitespace-nowrap text-ellipsis max-w-[300px] text-[12px] p-0 h-auto leading-[17px] mr-[10px] after:content-[""] after:absolute after:block after:rounded-[14px] after:opacity-100 after:top-auto after:left-0 after:bottom-0 after:w-full after:h-[1px] after:bg-[#666] after:border-none lg:text-[14px] lg:after:content-none lg:h-[24px] '
+                    >
+                        <span className='font-light m-0 transition-all'>{artistName}</span>
+                    </Link>
+                ) : (
+                    <span className='no-artist-board relative inline-block text-[#666] overflow-hidden whitespace-nowrap text-ellipsis max-w-[300px] text-[12px] p-0 h-auto leading-[17px] mr-[10px] lg:text-[14px] lg:h-[24px] '>
+                        {artistName}
+                    </span>
+                )}
+
             </div>
 
         </div>

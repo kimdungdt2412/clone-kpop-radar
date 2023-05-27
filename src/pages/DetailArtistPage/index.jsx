@@ -24,8 +24,9 @@ export default function DetailArtist() {
   const [open, setOpen] = useState(false)
   const imgRef = useRef(null)
   const [selectedBadge, setSelectedBadge] = useState({})
+  const [isLoadedImg, setIsLoadedImg] = useState(false)
 
-  const { data, isSuccess, isFetching } = useGetArtistInfoQuery(params.artistPath ? {
+  const { data, isSuccess, isFetching, isError } = useGetArtistInfoQuery(params.artistPath ? {
     artistPath: params.artistPath
   } : skipToken)
 
@@ -74,12 +75,9 @@ export default function DetailArtist() {
 
   }, [likeCount])
 
-  // useEffect(() => {
-  //   console.log("run")
-  //   if (imgRef) {
-  //     handlePositionByArtistImg(imgRef)
-  //   }
-  // }, [imgRef])
+  useEffect(() => {
+    if(isError) navigate(-1)
+  }, [isError])
 
   if (!params.artistPath || params.artistPath === "") {
     navigate('/artist')
@@ -89,7 +87,7 @@ export default function DetailArtist() {
   return (
     <section className="artist-content relative overflow-hidden m-0 pt-[72px] lg:pt-0">
 
-      {isFetching ? (<Loading />) : (
+      {(isFetching) ? (<Loading />) : (
         <article className="section artist mb-[100px] pt-[160px] lg:pt-[300px] lg:max-w-full lg:pl-0">
           <div className="artist-inner mt-[-70px] max-w-[1160px] mx-auto my-0 lg:mt-0">
             <div className="artist-img relative py-0 px-[10.6667%] my-0 mx-auto lg:px-[6.897%] lg:mb-[200px]">
@@ -114,7 +112,7 @@ export default function DetailArtist() {
 
                 <span
                   id="heartIcon"
-                  className={`absolute left-[-25px] top-[-80px]`}
+                  className={`absolute top-[-60px] left-[-25px] lg:top-[-80px]`}
                   onClick={() => {
                     heartRef.current?.play()
                     setLikeCount(likeCount + 1)
@@ -137,7 +135,16 @@ export default function DetailArtist() {
                   <span className='text-[12px] relative bottom-[45px] left-[60px]'>{artist.count ?? ""}</span>
 
                 </span>
-                <img ref={imgRef} id="artistImg" src={artist.imgUrl} alt="imgUrl" className='inline-block relative w-full z-[-1]' />
+                <img 
+                ref={imgRef} 
+                id="artistImg" 
+                loading="lazy" 
+                onLoad={() => setIsLoadedImg(true)} src={artist.imgUrl}
+                 alt="imgUrl" 
+                 style={{
+                  height: isLoadedImg ? "auto" : "1000px"
+                 }}
+                 className='inline-block relative w-full z-[-1]' />
 
                 <div className='absolute bottom-[-10%] left-[-5%]'>
                   <p id="krName" className="translate-y-[50%] text-[30px] leading-[0.9] font-bold text-left text-black mb-[25px] lg:text-[50px]">

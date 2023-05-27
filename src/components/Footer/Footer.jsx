@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import arrowIcon from '../../assets/images/kr-about-faq-arrow.png';
 import blipIcon from '../../assets/images/kr-footer-blip-sp-logo.png'
 import licenseIcon from '../../assets/images/kr-footer-blip-ccl.png'
+import footerAbout from '../../assets/images/img_footer_about.jpg'
 import './style.css'
 
 export default function Footer() {
@@ -31,12 +32,13 @@ export default function Footer() {
             <div className='block absolute top-[10px] left-[24px] w-[55px] h-[55px] lg:top-[60px] lg:left-[60px] lg:w-[80px] lg:h-[60px] overflow-hidden bg-footer_blip bg-no-repeat bg-100 bg-[50%] text-transparent'>
                 k-pop radar
             </div>
-            <div className='inner w-full max-w-[1440px] mx-0 my-auto'>
+            <div className='inner w-full max-w-[1440px] my-0 mx-auto'>
                 <ul className='z-1 relative max-w-none w-auto left-0 m-0 ml-[77px] pb-0 lg:ml-auto lg:pb-[320px] lg:max-w-[800px] lg:w-full list-style-none'>
                     {
                         menuList.map(item => (
-                            <li className='relative' key={item.title}>
+                            <li className='group relative' key={item.title}>
                                 {item.title !== 'about' ? (
+
                                     <NavLink
                                         className="menu-item block w-full text-[46px] leading-[64px] lg:text-[120px] lg:leading-[140px] font-bold"
                                         rel="noopener noreferrer"
@@ -44,14 +46,33 @@ export default function Footer() {
                                     >
                                         {item.title}
                                     </NavLink>
+
+
                                 ) : (
-                                    <NavLink
-                                        className="menu-item block w-full text-[46px] leading-[64px] lg:text-[120px] lg:leading-[140px] font-bold"
-                                        rel="noopener noreferrer"
-                                        to={item.url}
-                                    >
-                                        {item.title}
-                                    </NavLink>
+                                    <>
+                                        <NavLink
+                                            className="menu-item block w-full text-[46px] leading-[64px] lg:text-[120px] lg:leading-[140px] font-bold lg:group-hover:translate-x-[-50%] lg:transition-transform lg:duration-500 lg:ease-in-out"
+                                            rel="noopener noreferrer"
+                                            to={item.url}
+                                        >
+                                            {item.title}
+                                        </NavLink>
+
+                                        <div className="hidden detail-wrap opacity-0 z-[-1] absolute top-0 left-0 w-full transition-opacity duration-300 lg:block lg:group-hover:opacity-100">
+                                            <p className='font-noto text-[24px] font-[700] leading-[42px] max-w-[510px] break-words pt-[190px]'>
+                                                
+                            케이팝 레이더는 아티스트의 플랫폼별 팬덤 규모와 변화 추이, 달성
+                            마일스톤을 통합적으로 탐지해 별도 가중치 없는 객관적 데이터로
+                            제공합니다. 아티스트의 현재를 그대로 보여주는 유일한 대시보드입니다.
+                        
+                                            </p>
+
+                                            <figure className='w-full'>
+                                            <img className='z-[-1] absolute top-0 left-[460px]' src={footerAbout} alt="footer-about" />
+                                            </figure>
+                                        </div>
+                                    </>
+
                                 )}
                             </li>
                         ))
@@ -63,7 +84,7 @@ export default function Footer() {
                     <NavLink
                         className="inline-block hover:underline"
                         rel="noopener noreferrer"
-                        to="/notice"
+                        to="/"
                     >
                         <strong className='block leading-[15px] lg:leading-none'>
                             Notice
@@ -75,7 +96,7 @@ export default function Footer() {
                     <NavLink
                         className="inline-block hover:underline"
                         rel="noopener noreferrer"
-                        to="/faq"
+                        to="/"
                     >
                         <strong className='block leading-[15px] lg:leading-none'>
                             FAQ
@@ -88,7 +109,7 @@ export default function Footer() {
                     <NavLink
                         className="inline-block hover:underline mb-[30px]"
                         rel="noopener noreferrer"
-                        to="/new-letter"
+                        to="/"
                     >
                         <strong className='block leading-[15px] lg:leading-none'>
                             Newsletter

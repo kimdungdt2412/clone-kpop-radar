@@ -45,6 +45,10 @@
         @apply lg:text-white lg:px-0 lg:rounded-none lg:border-none lg:leading-none
     }
 
+    .view-table-body li.active .board-item .intro .text-wrap span.no-artist-board {
+        @apply text-white
+    }
+
     .view-table-body li.active .preview {
         @apply h-full opacity-100
     }
@@ -101,7 +105,7 @@
     }
 
     .badge-table-body > ul > li.active {
-        @apply max-h-[1200px]
+        @apply max-h-none
     }
 
     .badge-table-body > ul > li .board-item{
