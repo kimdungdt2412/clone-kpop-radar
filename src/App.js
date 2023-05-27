@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeTemplate from './templates';
 import DashboardTemplate from './templates/Dashboard';
 import Footer from './components/Footer/Footer';
-import Dots from './components/Dots/Dots';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { ScrollToTop } from './components/ScrollToTop';
 

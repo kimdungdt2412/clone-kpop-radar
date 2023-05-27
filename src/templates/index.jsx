@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Dots from "../components/Dots/Dots";
-import Loading from "../components/Loading/Loading";
 
 export default function HomeTemplate() {
   return (

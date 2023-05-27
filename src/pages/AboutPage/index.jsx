@@ -44,9 +44,10 @@ export default function About() {
             setWidth(windowSize?.current?.[0] || 0)
         }
     }, [windowSize.current[1]])
+
     return (
         <section className='about block overflow-hidden m-0 mt-[65px] lg:m-auto lg:mt-[135px]'>
-            <article className='about-wrap pt-0 bg-black overflow-hidden lg:pt-[135px]'>
+            <article className='about-wrap pt-0 overflow-hidden lg:pt-[135px]'>
                 <div className='about-content relative max-w-[1440px] my-0 mx-auto'>
                     <div className='about-kv relative pt-[177px] pl-[15px] pr-[15px] pb-0 bg-about_bg_kv_m bg-no-repeat bg-100 lg:pt-[250px] lg:pl-[40px] lg:pr-[40px] lg:bg-[position:-0px_-135px] lg:bg-about_bg_kv'>
                         <div className='relative text-white mb-[52px] lg:mb-[27px] '>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { formatNumber, splitArtistData } from '../../utils/function'
+import { formatNumber } from '../../utils/function'
 import IconRankUp from '../Icon/IconRankUp'
 import IconRankDown from '../Icon/IconRankDown'
 import IconRankEqual from '../Icon/IconRankEqual'

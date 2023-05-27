@@ -13,6 +13,7 @@ import SNSTodayItem from '../../components/SNSTodayItem'
 import YoutubeModal from '../../components/YoutubeModal'
 import { snsList } from '../../utils/config'
 import Loading from '../../components/Loading/Loading';
+import BlipData from '../../components/BlipData'
 
 export default function DetailArtist() {
   const params = useParams()
@@ -166,10 +167,12 @@ export default function DetailArtist() {
       {summaryBadge[artist.artistId]?.length > 0 && (
         <article className='section summaryBadge'>
           <header className="relative">
+            <a href='#artist-badge'>
             <h2 className="font-bold text-[15px] cursor-pointer lg:text-[30px]">
               BADGE
               <img src={linkIcon} alt="linkIcon" className='relative inline-block cursor-pointer left-[8px] w-[5px] top-[-1px] lg:w-[10px] lg:top-[-3px] lg:left-[18px]' />
             </h2>
+            </a>
           </header>
 
           <ul className="pt-[30px] list-none lg:pt-[80px]">
@@ -193,7 +196,7 @@ export default function DetailArtist() {
 
       <article className='section today pt-[40px] lg:pt-[120px]'>
         <header className="relative">
-          <h2 className="font-bold text-[38px] cursor-pointer lg:text-[102px]">
+          <h2 className="font-bold text-[38px] lg:text-[102px]">
             TODAY
           </h2>
         </header>
@@ -217,6 +220,9 @@ export default function DetailArtist() {
         </aside>
       </article>
 
+      {Object.keys(blipData[artist.artistId] ?? {})?.length > 0 && (
+        <BlipData collections={blipData[artist.artistId].collections} schedules={blipData[artist.artistId].schedules}/>
+      )} 
       {relatedArtist[artist.artistId]?.length > 0 && (
         <article className='section recommand mt-[35px] lg:mt-[40px]'>
           <header className='relative'>
@@ -249,7 +255,7 @@ export default function DetailArtist() {
 
 
       {badge[artist.artistId]?.length > 0 && (
-        <article className='section badge max-w-[1920px] pt-[120px] bg-black pl-[20px] w-full mt-[60px] pb-0 mb-[-30px] lg:mt-0 lg:pb-[150px]'>
+        <article id="artist-badge" className='section badge max-w-[1920px] pt-[120px] bg-black pl-[20px] w-full mt-[60px] pb-0 mb-[-30px] lg:mt-0 lg:pb-[150px]'>
           <header className='relative max-w-[1160px] text-white mt-[-50px] ml-[10px] pt-0 lg:pt-[110px] lg:mt-0 lg:mx-auto'>
             <h2 className='font-semibold text-white text-[38px] lg:text-[102px] lg:leading-[102px]'>
               BADGE
@@ -267,7 +273,7 @@ export default function DetailArtist() {
                     }, 500)
                   }} className='group inline-block text-center w-[33%] pb-[55px] px-0 lg:py-[50px] lg:w-[25%]'>
                     <div className="mr-[15px] lg:mr-0">
-                      <img src={item.normalImgUrl} className={`relative mx-auto h-full text-center transition-transform duration-500 w-[75px] cursor-pointer active:[transform:rotateY(1turn)] lg:w-[160px]`} />
+                      <img src={item.normalImgUrl} className={`relative mx-auto h-full text-center transition-transform duration-500 w-[75px] cursor-pointer active:[transform:rotateY(1turn)] lg:group-hover:[transform:rotateY(1turn)] lg:w-[160px]`} />
 
                       <span className={`mx-auto w-[75px] break-keep whitespace-nowrap relative top-[5px] text-[10px] lg:text-[17px] lg:top-[20px]`}>{item.name.length > 12 ? item.name.substring(0, 10) + ".." : item.name}
                       </span>

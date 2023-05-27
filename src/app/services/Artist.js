@@ -7,6 +7,7 @@ var qs = require('qs');
 export const artistApi = createApi({
     ...baseConfig,
     reducerPath: "artistApi",
+    refetchOnMountOrArgChange: false,
     endpoints: (build) => ({
         getArtistNames: build.query({
             query: () => {

@@ -14,6 +14,12 @@ import greenLogo from "../assets/images/logo_7.svg"
 import greenLogoGif from "../assets/images/logo_motion_7.gif"
 import purleLogo from "../assets/images/logo_8.svg"
 import purleLogoGif from "../assets/images/logo_motion_8.gif"
+import icon_1 from "../assets/images/kr-sd-1.png"
+import icon_2 from "../assets/images/kr-sd-2.png"
+import icon_3 from "../assets/images/kr-sd-3.png"
+import icon_4 from "../assets/images/kr-sd-4.png"
+import icon_5 from "../assets/images/kr-sd-5.png"
+import icon_6 from "../assets/images/kr-sd-6.png"
 
 export const DOMAIN = "https://api.kpop-radar.com";
 
@@ -232,3 +238,13 @@ export const badgeTypeValue = {
 }
 
 export const badgeDates = ["overall", "annual"]
+
+
+export const scheduleTypeMap = {
+    1: icon_1,
+    2: icon_2,
+    3: icon_3,
+    4: icon_4,
+    5: icon_5,
+    6: icon_6
+}

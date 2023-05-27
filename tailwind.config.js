@@ -61,7 +61,9 @@ module.exports = {
         'icon_tap_arrow_down': "url('/src/assets/images/icon_tap_arrow_down.svg')",
         'icon_rank_up_w': "url('/src/assets/images/icon_rank_up_w.svg')",
         'icon_rank_down_w': "url('/src/assets/images/icon_rank_down_w.svg')",
-        'kr-chart-link-hover': "url('/src/assets/images/kr-chart-link-hover.svg')"
+        'kr-chart-link-hover': "url('/src/assets/images/kr-chart-link-hover.svg')",
+        'kr-blip-schedule-banner-mo': "url('/src/assets/images/kr-blip-schedule-banner-mo.png')",
+        'kr-blip-schedule-banner-pc': "url('/src/assets/images/kr-blip-schedule-banner-pc.png')"
       },
       backgroundSize: {
         '100': "100%"

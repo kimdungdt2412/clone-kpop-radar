@@ -8,13 +8,6 @@ export default function TabMenu({ boardType, open, onClose, param = "" }) {
     const scrollRef = useRef(null)
     const [color, setColor] = useState(boardType.color)
 
-    // useEffect(() => {
-    //     if (scrollRef) {
-
-    //     }
-
-    // }, [param])
-
     return (
         <article className={`tabMenu ${open ? "open" : ""} fixed z-[200] top-0 left-0 right-0 min-w-auto w-full h-full overflow-hidden lg:overflow-y-auto`}>
             <div className="inner relative top-0 left-0 right-0 bottom-0 h-full w-full max-w-[1110px] lg:h-fit lg:pt-[170px] lg:pb-[80px] lg:pl-[120px] lg:left-[50%] lg:translate-x-[-50%]">

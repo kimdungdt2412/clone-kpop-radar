@@ -2,12 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { badgeTypeValue } from '../../utils/config';
-import SortByType from '../../components/Sort/SortByType';
-import TableHeader from '../../components/TableHeader';
 import TableBody from '../../components/TableBody';
-import TablePagination from '../../components/TablePagination';
 import SortByDate from '../../components/Sort/SortByDate';
-import { skipToken } from '@reduxjs/toolkit/dist/query';
 import BoardDate from '../../components/BoardDate';
 import ScrollProgress from '../../components/ScrollProgress'
 import InnerLoading from '../../components/Loading/InnerLoading';

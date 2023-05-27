@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { youtubeApi } from '../../app/services/Youtube';
 import { channelApi } from '../../app/services/Channel';
 
 const initialState = {
