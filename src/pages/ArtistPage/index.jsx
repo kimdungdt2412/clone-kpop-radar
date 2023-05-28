@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { selectArtist } from '../../features/Artist/ArtistSlice';
 import { useSelector } from 'react-redux';
 import { useGetArtistNameIndicesQuery, useGetArtistNamesQuery } from '../../app/services/Artist';
@@ -23,6 +23,10 @@ export default function ArtistPage() {
       window.scrollTo(0, itemsRef.current[Number(type)]?.offsetTop)
     }
   }
+
+  useEffect(() => {
+    document.body.style.background = "white"
+  }, [])
 
   return (
     <section className='artists block m-0 mt-[72px] relative overflow-hidden lg:mt-0 min-h-screen'>
