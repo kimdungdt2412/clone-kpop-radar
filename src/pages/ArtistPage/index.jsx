@@ -26,7 +26,7 @@ export default function ArtistPage() {
 
   return (
     <section className='artists block m-0 mt-[72px] relative overflow-hidden lg:mt-0 min-h-screen'>
-      {(names.isFetching) ? (
+      {(!names.isFetching) ? (
         <Loading />) : (
         <React.Fragment>
           <article className='artist mb-0 pt-[160px] my-0 mx-auto lg:pt-[300px]'>
