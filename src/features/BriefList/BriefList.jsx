@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { selectBrief } from './BriefSlice';
 import { briefApi, useGetBriefListQuery } from '../../app/services/Brief';
@@ -15,6 +15,10 @@ export default function BriefList() {
   })
 
   const [trigger] = briefApi.useLazyGetBriefListQuery()
+
+  useEffect(() => {
+    document.body.style.background = "white"
+  }, [])
 
   return (
     <div className='brief relative'>
