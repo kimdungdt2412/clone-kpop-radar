@@ -16,7 +16,6 @@ const DetailArtist = React.lazy(() => import('./pages/DetailArtistPage'))
 const BoardPage = React.lazy(() => import('./pages/BoardPage'))
 
 function App() {
-
   return (
     <BrowserRouter>
       <ParallaxProvider>
