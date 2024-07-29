@@ -27,9 +27,10 @@ export default function Channel({ isScrollDown }) {
   const payload = {
     orderCountInPage: channelData.orderCountInPage,
     lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * channelData.orderCountInPage,
-    gender: gender === "all" ? "" : sortGenderMap[gender],
     ...youtubeSortTypeValue[type],
   }
+
+  if (gender !== "all") payload.gender = sortGenderMap[gender]
 
   const getWeek = useGetWeekListQuery()
   const getMonth = useGetMonthListQuery()

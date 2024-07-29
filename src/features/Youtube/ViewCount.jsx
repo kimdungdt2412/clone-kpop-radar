@@ -29,9 +29,10 @@ export default function ViewCount({ isScrollDown }) {
   const payload = {
     orderCountInPage: youtubeData.orderCountInPage,
     lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * youtubeData.orderCountInPage,
-    gender: gender === "all" ? "" : sortGenderMap[gender],
     ...youtubeSortTypeValue[type],
   }
+
+  if (gender !== "all") payload.gender = sortGenderMap[gender]
 
   const getDay = useGetStartDayQuery()
   const getWeek = useGetWeekListQuery()

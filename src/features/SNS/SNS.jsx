@@ -29,9 +29,10 @@ export default function SNSFollowers({ isScrollDown, siteId }) {
     siteId,
     orderCountInPage: snsData.orderCountInPage,
     lastOrderNo: (isValidNumber(page) ? (Number(page) - 1) : 0) * snsData.orderCountInPage,
-    gender: gender === "all" ? "" : sortGenderMap[gender],
     ...youtubeSortTypeValue[type],
   }
+
+  if (gender !== "all") payload.gender = sortGenderMap[gender]
 
   const getDay = useGetStartDayQuery(siteId)
   const getWeek = useGetWeekListQuery(siteId)
