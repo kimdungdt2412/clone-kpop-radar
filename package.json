@@ -1,6 +1,9 @@
 {
   "name": "kpop-radar",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "private": true,
   "dependencies": {
     "@lottiefiles/lottie-player": "^1.7.1",
