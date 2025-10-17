@@ -5,9 +5,11 @@ import { DOMAIN } from '../../utils/config'
 const baseQuery = fetchBaseQuery({
     baseUrl: DOMAIN,
     prepareHeaders: (headers) => {
-        headers.set('content-type', 'application/x-www-form-urlencoded')
-        headers.set('sec-fetch-mode', 'cors')
-        // headers.set('same-site', 'none')
+        headers.set('content-type', 'application/x-www-form-urlencoded');
+        headers.set('sec-fetch-mode', 'cors');
+        headers.set('Accept', '*/*');
+        headers.set('Access-Control-Allow-Origin', '*');
+        return headers;
     }
 })
 

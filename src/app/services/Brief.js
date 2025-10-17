@@ -12,23 +12,21 @@ export const briefApi = createApi({
         getBriefList: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/getContentList`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/getContentList?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
             providesTags: ['Brief'],
         }),
         getBriefContent: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/getContent`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/getContent?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
             providesTags: ['Brief'],
         })
     })

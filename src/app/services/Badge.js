@@ -11,24 +11,22 @@ export const badgeApi = createApi({
         getPeriodList: build.query({
             query: () => {
                 return {
-                    url: `${apiPrefix}/periods`,
-                    method: 'POST',
-                    body: qs.stringify({
+                    url: `${apiPrefix}/periods?${qs.stringify({
                         sortType: 1
-                    })
+                    })}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getBadgeData: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/badgeData`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/badgeData?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         })
     })
 })

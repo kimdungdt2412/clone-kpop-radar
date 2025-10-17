@@ -12,81 +12,75 @@ export const artistApi = createApi({
         getArtistNames: build.query({
             query: () => {
                 return {
-                    url: `${apiPrefix}/getArtistNames`,
-                    method: 'POST',
+                    url: `${apiPrefix}/artistNames`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getArtistNameIndices: build.query({
             query: () => {
                 return {
-                    url: `${apiPrefix}/getArtistNameIndices`,
-                    method: 'POST'
+                    url: `${apiPrefix}/artistNameIndices`,
+                    method: 'GET'
                 }
             },
-            transformResponse: (response) => response.body
+            transformResponse: (response) => response.data
         }),
         getRecommendArtists: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/getRecommendArtists`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/recommendArtists?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getArtistInfo: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/getArtistInfo`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/getArtistInfo?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
             providesTags: ['Artist'],
         }),
         incArtistLikeCount: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/incArtistLikeCount`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/incArtistLikeCount?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getArtistBadge: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/badge`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/badge?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getRelatedArtists: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/getRelatedArtists`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/getRelatedArtists?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getBlipData: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/getBlipData`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/getBlipData?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getRealtimeDataNew: build.query({
             query: (body) => {
@@ -98,12 +92,11 @@ export const artistApi = createApi({
                 //     lastOrderNo: 0
                 // }
                 return {
-                    url: `${apiPrefix}/realtimeDataNew`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/realtimeDataNew?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getDailyDataNew: build.query({
             query: (body) => {
@@ -111,12 +104,11 @@ export const artistApi = createApi({
                 //day
                 // }
                 return {
-                    url: `${apiPrefix}/dailyDataNew`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/dailyDataNew?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getWeeklyDataNew: build.query({
             query: (body) => {
@@ -124,12 +116,11 @@ export const artistApi = createApi({
                 //week
                 // }
                 return {
-                    url: `${apiPrefix}/weeklyDataNew`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/weeklyDataNew?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
     })
 })

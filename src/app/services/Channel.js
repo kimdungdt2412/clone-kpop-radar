@@ -11,60 +11,53 @@ export const channelApi = createApi({
         getStartDay: build.query({
             query: () => {
                 return {
-                    url: `${apiPrefix}/startDay`,
-                    method: 'POST',
-                    body: qs.stringify({
+                    url: `${apiPrefix}/startDay?${qs.stringify({
                         sortType: 1
-                    })
+                    })}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getWeekList: build.query({
             query: () => {
                 return {
-                    url: `${apiPrefix}/weekList`,
-                    method: 'POST',
-                    body: qs.stringify({
+                    url: `${apiPrefix}/weekList?${qs.stringify({
                         sortType: 1
-                    })
+                    })}`,
+                    method: 'GET',
                 }
             },
-            
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getMonthList: build.query({
             query: () => {
                 return {
-                    url: `${apiPrefix}/monthList`,
-                    method: 'POST',
-                    body: qs.stringify({
+                    url: `${apiPrefix}/monthList?${qs.stringify({
                         sortType: 1
-                    })
+                    })}`,
+                    method: 'GET',
                 }
             },
-            
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getWeeklyData: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/weeklyData`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/weeklyData?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         }),
         getMonthlyData: build.query({
             query: (body) => {
                 return {
-                    url: `${apiPrefix}/monthlyData`,
-                    method: 'POST',
-                    body: qs.stringify(body)
+                    url: `${apiPrefix}/monthlyData?${qs.stringify(body)}`,
+                    method: 'GET',
                 }
             },
-            transformResponse: (response) => response.body,
+            transformResponse: (response) => response.data,
         })
     })
 })

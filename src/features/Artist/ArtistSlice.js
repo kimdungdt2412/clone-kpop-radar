@@ -41,8 +41,7 @@ export const artistSlice = createSlice({
             .addMatcher(artistApi.endpoints.getArtistBadge.matchFulfilled, (state, action) => {
                 let key = action.meta.arg.originalArgs?.artistId
                 let summaryBadges = {}
-
-                action.payload.badges?.forEach(item => {
+                action.payload?.forEach(item => {
                     let newItem = {
                         key: item.unit === "10000" ? `${item.number}-${item.unit}` : `${item.number >= 10 ? 10 : item.number}-${item.unit}`,
                         badgeImg: item.summaryImgUrl,
@@ -51,7 +50,7 @@ export const artistSlice = createSlice({
                     }
 
                     if (!Object.hasOwnProperty(newItem.key)) {
-                        newItem.count = action.payload.badges?.filter(badge => {
+                        newItem.count = action.payload?.filter(badge => {
                             let newNumber = badge.unit === "10000" ? `${badge.number}-${badge.unit}` : `${badge.number >= 10 ? 10 : badge.number}-${badge.unit}`
                             if (newNumber === newItem.key) {
                                 newItem.songInfo.push({
@@ -68,14 +67,14 @@ export const artistSlice = createSlice({
                     }
                 })
 
-                state.badge[key] = action.payload.badges
+                state.badge[key] = action.payload
                 state.summaryBadge[key] = Object.keys(summaryBadges).map((key) => summaryBadges[key]).sort((item1, item2) => (
                     item1.minViewCount > item2.minViewCount
                 ))
             })
             .addMatcher(artistApi.endpoints.getRelatedArtists.matchFulfilled, (state, action) => {
                 let key = action.meta.arg.originalArgs?.artistId
-                state.relatedArtist[key] = action.payload.artists
+                state.relatedArtist[key] = action.payload
             })
             .addMatcher(artistApi.endpoints.getBlipData.matchFulfilled, (state, action) => {
                 let key = action.meta.arg.originalArgs?.artistId

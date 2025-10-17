@@ -27,12 +27,12 @@ export default function SNSTodayItem({ item }) {
                         {item.incCount > 0 ? (
                             <span className='text-[10px] mt-[15px] mr-[10px] mb-[20px] text-[#ff354e] leading-[1.68] text-left absolute lg:text-[20px] lg:mt-[40px] lg:mr-[10px] lg:mb-[20px] lg:ml-0'>
                                 <i className='bg-icon_rank_up mr-[8px] w-[8px] h-[7px] inline-block bg-no-repeat lg:w-[9px] lg:h-[8px] lg:mr-[8px] lg:align-middle'></i>
-                                {Intl.NumberFormat('en-US').format(item.incCount)} ({item.incRatio.toFixed(2)}%)
+                                {Intl.NumberFormat('en-US').format(item.incCount)} ({parseFloat(item.incRatio).toFixed(2)}%)
                             </span>
                         ) : (
                             <span className='text-[10px] mt-[15px] mr-[10px] mb-[20px] text-[#00a2ff] leading-[1.68] text-left absolute lg:text-[20px] lg:mt-[40px] lg:mr-[10px] lg:mb-[20px] lg:ml-0'>
                                 <i className='bg-icon_rank_down mr-[8px] w-[8px] h-[7px] inline-block bg-no-repeat lg:w-[9px] lg:h-[8px] lg:mr-[8px] lg:align-middle'></i>
-                                {Intl.NumberFormat('en-US').format(-item.incCount)} ({item.incRatio.toFixed(2)}%)
+                                {Intl.NumberFormat('en-US').format(-item.incCount)} ({parseFloat(item.incRatio).toFixed(2)}%)
                             </span>
                         )}
                     </React.Fragment>

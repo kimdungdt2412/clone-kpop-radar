@@ -21,7 +21,7 @@ import icon_4 from "../assets/images/kr-sd-4.png"
 import icon_5 from "../assets/images/kr-sd-5.png"
 import icon_6 from "../assets/images/kr-sd-6.png"
 
-export const DOMAIN = "https://api.kpop-radar.com";
+export const DOMAIN = "/api";  // Instead of "https://s.kpop-radar.com/api"
 
 
 export const menus = [

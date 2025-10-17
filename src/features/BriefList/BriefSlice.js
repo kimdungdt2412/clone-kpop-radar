@@ -43,7 +43,7 @@ export const briefSlice = createSlice({
         state.lastOrderNo = state.briefs.length
       })
       .addMatcher(briefApi.endpoints.getBriefContent.matchFulfilled, (state, action) => {
-        state.briefContent = action.payload.briefs
+        state.briefContent = action.payload
         state.briefId = action.meta.arg.originalArgs?.briefId || 0
       })
     // .addCase(getBriefList.fulfilled, (state, action) => {
